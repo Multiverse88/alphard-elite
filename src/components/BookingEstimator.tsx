@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-type ServiceType = 'drop-off' | 'harian' | 'luar-kota';
+export type ServiceType = 'drop-off' | 'harian' | 'luar-kota';
 
 const services: Record<ServiceType, { name: string; price: number; note: string }> = {
   'drop-off': {
@@ -20,6 +20,40 @@ const services: Record<ServiceType, { name: string; price: number; note: string 
   },
 };
 
+export const WHATSAPP_NUMBER = '62818804288';
+
+const rupiah = (value: number) => `Rp ${value.toLocaleString('id-ID')}`;
+
+export function estimate(service: ServiceType, duration: number): number | null {
+  if (service === 'drop-off') return services[service].price;
+  if (service === 'harian') return services[service].price * duration;
+  return null;
+}
+
+/** WhatsApp message mirroring the form: same labels, same order, WhatsApp bold/italic markup. */
+export function buildReservationMessage(input: { service: ServiceType; date: string; passengers: number; duration: number; pickup: string }): string {
+  const { service, date, passengers, duration } = input;
+  const pickup = input.pickup.trim();
+  const total = estimate(service, duration);
+  const travelDate = new Date(`${date}T00:00:00`).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  return [
+    'Halo Alphard Elite, saya ingin melakukan reservasi.',
+    '',
+    '*RESERVASI CEPAT — ALPHARD ELITE*',
+    '',
+    `*Layanan:* ${services[service].name}`,
+    `*Tanggal perjalanan:* ${travelDate}`,
+    `*Jumlah penumpang:* ${passengers} orang`,
+    ...(service === 'harian' ? [`*Durasi sewa:* ${duration} hari`] : []),
+    `*Lokasi jemput / catatan:* ${pickup || '-'}`,
+    `*Estimasi:* ${total !== null ? rupiah(total) : 'Hubungi CS'}`,
+    '',
+    '_Estimasi dari website, bukan harga final. Mohon konfirmasi ketersediaan jadwal dan harga akhir._',
+    '',
+    'Terima kasih.',
+  ].join('\n');
+}
+
 export default function BookingEstimator() {
   const [service, setService] = useState<ServiceType>('harian');
   const [duration, setDuration] = useState<number>(1);
@@ -31,11 +65,7 @@ export default function BookingEstimator() {
   useEffect(() => { setReady(true); }, []);
 
   const selected = services[service];
-  const totalPrice = service === 'drop-off'
-    ? selected.price
-    : service === 'harian'
-      ? selected.price * duration
-      : null;
+  const totalPrice = estimate(service, duration);
 
   const handleBookWhatsApp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,14 +77,8 @@ export default function BookingEstimator() {
       return;
     }
     setDateError('');
-    const durText = service === 'harian' ? `\n- Durasi: ${duration} Hari` : '';
-    const locText = pickup ? `\n- Titik Jemput/Rute: ${pickup}` : '';
-    const priceEst = totalPrice
-      ? `\n- Estimasi: Rp ${totalPrice.toLocaleString('id-ID')} (harga akhir dikonfirmasi CS)`
-      : '\n- Tarif: Menyesuaikan rute (butuh konfirmasi CS)';
-
-    const text = `Halo Alphard Elite, saya ingin reservasi armada VIP:\n- Tanggal: ${date}${durText}\n- Jumlah Penumpang: ${passengers} Orang${locText}\n- Pilihan Layanan: ${selected.name}${priceEst}\n\nMohon informasi ketersediaan jadwal. Terima kasih.`;
-    window.open(`https://wa.me/62818804288?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    const text = buildReservationMessage({ service, date, passengers, duration, pickup });
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -69,7 +93,7 @@ export default function BookingEstimator() {
         <div className="booking-total">
           <span className="field-label">Estimasi</span>
           <p className="price !m-0" aria-live="polite">
-            {totalPrice !== null ? `Rp ${totalPrice.toLocaleString('id-ID')}` : 'Hubungi CS'}
+            {totalPrice !== null ? rupiah(totalPrice) : 'Hubungi CS'}
           </p>
           <p className="price-note">Bukan harga final atau konfirmasi booking.</p>
           <button type="submit" disabled={!ready} className="btn-metal w-full mt-6">Kirim ke WhatsApp <span aria-hidden="true">↗</span></button>
@@ -91,7 +115,7 @@ export default function BookingEstimator() {
                 onClick={() => setService(key)}
               >
                 {services[key].name}
-                <small>{services[key].price > 0 ? `Rp ${services[key].price.toLocaleString('id-ID')}` : 'Hubungi CS'}</small>
+                <small>{services[key].price > 0 ? rupiah(services[key].price) : 'Hubungi CS'}</small>
               </button>
             ))}
           </div>
@@ -124,7 +148,7 @@ export default function BookingEstimator() {
               <label htmlFor="rental-duration" className="field-label">Durasi sewa</label>
               <select id="rental-duration" className="field cursor-pointer" value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
                 {[1, 2, 3, 4, 5, 7, 10, 14, 30].map((d) => (
-                  <option key={d} value={d}>{d} hari — Rp {(selected.price * d).toLocaleString('id-ID')}</option>
+                  <option key={d} value={d}>{d} hari — {rupiah(selected.price * d)}</option>
                 ))}
               </select>
             </div>
