@@ -7,106 +7,350 @@
   <title>CMS Pengelola Konten | Alphard Elite</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
-    body { background: #0e0e11; color: #f4f4f6; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
-    #token-gate { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; background: #070708; padding: 24px; }
-    #token-gate[hidden] { display: none; }
-    .gate-card { width: 100%; max-width: 420px; background: #121216; border: 1px solid rgba(212,216,224,0.22); border-radius: 12px; padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.85); }
-    .gate-card img { height: 34px; width: auto; display: block; margin-bottom: 20px; }
-    .gate-card h1 { font-size: 18px; margin: 0 0 8px; color: #fff; font-weight: 600; }
-    .gate-card p { font-size: 13px; line-height: 1.5; color: #a5aab4; margin: 0 0 18px; }
-    .gate-card label { display: block; font-size: 12px; color: #d5d8e0; margin-bottom: 6px; font-weight: 500; }
-    .gate-card input { width: 100%; box-sizing: border-box; padding: 11px 12px; border-radius: 6px; border: 1px solid rgba(212,216,224,0.28); background: #09090b; color: #fff; font-size: 14px; margin-bottom: 14px; }
-    .gate-card button { width: 100%; padding: 11px 16px; border-radius: 6px; border: 0; background: linear-gradient(135deg, #f5f6f8, #b8bec9); color: #070708; font-weight: 600; font-size: 14px; cursor: pointer; }
-    .gate-card button:disabled { opacity: 0.6; cursor: wait; }
-    .gate-error { color: #ff7b7b; font-size: 12px; margin-bottom: 12px; display: none; }
-    #cms-logout { position: fixed; bottom: 16px; right: 16px; z-index: 9999; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: #141418; color: #e4e6eb; font-size: 12px; cursor: pointer; }
+    :root {
+      --bg: #08080a;
+      --panel: #111116;
+      --panel-2: #17171e;
+      --border: rgba(214, 218, 226, 0.16);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
+    [hidden] { display: none !important; }
+    .login-wrap { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .login-card { width: 100%; max-width: 400px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.8); }
+    .login-card img { height: 34px; width: auto; display: block; margin-bottom: 20px; }
+    .login-card h1 { font-size: 19px; margin: 0 0 6px; }
+    .login-card p { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+    label { display: block; font-size: 12px; font-weight: 600; color: #d1d5db; margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%; padding: 10px 12px; border-radius: 7px; border: 1px solid var(--border);
+      background: #0b0b0e; color: var(--text); font-size: 14px; font-family: inherit;
+    }
+    textarea { min-height: 76px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid rgba(255,255,255,0.35); border-color: transparent; }
+    .field { margin-bottom: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 16px; border-radius: 7px; border: 1px solid transparent;
+      background: linear-gradient(135deg, #f9fafb, #b8bec9); color: #09090b;
+      font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none;
+    }
+    .btn:disabled { opacity: 0.6; cursor: wait; }
+    .btn-ghost { background: var(--panel-2); color: var(--text); border-color: var(--border); }
+    .btn-danger { background: rgba(239,68,68,0.14); color: #fca5a5; border-color: rgba(239,68,68,0.3); padding: 6px 10px; font-size: 12px; }
+    .btn-sm { padding: 6px 12px; font-size: 12px; }
+    .error-msg { color: #fca5a5; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); padding: 10px 12px; border-radius: 7px; font-size: 13px; margin-bottom: 14px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 14px 24px; background: rgba(17,17,22,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+    }
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
+    .topbar-left img { height: 28px; width: auto; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+    .status-badge { font-size: 13px; color: #86efac; }
+    .container { max-width: 1040px; margin: 28px auto 80px; padding: 0 20px; display: grid; gap: 16px; }
+    details.section-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    details.section-card > summary {
+      padding: 16px 20px; font-weight: 600; font-size: 15px; cursor: pointer; user-select: none;
+      background: var(--panel-2); display: flex; align-items: center; justify-content: space-between;
+    }
+    .section-body { padding: 20px; display: grid; gap: 14px; }
+    .subcard { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: grid; gap: 12px; }
+    .subcard-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 13px; color: #d1d5db; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
   </style>
 </head>
 <body>
-  <div id="token-gate" hidden>
-    <form class="gate-card" id="token-form">
+  <div id="login-view" class="login-wrap" hidden>
+    <form id="login-form" class="login-card">
       <img src="/assets/logo.webp" alt="Alphard Elite" />
-      <h1>CMS Pengelola Konten</h1>
-      <p>Masukkan GitHub Personal Access Token (scope <code>repo</code>) untuk mengedit konten <strong>sewaalphardbandung.id</strong>. Perubahan otomatis disimpan ke GitHub.</p>
-      <label for="gh-token">GitHub Access Token</label>
-      <input id="gh-token" type="password" required autocomplete="current-password" placeholder="ghp_... atau github_pat_..." />
-      <div class="gate-error" id="gate-error" role="alert"></div>
-      <button type="submit" id="gate-submit">Masuk ke CMS</button>
+      <h1>Login Admin CMS</h1>
+      <p>Masuk menggunakan akun admin untuk mengelola teks, nomor WhatsApp, tarif, dan galeri website.</p>
+      <div id="login-error" class="error-msg" hidden role="alert"></div>
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" id="login-btn" class="btn" style="width:100%">Masuk</button>
     </form>
   </div>
-  <button type="button" id="cms-logout" hidden>Keluar CMS</button>
+
+  <div id="editor-view" hidden>
+    <header class="topbar">
+      <div class="topbar-left">
+        <img src="/assets/logo.webp" alt="Alphard Elite" />
+        <strong>CMS Pengelola Konten</strong>
+      </div>
+      <div class="topbar-actions">
+        <span id="save-status" class="status-badge" role="status"></span>
+        <a href="/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Lihat Website ↗</a>
+        <button type="button" id="save-btn" class="btn btn-sm">Simpan Perubahan</button>
+        <button type="button" id="logout-btn" class="btn btn-ghost btn-sm">Keluar</button>
+      </div>
+    </header>
+    <main class="container" id="sections-root"></main>
+  </div>
+
   <script>
-    (function () {
-      const KEYS = ['decap-cms-user', 'netlify-cms-user'];
-      const gate = document.getElementById('token-gate');
-      const form = document.getElementById('token-form');
-      const input = document.getElementById('gh-token');
-      const errEl = document.getElementById('gate-error');
-      const btn = document.getElementById('gate-submit');
-      const logoutBtn = document.getElementById('cms-logout');
+    const SECTION_TITLES = {
+      contact: '1. Informasi Kontak & WhatsApp',
+      pricing: '2. Tarif & Paket Layanan',
+      hero: '3. Bagian Hero (Atas)',
+      statement: '4. Pernyataan Pembuka',
+      facilities: '5. Tiga Pilar Fasilitas',
+      gallery: '6. Galeri Foto & Video',
+      segments: '7. Segmen Kebutuhan Perjalanan',
+      booking: '8. Formulir Reservasi & Format Pesan WA',
+      closing: '9. CTA Penutup',
+      footer: '10. Footer',
+      legal: '11. Privasi & Ketentuan Reservasi',
+      seo: '12. SEO & Metadata',
+      brand: '13. Brand & Logo',
+      ui: '14. Label Navigasi & Tombol UI',
+      nav: '15. Menu Navigasi',
+      errorPage: '16. Halaman 404'
+    };
 
-      function getStoredUser() {
-        for (const k of KEYS) {
-          try {
-            const v = JSON.parse(localStorage.getItem(k) || 'null');
-            if (v && v.token) return v;
-          } catch (_) {}
-        }
-        return null;
+    let siteData = null;
+
+    const loginView = document.getElementById('login-view');
+    const editorView = document.getElementById('editor-view');
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+    const loginBtn = document.getElementById('login-btn');
+    const sectionsRoot = document.getElementById('sections-root');
+    const saveBtn = document.getElementById('save-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const saveStatus = document.getElementById('save-status');
+
+    function humanize(key) {
+      return String(key)
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, (c) => c.toUpperCase());
+    }
+
+    function getByPath(obj, path) {
+      return path.reduce((acc, k) => (acc == null ? undefined : acc[k]), obj);
+    }
+
+    function setByPath(obj, path, val) {
+      const last = path[path.length - 1];
+      const target = path.slice(0, -1).reduce((acc, k) => acc[k], obj);
+      target[last] = val;
+    }
+
+    function makeTemplate(sample) {
+      if (typeof sample === 'number') return 0;
+      if (typeof sample === 'string') return '';
+      if (Array.isArray(sample)) return [];
+      if (sample && typeof sample === 'object') {
+        const out = {};
+        for (const k of Object.keys(sample)) out[k] = makeTemplate(sample[k]);
+        return out;
+      }
+      return '';
+    }
+
+    function renderNode(value, path, labelText) {
+      if (typeof value === 'string' || typeof value === 'number') {
+        const wrap = document.createElement('div');
+        const id = 'f-' + path.join('-');
+        const lbl = document.createElement('label');
+        lbl.htmlFor = id;
+        lbl.textContent = labelText || humanize(path[path.length - 1]);
+        wrap.appendChild(lbl);
+
+        const isLong = typeof value === 'string' && (value.length > 90 || value.includes('\n'));
+        const input = document.createElement(isLong ? 'textarea' : 'input');
+        input.id = id;
+        if (!isLong) input.type = typeof value === 'number' ? 'number' : 'text';
+        input.value = String(value);
+        input.addEventListener('input', () => {
+          setByPath(siteData, path, typeof value === 'number' ? Number(input.value || 0) : input.value);
+          saveStatus.textContent = '';
+        });
+        wrap.appendChild(input);
+        return wrap;
       }
 
-      function syncGate() {
-        const user = getStoredUser();
-        if (user) {
-          gate.hidden = true;
-          logoutBtn.hidden = false;
-        } else {
-          gate.hidden = false;
-          logoutBtn.hidden = true;
-        }
+      if (Array.isArray(value)) {
+        const box = document.createElement('div');
+        box.className = 'subcard';
+        const head = document.createElement('div');
+        head.className = 'subcard-head';
+        const title = document.createElement('span');
+        title.textContent = `${labelText || humanize(path[path.length - 1])} (${value.length} item)`;
+        const addBtn = document.createElement('button');
+        addBtn.type = 'button';
+        addBtn.className = 'btn btn-ghost btn-sm';
+        addBtn.textContent = '+ Tambah';
+        addBtn.addEventListener('click', () => {
+          const sample = value[0] !== undefined ? makeTemplate(value[0]) : '';
+          value.push(sample);
+          rerender();
+        });
+        head.append(title, addBtn);
+        box.appendChild(head);
+
+        value.forEach((item, idx) => {
+          const itemWrap = document.createElement('div');
+          itemWrap.className = 'subcard';
+          const itemHead = document.createElement('div');
+          itemHead.className = 'subcard-head';
+          const itemTitle = document.createElement('span');
+          itemTitle.textContent = `#${idx + 1}`;
+          const delBtn = document.createElement('button');
+          delBtn.type = 'button';
+          delBtn.className = 'btn btn-danger';
+          delBtn.textContent = 'Hapus';
+          delBtn.addEventListener('click', () => {
+            value.splice(idx, 1);
+            rerender();
+          });
+          itemHead.append(itemTitle, delBtn);
+          itemWrap.appendChild(itemHead);
+          itemWrap.appendChild(renderNode(item, [...path, idx], `Item #${idx + 1}`));
+          box.appendChild(itemWrap);
+        });
+        return box;
       }
 
-      logoutBtn.addEventListener('click', function () {
-        KEYS.forEach((k) => localStorage.removeItem(k));
-        window.location.reload();
-      });
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const token = input.value.trim();
-        if (!token) return;
-        errEl.style.display = 'none';
-        btn.disabled = true;
-        btn.textContent = 'Memverifikasi token…';
-        try {
-          const res = await fetch('https://api.github.com/repos/Multiverse88/alphard-elite', {
-            headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' },
-          });
-          if (!res.ok) throw new Error('Token tidak valid atau tidak memiliki akses ke repo Multiverse88/alphard-elite.');
-          const userRes = await fetch('https://api.github.com/user', {
-            headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' },
-          });
-          const profile = userRes.ok ? await userRes.json() : { login: 'admin', name: 'Admin' };
-          const payload = JSON.stringify({
-            backendName: 'github',
-            token: token,
-            login: profile.login || 'admin',
-            name: profile.name || profile.login || 'Admin',
-            avatar_url: profile.avatar_url || '',
-          });
-          KEYS.forEach((k) => localStorage.setItem(k, payload));
-          window.location.reload();
-        } catch (err) {
-          errEl.textContent = err.message || 'Gagal memverifikasi token GitHub.';
-          errEl.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Masuk ke CMS';
+      if (value && typeof value === 'object') {
+        const container = document.createElement('div');
+        container.className = path.length > 1 ? 'subcard' : 'section-body';
+        if (path.length > 1 && labelText) {
+          const h = document.createElement('div');
+          h.className = 'subcard-head';
+          h.textContent = labelText;
+          container.appendChild(h);
         }
-      });
+        const primitiveGrid = document.createElement('div');
+        primitiveGrid.className = 'grid-2';
+        let hasPrimitives = false;
 
-      syncGate();
-    })();
+        for (const [k, v] of Object.entries(value)) {
+          if (typeof v === 'string' || typeof v === 'number') {
+            hasPrimitives = true;
+            primitiveGrid.appendChild(renderNode(v, [...path, k], humanize(k)));
+          }
+        }
+        if (hasPrimitives) container.appendChild(primitiveGrid);
+
+        for (const [k, v] of Object.entries(value)) {
+          if (typeof v !== 'string' && typeof v !== 'number') {
+            container.appendChild(renderNode(v, [...path, k], humanize(k)));
+          }
+        }
+        return container;
+      }
+
+      return document.createElement('div');
+    }
+
+    function rerender() {
+      const openKeys = new Set(
+        [...sectionsRoot.querySelectorAll('details[open]')].map((d) => d.dataset.section)
+      );
+      if (openKeys.size === 0) openKeys.add('contact');
+      sectionsRoot.innerHTML = '';
+
+      const keys = [
+        ...Object.keys(SECTION_TITLES).filter((k) => k in siteData),
+        ...Object.keys(siteData).filter((k) => !(k in SECTION_TITLES)),
+      ];
+
+      for (const key of keys) {
+        const details = document.createElement('details');
+        details.className = 'section-card';
+        details.dataset.section = key;
+        if (openKeys.has(key)) details.open = true;
+
+        const summary = document.createElement('summary');
+        summary.textContent = SECTION_TITLES[key] || humanize(key);
+        details.appendChild(summary);
+        details.appendChild(renderNode(siteData[key], [key], ''));
+        sectionsRoot.appendChild(details);
+      }
+    }
+
+    async function loadSite() {
+      const res = await fetch('/api/cms/site', { credentials: 'same-origin' });
+      if (res.status === 401) {
+        editorView.hidden = true;
+        loginView.hidden = false;
+        return;
+      }
+      siteData = await res.json();
+      loginView.hidden = true;
+      editorView.hidden = false;
+      rerender();
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.hidden = true;
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Memeriksa…';
+      try {
+        const res = await fetch('/api/cms/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Login gagal.');
+        await loadSite();
+      } catch (err) {
+        loginError.textContent = err.message;
+        loginError.hidden = false;
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Masuk';
+      }
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Menyimpan & Build…';
+      saveStatus.style.color = '#fde047';
+      saveStatus.textContent = 'Sedang memproses…';
+      try {
+        const res = await fetch('/api/cms/site', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify(siteData),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Gagal menyimpan.');
+        saveStatus.style.color = '#86efac';
+        saveStatus.textContent = '✓ Tersimpan & halaman diperbarui';
+      } catch (err) {
+        saveStatus.style.color = '#fca5a5';
+        saveStatus.textContent = '✕ ' + err.message;
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Simpan Perubahan';
+      }
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      await fetch('/api/cms/logout', { method: 'POST', credentials: 'same-origin' });
+      window.location.reload();
+    });
+
+    loadSite();
   </script>
-  <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 </body>
 </html>

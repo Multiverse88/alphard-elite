@@ -1,11 +1,12 @@
 # Changelog
 
 
-## 2026-10-27 — Decap CMS & centralized site data
+## 2026-10-27 — Self-hosted CMS & centralized site data
 
 - Move all landing copy, SEO/JSON-LD metadata, navigation, facility pillars, media gallery items/labels, numeric pricing, booking form/message labels, footer/legal notes, and 404 copy into `src/data/site.json`.
 - Route all WhatsApp links and Rupiah formatting through `src/data/contact.ts` using `siteData.contact.whatsappNumber`.
-- Add `/admin/` Decap CMS (`public/admin/index.html`, `public/admin/config.yml`) backed by `Multiverse88/alphard-elite` (`main`) with direct GitHub Personal Access Token login.
+- Add `/admin/` CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie) and automatic static site rebuild on save.
+
 ## 2026-10-21 — Black & silver luxury redesign
 
 - Palette follows the logo: near-black surfaces (`ink-*`) with silver (`silver-*`) as the single accent; metallic gradient for primary buttons. Logo shown in original silver (no filter).

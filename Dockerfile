@@ -1,11 +1,10 @@
-FROM docker.io/oven/bun:1-alpine AS build
+FROM docker.io/oven/bun:1-alpine
+RUN apk add --no-cache nginx && mkdir -p /run/nginx
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 COPY . .
 RUN bun --bun run build
-
-FROM docker.io/library/nginx:1.27-alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/http.d/default.conf
 EXPOSE 80
+CMD ["sh", "-c", "bun cms-server.ts & exec nginx -g 'daemon off;'"]
