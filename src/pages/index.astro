@@ -56,21 +56,21 @@ const jsonLd = {
   </head>
 
   <body id="top">
-    <a href="#main" class="skip-link">{siteData.ui.skipLink}</a>
+    <a href="#main" class="skip-link" data-cms="ui.skipLink">{siteData.ui.skipLink}</a>
 
-    <header class="site-header">
+    <header class="site-header" data-cms-section="brand,ui,nav">
       <div class="container-lux bar">
         <a href="#top" aria-label={siteData.brand.homeLabel}>
-          <img src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" class="h-8 sm:h-9 w-auto" />
+          <img data-cms-src="brand.logo" data-cms-alt="brand.name" src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" class="h-8 sm:h-9 w-auto" />
         </a>
-        <nav aria-label={siteData.ui.mainNavLabel} class="hidden lg:flex items-center gap-9">
+        <nav id="desktop-nav" aria-label={siteData.ui.mainNavLabel} class="hidden lg:flex items-center gap-9">
           {siteData.nav.map(({ href, label }) => <a href={href}>{label}</a>)}
         </nav>
         <div class="flex items-center gap-4">
-          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost hidden sm:inline-flex !min-h-11 !py-2">{siteData.ui.bookingText}</a>
+          <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost hidden sm:inline-flex !min-h-11 !py-2" data-cms="ui.bookingText">{siteData.ui.bookingText}</a>
           <details class="mobile-nav lg:hidden">
-            <summary>{siteData.ui.menuText}</summary>
-            <nav aria-label={siteData.ui.mobileNavLabel}>
+            <summary data-cms="ui.menuText">{siteData.ui.menuText}</summary>
+            <nav id="mobile-nav-list" aria-label={siteData.ui.mobileNavLabel}>
               {siteData.nav.map(({ href, label }) => <a href={href}>{label}</a>)}
             </nav>
           </details>
@@ -79,60 +79,60 @@ const jsonLd = {
     </header>
 
     <main id="main" tabindex="-1">
-      <section class="hero" aria-labelledby="hero-title">
+      <section id="hero-section" data-cms-section="hero" class="hero" aria-labelledby="hero-title">
         <div class="container-lux hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">{siteData.hero.badge}</p>
-            <h1 id="hero-title" class="display">{siteData.hero.title} <em>{siteData.hero.titleEm}</em></h1>
-            <p class="lead">{siteData.hero.lead}</p>
+            <p class="eyebrow" data-cms="hero.badge">{siteData.hero.badge}</p>
+            <h1 id="hero-title" class="display"><span data-cms="hero.title">{siteData.hero.title}</span> <em data-cms="hero.titleEm">{siteData.hero.titleEm}</em></h1>
+            <p class="lead" data-cms="hero.lead">{siteData.hero.lead}</p>
             <div class="hero-actions">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.hero.buttonText} <span aria-hidden="true">↗</span></a>
-              <a href="#harga" class="link-lux">{siteData.hero.secondaryButtonText}</a>
+              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal"><span data-cms="hero.buttonText">{siteData.hero.buttonText}</span> <span aria-hidden="true">↗</span></a>
+              <a href="#harga" class="link-lux" data-cms="hero.secondaryButtonText">{siteData.hero.secondaryButtonText}</a>
             </div>
           </div>
           <figure class="hero-visual">
-            <span class="hero-wordmark" aria-hidden="true">{siteData.brand.wordmark}</span>
-            <img src={siteData.hero.carImage} alt={siteData.hero.carAlt} width="1600" height="847" fetchpriority="high" decoding="async" />
-            <figcaption><span>{siteData.hero.carModel}</span><span>{siteData.hero.carNote}</span></figcaption>
+            <span class="hero-wordmark" aria-hidden="true" data-cms="brand.wordmark">{siteData.brand.wordmark}</span>
+            <img data-cms-src="hero.carImage" data-cms-alt="hero.carAlt" src={siteData.hero.carImage} alt={siteData.hero.carAlt} width="1600" height="847" fetchpriority="high" decoding="async" />
+            <figcaption><span data-cms="hero.carModel">{siteData.hero.carModel}</span><span data-cms="hero.carNote">{siteData.hero.carNote}</span></figcaption>
           </figure>
         </div>
-        <div class="container-lux spec-bar">
-          <p><span>{siteData.hero.specBar.dropOffLabel}</span><strong>{rupiah(siteData.pricing.dropOff.price)}</strong></p>
-          <p><span>{siteData.hero.specBar.harianLabel}</span><strong>{rupiah(siteData.pricing.harian.price)}</strong></p>
-          {siteData.hero.specBar.items.map((item) => <p><span>{item.label}</span><strong>{item.value}</strong></p>)}
+        <div id="spec-bar" class="container-lux spec-bar">
+          <p><span data-cms="hero.specBar.dropOffLabel">{siteData.hero.specBar.dropOffLabel}</span><strong data-cms-rupiah="pricing.dropOff.price">{rupiah(siteData.pricing.dropOff.price)}</strong></p>
+          <p><span data-cms="hero.specBar.harianLabel">{siteData.hero.specBar.harianLabel}</span><strong data-cms-rupiah="pricing.harian.price">{rupiah(siteData.pricing.harian.price)}</strong></p>
+          {siteData.hero.specBar.items.map((item, i) => <p><span data-cms={`hero.specBar.items.${i}.label`}>{item.label}</span><strong data-cms={`hero.specBar.items.${i}.value`}>{item.value}</strong></p>)}
         </div>
       </section>
 
-      <section class="section">
+      <section id="statement-section" data-cms-section="statement" class="section">
         <div class="container-lux statement reveal">
-          <h2 class="display">{siteData.statement.title} <em>{siteData.statement.titleEm}</em></h2>
-          <p class="lead">{siteData.statement.lead}</p>
+          <h2 class="display"><span data-cms="statement.title">{siteData.statement.title}</span> <em data-cms="statement.titleEm">{siteData.statement.titleEm}</em></h2>
+          <p class="lead" data-cms="statement.lead">{siteData.statement.lead}</p>
         </div>
       </section>
 
-      <section id="fasilitas" class="section section-alt" aria-labelledby="fasilitas-title">
+      <section id="fasilitas" data-cms-section="facilities" class="section section-alt" aria-labelledby="fasilitas-title">
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">{siteData.facilities.badge}</p>
-              <h2 id="fasilitas-title" class="display">{siteData.facilities.title} <em>{siteData.facilities.titleEm}</em></h2>
+              <p class="eyebrow" data-cms="facilities.badge">{siteData.facilities.badge}</p>
+              <h2 id="fasilitas-title" class="display"><span data-cms="facilities.title">{siteData.facilities.title}</span> <em data-cms="facilities.titleEm">{siteData.facilities.titleEm}</em></h2>
             </div>
-            <p class="lead">{siteData.facilities.lead}</p>
+            <p class="lead" data-cms="facilities.lead">{siteData.facilities.lead}</p>
           </div>
-          <div class="pillars">
-            {siteData.facilities.pillars.map((pillar) => (
+          <div id="pillars-list" class="pillars">
+            {siteData.facilities.pillars.map((pillar, pIdx) => (
               <article class="pillar reveal">
                 <div class="pillar-media">
-                  <img src={pillar.image} alt={pillar.alt} width="1200" height="900" loading="lazy" decoding="async" />
+                  <img data-cms-src={`facilities.pillars.${pIdx}.image`} data-cms-alt={`facilities.pillars.${pIdx}.alt`} src={pillar.image} alt={pillar.alt} width="1200" height="900" loading="lazy" decoding="async" />
                 </div>
                 <div>
-                  <span class="pillar-numeral" aria-hidden="true">{pillar.numeral}</span>
-                  <p class="eyebrow mt-6">{pillar.eyebrow}</p>
-                  <h3 class="display">{pillar.title}</h3>
-                  <p class="lead">{pillar.lead}</p>
+                  <span class="pillar-numeral" aria-hidden="true" data-cms={`facilities.pillars.${pIdx}.numeral`}>{pillar.numeral}</span>
+                  <p class="eyebrow mt-6" data-cms={`facilities.pillars.${pIdx}.eyebrow`}>{pillar.eyebrow}</p>
+                  <h3 class="display" data-cms={`facilities.pillars.${pIdx}.title`}>{pillar.title}</h3>
+                  <p class="lead" data-cms={`facilities.pillars.${pIdx}.lead`}>{pillar.lead}</p>
                   <ul>
                     {pillar.items.map((item, i) => (
-                      <li><span>{String(i + 1).padStart(2, '0')}</span><div><strong>{item.name}</strong><p>{item.desc}</p></div></li>
+                      <li><span>{String(i + 1).padStart(2, '0')}</span><div><strong data-cms={`facilities.pillars.${pIdx}.items.${i}.name`}>{item.name}</strong><p data-cms={`facilities.pillars.${pIdx}.items.${i}.desc`}>{item.desc}</p></div></li>
                     ))}
                   </ul>
                 </div>
@@ -142,50 +142,50 @@ const jsonLd = {
         </div>
       </section>
 
-      <section id="galeri" class="section" aria-labelledby="galeri-title">
+      <section id="galeri" data-cms-section="gallery" class="section" aria-labelledby="galeri-title">
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">{siteData.gallery.badge}</p>
-              <h2 id="galeri-title" class="display">{siteData.gallery.title} <em>{siteData.gallery.titleEm}</em></h2>
+              <p class="eyebrow" data-cms="gallery.badge">{siteData.gallery.badge}</p>
+              <h2 id="galeri-title" class="display"><span data-cms="gallery.title">{siteData.gallery.title}</span> <em data-cms="gallery.titleEm">{siteData.gallery.titleEm}</em></h2>
             </div>
-            <p class="lead">{siteData.gallery.lead}</p>
+            <p class="lead" data-cms="gallery.lead">{siteData.gallery.lead}</p>
           </div>
           <MediaGallery client:visible={{ rootMargin: '600px' }} items={mediaItems} labels={siteData.gallery.labels} />
         </div>
       </section>
 
-      <section id="harga" class="section section-alt" aria-labelledby="harga-title">
+      <section id="harga" data-cms-section="pricing" class="section section-alt" aria-labelledby="harga-title">
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">{siteData.pricing.badge}</p>
-              <h2 id="harga-title" class="display">{siteData.pricing.title} <em>{siteData.pricing.titleEm}</em></h2>
+              <p class="eyebrow" data-cms="pricing.badge">{siteData.pricing.badge}</p>
+              <h2 id="harga-title" class="display"><span data-cms="pricing.title">{siteData.pricing.title}</span> <em data-cms="pricing.titleEm">{siteData.pricing.titleEm}</em></h2>
             </div>
-            <p class="lead">{siteData.pricing.lead}</p>
+            <p class="lead" data-cms="pricing.lead">{siteData.pricing.lead}</p>
           </div>
 
           <div class="pricing">
             <article class="price-card reveal">
-              <p class="eyebrow">{siteData.pricing.dropOff.badge}</p>
-              <h3 class="display">{siteData.pricing.dropOff.title}{siteData.pricing.dropOff.titleEm && <> <em>{siteData.pricing.dropOff.titleEm}</em></>}</h3>
-              <p class="price">{rupiah(siteData.pricing.dropOff.price)}</p>
-              <p class="price-was">{siteData.pricing.normalLabel} <s>{rupiah(siteData.pricing.dropOff.normalPrice)}</s></p>
-              <ul>
-                {siteData.pricing.dropOff.features.map((feature) => <li>{feature}</li>)}
+              <p class="eyebrow" data-cms="pricing.dropOff.badge">{siteData.pricing.dropOff.badge}</p>
+              <h3 class="display"><span data-cms="pricing.dropOff.title">{siteData.pricing.dropOff.title}</span> <em data-cms="pricing.dropOff.titleEm">{siteData.pricing.dropOff.titleEm}</em></h3>
+              <p class="price" data-cms-rupiah="pricing.dropOff.price">{rupiah(siteData.pricing.dropOff.price)}</p>
+              <p class="price-was"><span data-cms="pricing.normalLabel">{siteData.pricing.normalLabel}</span> <s data-cms-rupiah="pricing.dropOff.normalPrice">{rupiah(siteData.pricing.dropOff.normalPrice)}</s></p>
+              <ul id="dropoff-features">
+                {siteData.pricing.dropOff.features.map((feature, i) => <li data-cms={`pricing.dropOff.features.${i}`}>{feature}</li>)}
               </ul>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost">{siteData.pricing.dropOff.buttonText}</a>
+              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost" data-cms="pricing.dropOff.buttonText">{siteData.pricing.dropOff.buttonText}</a>
             </article>
 
             <article class="price-card featured reveal">
-              <p class="eyebrow">{siteData.pricing.harian.badge}</p>
-              <h3 class="display">{siteData.pricing.harian.title} <em>{siteData.pricing.harian.titleEm}</em></h3>
-              <p class="price">{rupiah(siteData.pricing.harian.price)}</p>
-              <p class="price-was">{siteData.pricing.normalLabel} <s>{rupiah(siteData.pricing.harian.normalPrice)}</s></p>
-              <ul>
-                {siteData.pricing.harian.features.map((feature) => <li>{feature}</li>)}
+              <p class="eyebrow" data-cms="pricing.harian.badge">{siteData.pricing.harian.badge}</p>
+              <h3 class="display"><span data-cms="pricing.harian.title">{siteData.pricing.harian.title}</span> <em data-cms="pricing.harian.titleEm">{siteData.pricing.harian.titleEm}</em></h3>
+              <p class="price" data-cms-rupiah="pricing.harian.price">{rupiah(siteData.pricing.harian.price)}</p>
+              <p class="price-was"><span data-cms="pricing.normalLabel">{siteData.pricing.normalLabel}</span> <s data-cms-rupiah="pricing.harian.normalPrice">{rupiah(siteData.pricing.harian.normalPrice)}</s></p>
+              <ul id="harian-features">
+                {siteData.pricing.harian.features.map((feature, i) => <li data-cms={`pricing.harian.features.${i}`}>{feature}</li>)}
               </ul>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.pricing.harian.buttonText}</a>
+              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal" data-cms="pricing.harian.buttonText">{siteData.pricing.harian.buttonText}</a>
             </article>
           </div>
 
@@ -193,61 +193,61 @@ const jsonLd = {
         </div>
       </section>
 
-      <section id="kebutuhan" class="section" aria-labelledby="kebutuhan-title">
+      <section id="kebutuhan" data-cms-section="segments" class="section" aria-labelledby="kebutuhan-title">
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">{siteData.segments.badge}</p>
-              <h2 id="kebutuhan-title" class="display">{siteData.segments.title} <em>{siteData.segments.titleEm}</em></h2>
+              <p class="eyebrow" data-cms="segments.badge">{siteData.segments.badge}</p>
+              <h2 id="kebutuhan-title" class="display"><span data-cms="segments.title">{siteData.segments.title}</span> <em data-cms="segments.titleEm">{siteData.segments.titleEm}</em></h2>
             </div>
-            <p class="lead">{siteData.segments.lead}</p>
+            <p class="lead" data-cms="segments.lead">{siteData.segments.lead}</p>
           </div>
-          <ol class="segments">
-            {siteData.segments.items.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p>{name}</p></li>)}
+          <ol id="segments-list" class="segments">
+            {siteData.segments.items.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p data-cms={`segments.items.${i}`}>{name}</p></li>)}
           </ol>
         </div>
       </section>
 
-      <section class="section closing" aria-labelledby="closing-title">
-        <img src={siteData.closing.image} alt="" width="1200" height="900" loading="lazy" decoding="async" />
+      <section id="closing-section" data-cms-section="closing" class="section closing" aria-labelledby="closing-title">
+        <img data-cms-src="closing.image" src={siteData.closing.image} alt="" width="1200" height="900" loading="lazy" decoding="async" />
         <div class="container-lux reveal">
-          <p class="eyebrow">{siteData.closing.badge}</p>
-          <h2 id="closing-title" class="display mt-6">{siteData.closing.title} <em>{siteData.closing.titleEm}</em></h2>
-          <p class="lead mx-auto mt-6">{siteData.closing.lead}</p>
+          <p class="eyebrow" data-cms="closing.badge">{siteData.closing.badge}</p>
+          <h2 id="closing-title" class="display mt-6"><span data-cms="closing.title">{siteData.closing.title}</span> <em data-cms="closing.titleEm">{siteData.closing.titleEm}</em></h2>
+          <p class="lead mx-auto mt-6" data-cms="closing.lead">{siteData.closing.lead}</p>
           <div class="mt-10 flex justify-center">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.closing.buttonText} <span aria-hidden="true">↗</span></a>
+            <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal"><span data-cms="closing.buttonText">{siteData.closing.buttonText}</span> <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer id="kontak" class="site-footer">
+    <footer id="kontak" data-cms-section="contact,footer,legal" class="site-footer">
       <div class="container-lux">
         <div class="footer-grid">
           <div>
-            <img src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" loading="lazy" class="h-9 w-auto mb-5" />
-            <p class="max-w-sm">{siteData.footer.description}</p>
+            <img data-cms-src="brand.logo" data-cms-alt="brand.name" src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" loading="lazy" class="h-9 w-auto mb-5" />
+            <p class="max-w-sm" data-cms="footer.description">{siteData.footer.description}</p>
           </div>
           <div>
-            <h4>{siteData.footer.officeLabel}</h4>
+            <h4 data-cms="footer.officeLabel">{siteData.footer.officeLabel}</h4>
             <address class="not-italic">
-              <strong>{siteData.contact.officeName}</strong><br />
-              {siteData.contact.officeAddress}
+              <strong data-cms="contact.officeName">{siteData.contact.officeName}</strong><br />
+              <span data-cms="contact.officeAddress">{siteData.contact.officeAddress}</span>
             </address>
           </div>
           <div>
-            <h4>{siteData.footer.serviceLabel}</h4>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="link-lux text-xl">{siteData.contact.whatsappDisplay}</a>
-            <p class="mt-3">{siteData.footer.serviceNote}</p>
+            <h4 data-cms="footer.serviceLabel">{siteData.footer.serviceLabel}</h4>
+            <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="link-lux text-xl" data-cms="contact.whatsappDisplay">{siteData.contact.whatsappDisplay}</a>
+            <p class="mt-3" data-cms="footer.serviceNote">{siteData.footer.serviceNote}</p>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row flex-wrap justify-between gap-4 pt-8 text-xs">
-          <p>{siteData.contact.copyright}</p>
-          <div class="flex flex-wrap gap-6"><a href="#privasi" class="link-lux">{siteData.legal.privacyTitle}</a><a href="#ketentuan" class="link-lux">{siteData.legal.termsTitle}</a><a href="#top" class="link-lux">{siteData.footer.backToTopText}</a></div>
+          <p data-cms="contact.copyright">{siteData.contact.copyright}</p>
+          <div class="flex flex-wrap gap-6"><a href="#privasi" class="link-lux" data-cms="legal.privacyTitle">{siteData.legal.privacyTitle}</a><a href="#ketentuan" class="link-lux" data-cms="legal.termsTitle">{siteData.legal.termsTitle}</a><a href="#top" class="link-lux" data-cms="footer.backToTopText">{siteData.footer.backToTopText}</a></div>
         </div>
         <div class="legal-notes">
-          <section id="privasi"><h3>{siteData.legal.privacyTitle}</h3><p>{siteData.legal.privacyText} <a href={siteData.legal.privacyLinkUrl} target="_blank" rel="noopener noreferrer">{siteData.legal.privacyLinkText}</a>.</p></section>
-          <section id="ketentuan"><h3>{siteData.legal.termsTitle}</h3><p>{siteData.legal.termsText}</p></section>
+          <section id="privasi"><h3 data-cms="legal.privacyTitle">{siteData.legal.privacyTitle}</h3><p><span data-cms="legal.privacyText">{siteData.legal.privacyText}</span> <a data-cms-href="legal.privacyLinkUrl" href={siteData.legal.privacyLinkUrl} target="_blank" rel="noopener noreferrer" data-cms="legal.privacyLinkText">{siteData.legal.privacyLinkText}</a>.</p></section>
+          <section id="ketentuan"><h3 data-cms="legal.termsTitle">{siteData.legal.termsTitle}</h3><p data-cms="legal.termsText">{siteData.legal.termsText}</p></section>
         </div>
       </div>
     </footer>
@@ -274,6 +274,113 @@ const jsonLd = {
         }
       }, { rootMargin: '-15% 0px -60% 0px' });
       document.querySelectorAll('main section[id], footer[id]').forEach((section) => observer.observe(section));
+
+      const formatRp = (n: number) => `Rp ${Number(n || 0).toLocaleString('id-ID')}`;
+      const getPath = (obj: unknown, path: string): unknown =>
+        path.split('.').reduce((acc: unknown, k) => (acc && typeof acc === 'object' ? (acc as Record<string, unknown>)[k] : undefined), obj);
+
+      const sectionTargets: Record<string, string> = {
+        contact: '#kontak',
+        pricing: '#harga',
+        hero: '#hero-section',
+        statement: '#statement-section',
+        facilities: '#fasilitas',
+        gallery: '#galeri',
+        segments: '#kebutuhan',
+        booking: '#reservasi',
+        closing: '#closing-section',
+        footer: '#kontak',
+        legal: '#privasi',
+        seo: '#top',
+        brand: '#top',
+        ui: '#top',
+        nav: '#top',
+      };
+
+      window.addEventListener('message', (event) => {
+        const msg = event.data;
+        if (!msg || typeof msg !== 'object') return;
+        if (msg.type === 'cms:scroll' && typeof msg.section === 'string') {
+          const sel = sectionTargets[msg.section];
+          const target = sel ? document.querySelector(sel) : null;
+          target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        if (msg.type !== 'cms:update' || !msg.siteData) return;
+        const d = msg.siteData;
+        if (d.seo?.title) document.title = d.seo.title;
+
+        document.querySelectorAll<HTMLElement>('[data-cms]').forEach((el) => {
+          const val = getPath(d, el.dataset.cms || '');
+          if (val !== undefined && typeof val !== 'object') el.textContent = String(val);
+        });
+        document.querySelectorAll<HTMLElement>('[data-cms-rupiah]').forEach((el) => {
+          const val = getPath(d, el.dataset.cmsRupiah || '');
+          if (val !== undefined) el.textContent = formatRp(Number(val));
+        });
+        document.querySelectorAll<HTMLImageElement>('[data-cms-src]').forEach((el) => {
+          const val = getPath(d, el.dataset.cmsSrc || '');
+          if (typeof val === 'string' && el.getAttribute('src') !== val) el.src = val;
+        });
+        document.querySelectorAll<HTMLImageElement>('[data-cms-alt]').forEach((el) => {
+          const val = getPath(d, el.dataset.cmsAlt || '');
+          if (typeof val === 'string') el.alt = val;
+        });
+        document.querySelectorAll<HTMLAnchorElement>('[data-cms-href]').forEach((el) => {
+          const val = getPath(d, el.dataset.cmsHref || '');
+          if (typeof val === 'string') el.href = val;
+        });
+
+        if (d.contact?.whatsappNumber) {
+          const wa = `https://wa.me/${d.contact.whatsappNumber}?text=${encodeURIComponent(d.contact.defaultMessage || '')}`;
+          document.querySelectorAll<HTMLAnchorElement>('[data-wa-link], a[href*="wa.me"]').forEach((a) => {
+            a.href = wa;
+          });
+        }
+
+        if (Array.isArray(d.nav)) {
+          ['#desktop-nav', '#mobile-nav-list'].forEach((sel) => {
+            const navEl = document.querySelector(sel);
+            if (!navEl) return;
+            navEl.innerHTML = '';
+            d.nav.forEach((item: { href: string; label: string }) => {
+              const a = document.createElement('a');
+              a.href = item.href;
+              a.textContent = item.label;
+              navEl.appendChild(a);
+            });
+          });
+        }
+
+        const renderFeatureList = (sel: string, items: string[]) => {
+          const ul = document.querySelector(sel);
+          if (!ul || !Array.isArray(items)) return;
+          ul.innerHTML = '';
+          items.forEach((txt) => {
+            const li = document.createElement('li');
+            li.textContent = txt;
+            ul.appendChild(li);
+          });
+        };
+        renderFeatureList('#dropoff-features', d.pricing?.dropOff?.features);
+        renderFeatureList('#harian-features', d.pricing?.harian?.features);
+
+        if (Array.isArray(d.segments?.items)) {
+          const ol = document.querySelector('#segments-list');
+          if (ol) {
+            ol.innerHTML = '';
+            d.segments.items.forEach((name: string, i: number) => {
+              const li = document.createElement('li');
+              const span = document.createElement('span');
+              span.textContent = String(i + 1).padStart(2, '0');
+              const p = document.createElement('p');
+              p.textContent = name;
+              li.append(span, p);
+              ol.appendChild(li);
+            });
+          }
+        }
+      });
     </script>
   </body>
 </html>

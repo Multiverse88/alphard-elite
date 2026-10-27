@@ -4,63 +4,175 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>CMS Pengelola Konten | Alphard Elite</title>
+  <title>Dashboard CMS | Alphard Elite</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
     :root {
       --bg: #08080a;
-      --panel: #111116;
-      --panel-2: #17171e;
-      --border: rgba(214, 218, 226, 0.16);
+      --panel: #101015;
+      --panel-2: #16161d;
+      --border: rgba(214, 218, 226, 0.14);
       --text: #f3f4f6;
       --muted: #9ca3af;
-      --accent: #e5e7eb;
+      --silver: #e5e7eb;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.45; overflow: hidden; height: 100dvh; }
     [hidden] { display: none !important; }
-    .login-wrap { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px; }
-    .login-card { width: 100%; max-width: 400px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.8); }
+
+    /* Login */
+    .login-wrap { height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .login-card { width: 100%; max-width: 400px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.85); }
     .login-card img { height: 34px; width: auto; display: block; margin-bottom: 20px; }
     .login-card h1 { font-size: 19px; margin: 0 0 6px; }
     .login-card p { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
     label { display: block; font-size: 12px; font-weight: 600; color: #d1d5db; margin-bottom: 6px; }
     input, textarea, select {
-      width: 100%; padding: 10px 12px; border-radius: 7px; border: 1px solid var(--border);
-      background: #0b0b0e; color: var(--text); font-size: 14px; font-family: inherit;
+      width: 100%; padding: 9px 11px; border-radius: 7px; border: 1px solid var(--border);
+      background: #0a0a0d; color: var(--text); font-size: 13px; font-family: inherit;
     }
-    textarea { min-height: 76px; resize: vertical; }
+    textarea { min-height: 74px; resize: vertical; }
     input:focus, textarea:focus, select:focus { outline: 2px solid rgba(255,255,255,0.35); border-color: transparent; }
     .field { margin-bottom: 14px; }
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 10px 16px; border-radius: 7px; border: 1px solid transparent;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 14px; border-radius: 7px; border: 1px solid transparent;
       background: linear-gradient(135deg, #f9fafb, #b8bec9); color: #09090b;
-      font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none;
+      font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: none; white-space: nowrap;
     }
     .btn:disabled { opacity: 0.6; cursor: wait; }
     .btn-ghost { background: var(--panel-2); color: var(--text); border-color: var(--border); }
-    .btn-danger { background: rgba(239,68,68,0.14); color: #fca5a5; border-color: rgba(239,68,68,0.3); padding: 6px 10px; font-size: 12px; }
-    .btn-sm { padding: 6px 12px; font-size: 12px; }
+    .btn-ghost.active { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+    .btn-danger { background: rgba(239,68,68,0.14); color: #fca5a5; border-color: rgba(239,68,68,0.3); padding: 5px 10px; font-size: 12px; }
+    .btn-sm { padding: 6px 11px; font-size: 12px; }
     .error-msg { color: #fca5a5; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); padding: 10px 12px; border-radius: 7px; font-size: 13px; margin-bottom: 14px; }
+
+    /* Dashboard shell */
+    .dashboard { display: grid; grid-template-rows: 56px 1fr; height: 100dvh; }
     .topbar {
-      position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-      gap: 12px; padding: 14px 24px; background: rgba(17,17,22,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 0 18px; background: var(--panel); border-bottom: 1px solid var(--border);
     }
-    .topbar-left { display: flex; align-items: center; gap: 14px; }
-    .topbar-left img { height: 28px; width: auto; }
-    .topbar-actions { display: flex; align-items: center; gap: 10px; }
-    .status-badge { font-size: 13px; color: #86efac; }
-    .container { max-width: 1040px; margin: 28px auto 80px; padding: 0 20px; display: grid; gap: 16px; }
-    details.section-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    details.section-card > summary {
-      padding: 16px 20px; font-weight: 600; font-size: 15px; cursor: pointer; user-select: none;
-      background: var(--panel-2); display: flex; align-items: center; justify-content: space-between;
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-left img { height: 24px; width: auto; }
+    .topbar-left span { font-weight: 600; font-size: 14px; }
+    .badge-live { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    .topbar-actions { display: flex; align-items: center; gap: 8px; }
+    .status-badge { font-size: 12px; color: #86efac; margin-right: 4px; }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 230px minmax(360px, 460px) 1fr;
+      height: calc(100dvh - 56px);
+      overflow: hidden;
     }
-    .section-body { padding: 20px; display: grid; gap: 14px; }
-    .subcard { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: grid; gap: 12px; }
-    .subcard-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 13px; color: #d1d5db; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .sidebar-heading {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 6px 10px;
+      font-weight: 700;
+    }
+    .nav-item {
+      text-align: left;
+      background: transparent;
+      color: #d1d5db;
+      border: 1px solid transparent;
+      padding: 8px 11px;
+      border-radius: 7px;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.04); color: #fff; }
+    .nav-item.active {
+      background: var(--panel-2);
+      color: #fff;
+      border-color: rgba(255,255,255,0.2);
+      font-weight: 600;
+    }
+
+    /* Form Panel */
+    .editor-pane {
+      background: #0c0c10;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .editor-header {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .editor-header h2 { margin: 0 0 4px; font-size: 17px; }
+    .editor-header p { margin: 0; font-size: 12px; color: var(--muted); }
+    .section-body { display: grid; gap: 14px; }
+    .subcard { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px; display: grid; gap: 11px; }
+    .subcard-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 12px; color: #e5e7eb; }
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 11px; }
+
+    /* Live Preview Panel */
+    .preview-pane {
+      background: #050507;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+    .preview-toolbar {
+      height: 44px;
+      padding: 0 16px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .preview-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      overflow: auto;
+    }
+    .preview-frame-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #070708;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.75);
+      transition: width 0.2s ease;
+    }
+    .preview-frame-wrap.mobile {
+      width: 390px;
+      max-width: 100%;
+    }
+    iframe#preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #070708;
+    }
   </style>
 </head>
 <body>
@@ -68,7 +180,7 @@
     <form id="login-form" class="login-card">
       <img src="/assets/logo.webp" alt="Alphard Elite" />
       <h1>Login Admin CMS</h1>
-      <p>Masuk menggunakan akun admin untuk mengelola teks, nomor WhatsApp, tarif, dan galeri website.</p>
+      <p>Masuk menggunakan akun admin untuk mengelola konten dengan Live Preview interaktif.</p>
       <div id="login-error" class="error-msg" hidden role="alert"></div>
       <div class="field">
         <label for="username">Username</label>
@@ -78,66 +190,109 @@
         <label for="password">Password</label>
         <input id="password" name="password" type="password" required autocomplete="current-password" />
       </div>
-      <button type="submit" id="login-btn" class="btn" style="width:100%">Masuk</button>
+      <button type="submit" id="login-btn" class="btn" style="width:100%">Masuk ke Dashboard</button>
     </form>
   </div>
 
-  <div id="editor-view" hidden>
+  <div id="editor-view" class="dashboard" hidden>
     <header class="topbar">
       <div class="topbar-left">
         <img src="/assets/logo.webp" alt="Alphard Elite" />
-        <strong>CMS Pengelola Konten</strong>
+        <span>Dashboard CMS</span>
+        <span class="badge-live">● Live Preview Aktif</span>
       </div>
       <div class="topbar-actions">
         <span id="save-status" class="status-badge" role="status"></span>
-        <a href="/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Lihat Website ↗</a>
-        <button type="button" id="save-btn" class="btn btn-sm">Simpan Perubahan</button>
+        <a href="/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Buka Website ↗</a>
+        <button type="button" id="save-btn" class="btn btn-sm">Simpan & Publikasikan</button>
         <button type="button" id="logout-btn" class="btn btn-ghost btn-sm">Keluar</button>
       </div>
     </header>
-    <main class="container" id="sections-root"></main>
+
+    <div class="workspace">
+      <aside class="sidebar" id="sidebar-nav" aria-label="Menu Bagian CMS"></aside>
+
+      <section class="editor-pane" id="editor-pane">
+        <div class="editor-header">
+          <h2 id="active-section-title">Memuat…</h2>
+          <p>Perubahan langsung terlihat pada Live Preview di sebelah kanan.</p>
+        </div>
+        <div id="active-section-form"></div>
+      </section>
+
+      <section class="preview-pane" aria-label="Live Preview Website">
+        <div class="preview-toolbar">
+          <span id="preview-url-label">Pratinjau Langsung: Beranda</span>
+          <div style="display:flex; gap:6px;">
+            <button type="button" id="vp-desktop" class="btn btn-ghost btn-sm active">Desktop</button>
+            <button type="button" id="vp-mobile" class="btn btn-ghost btn-sm">Mobile (390px)</button>
+          </div>
+        </div>
+        <div class="preview-stage">
+          <div class="preview-frame-wrap" id="preview-wrap">
+            <iframe id="preview-iframe" src="/" title="Live Preview"></iframe>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 
   <script>
-    const SECTION_TITLES = {
-      contact: '1. Informasi Kontak & WhatsApp',
-      pricing: '2. Tarif & Paket Layanan',
-      hero: '3. Bagian Hero (Atas)',
-      statement: '4. Pernyataan Pembuka',
-      facilities: '5. Tiga Pilar Fasilitas',
-      gallery: '6. Galeri Foto & Video',
-      segments: '7. Segmen Kebutuhan Perjalanan',
-      booking: '8. Formulir Reservasi & Format Pesan WA',
-      closing: '9. CTA Penutup',
-      footer: '10. Footer',
-      legal: '11. Privasi & Ketentuan Reservasi',
-      seo: '12. SEO & Metadata',
-      brand: '13. Brand & Logo',
-      ui: '14. Label Navigasi & Tombol UI',
-      nav: '15. Menu Navigasi',
-      errorPage: '16. Halaman 404'
-    };
+    const SECTIONS = [
+      { key: 'contact', label: 'Kontak & WhatsApp', page: '/' },
+      { key: 'pricing', label: 'Tarif & Paket Layanan', page: '/' },
+      { key: 'hero', label: 'Hero (Bagian Atas)', page: '/' },
+      { key: 'statement', label: 'Pernyataan Pembuka', page: '/' },
+      { key: 'facilities', label: 'Tiga Pilar Fasilitas', page: '/' },
+      { key: 'gallery', label: 'Galeri Foto & Video', page: '/' },
+      { key: 'booking', label: 'Form & Pesan WA', page: '/' },
+      { key: 'segments', label: 'Segmen Perjalanan', page: '/' },
+      { key: 'closing', label: 'CTA Penutup', page: '/' },
+      { key: 'footer', label: 'Footer', page: '/' },
+      { key: 'legal', label: 'Privasi & Ketentuan', page: '/' },
+      { key: 'seo', label: 'SEO & Metadata', page: '/' },
+      { key: 'brand', label: 'Brand & Logo', page: '/' },
+      { key: 'ui', label: 'Label Tombol & Navigasi', page: '/' },
+      { key: 'nav', label: 'Menu Navigasi', page: '/' },
+      { key: 'errorPage', label: 'Halaman 404', page: '/404.html' },
+    ];
 
     let siteData = null;
+    let activeKey = 'contact';
+    let currentPreviewPage = '/';
 
     const loginView = document.getElementById('login-view');
     const editorView = document.getElementById('editor-view');
     const loginForm = document.getElementById('login-form');
     const loginError = document.getElementById('login-error');
     const loginBtn = document.getElementById('login-btn');
-    const sectionsRoot = document.getElementById('sections-root');
+    const sidebarNav = document.getElementById('sidebar-nav');
+    const activeSectionTitle = document.getElementById('active-section-title');
+    const activeSectionForm = document.getElementById('active-section-form');
     const saveBtn = document.getElementById('save-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const saveStatus = document.getElementById('save-status');
+    const previewIframe = document.getElementById('preview-iframe');
+    const previewWrap = document.getElementById('preview-wrap');
+    const previewUrlLabel = document.getElementById('preview-url-label');
+    const vpDesktop = document.getElementById('vp-desktop');
+    const vpMobile = document.getElementById('vp-mobile');
+
+    vpDesktop.addEventListener('click', () => {
+      previewWrap.classList.remove('mobile');
+      vpDesktop.classList.add('active');
+      vpMobile.classList.remove('active');
+    });
+    vpMobile.addEventListener('click', () => {
+      previewWrap.classList.add('mobile');
+      vpMobile.classList.add('active');
+      vpDesktop.classList.remove('active');
+    });
 
     function humanize(key) {
       return String(key)
         .replace(/([A-Z])/g, ' $1')
         .replace(/^./, (c) => c.toUpperCase());
-    }
-
-    function getByPath(obj, path) {
-      return path.reduce((acc, k) => (acc == null ? undefined : acc[k]), obj);
     }
 
     function setByPath(obj, path, val) {
@@ -158,6 +313,21 @@
       return '';
     }
 
+    function pushLivePreview() {
+      if (!siteData || !previewIframe.contentWindow) return;
+      previewIframe.contentWindow.postMessage({ type: 'cms:update', siteData }, '*');
+    }
+
+    function scrollPreviewToSection(sectionKey) {
+      if (!previewIframe.contentWindow) return;
+      previewIframe.contentWindow.postMessage({ type: 'cms:scroll', section: sectionKey }, '*');
+    }
+
+    previewIframe.addEventListener('load', () => {
+      pushLivePreview();
+      scrollPreviewToSection(activeKey);
+    });
+
     function renderNode(value, path, labelText) {
       if (typeof value === 'string' || typeof value === 'number') {
         const wrap = document.createElement('div');
@@ -167,14 +337,16 @@
         lbl.textContent = labelText || humanize(path[path.length - 1]);
         wrap.appendChild(lbl);
 
-        const isLong = typeof value === 'string' && (value.length > 90 || value.includes('\n'));
+        const isLong = typeof value === 'string' && (value.length > 85 || value.includes('\n'));
         const input = document.createElement(isLong ? 'textarea' : 'input');
         input.id = id;
         if (!isLong) input.type = typeof value === 'number' ? 'number' : 'text';
         input.value = String(value);
         input.addEventListener('input', () => {
           setByPath(siteData, path, typeof value === 'number' ? Number(input.value || 0) : input.value);
-          saveStatus.textContent = '';
+          saveStatus.style.color = '#fde047';
+          saveStatus.textContent = '● Belum disimpan';
+          pushLivePreview();
         });
         wrap.appendChild(input);
         return wrap;
@@ -194,7 +366,8 @@
         addBtn.addEventListener('click', () => {
           const sample = value[0] !== undefined ? makeTemplate(value[0]) : '';
           value.push(sample);
-          rerender();
+          renderActiveSection();
+          pushLivePreview();
         });
         head.append(title, addBtn);
         box.appendChild(head);
@@ -212,7 +385,8 @@
           delBtn.textContent = 'Hapus';
           delBtn.addEventListener('click', () => {
             value.splice(idx, 1);
-            rerender();
+            renderActiveSection();
+            pushLivePreview();
           });
           itemHead.append(itemTitle, delBtn);
           itemWrap.appendChild(itemHead);
@@ -254,30 +428,36 @@
       return document.createElement('div');
     }
 
-    function rerender() {
-      const openKeys = new Set(
-        [...sectionsRoot.querySelectorAll('details[open]')].map((d) => d.dataset.section)
-      );
-      if (openKeys.size === 0) openKeys.add('contact');
-      sectionsRoot.innerHTML = '';
-
-      const keys = [
-        ...Object.keys(SECTION_TITLES).filter((k) => k in siteData),
-        ...Object.keys(siteData).filter((k) => !(k in SECTION_TITLES)),
-      ];
-
-      for (const key of keys) {
-        const details = document.createElement('details');
-        details.className = 'section-card';
-        details.dataset.section = key;
-        if (openKeys.has(key)) details.open = true;
-
-        const summary = document.createElement('summary');
-        summary.textContent = SECTION_TITLES[key] || humanize(key);
-        details.appendChild(summary);
-        details.appendChild(renderNode(siteData[key], [key], ''));
-        sectionsRoot.appendChild(details);
+    function renderSidebar() {
+      sidebarNav.innerHTML = '<div class="sidebar-heading">Bagian Konten</div>';
+      for (const sec of SECTIONS) {
+        if (!(sec.key in siteData)) continue;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-item' + (sec.key === activeKey ? ' active' : '');
+        btn.dataset.section = sec.key;
+        btn.textContent = sec.label;
+        btn.addEventListener('click', () => {
+          activeKey = sec.key;
+          renderSidebar();
+          renderActiveSection();
+          if (currentPreviewPage !== sec.page) {
+            currentPreviewPage = sec.page;
+            previewUrlLabel.textContent = sec.page === '/404.html' ? 'Pratinjau Langsung: Halaman 404' : 'Pratinjau Langsung: Beranda';
+            previewIframe.src = sec.page;
+          } else {
+            scrollPreviewToSection(sec.key);
+          }
+        });
+        sidebarNav.appendChild(btn);
       }
+    }
+
+    function renderActiveSection() {
+      const meta = SECTIONS.find((s) => s.key === activeKey) || { label: humanize(activeKey) };
+      activeSectionTitle.textContent = meta.label;
+      activeSectionForm.innerHTML = '';
+      activeSectionForm.appendChild(renderNode(siteData[activeKey], [activeKey], ''));
     }
 
     async function loadSite() {
@@ -290,7 +470,9 @@
       siteData = await res.json();
       loginView.hidden = true;
       editorView.hidden = false;
-      rerender();
+      renderSidebar();
+      renderActiveSection();
+      pushLivePreview();
     }
 
     loginForm.addEventListener('submit', async (e) => {
@@ -316,13 +498,13 @@
         loginError.hidden = false;
       } finally {
         loginBtn.disabled = false;
-        loginBtn.textContent = 'Masuk';
+        loginBtn.textContent = 'Masuk ke Dashboard';
       }
     });
 
     saveBtn.addEventListener('click', async () => {
       saveBtn.disabled = true;
-      saveBtn.textContent = 'Menyimpan & Build…';
+      saveBtn.textContent = 'Menyimpan…';
       saveStatus.style.color = '#fde047';
       saveStatus.textContent = 'Sedang memproses…';
       try {
@@ -335,13 +517,13 @@
         const data = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(data.error || 'Gagal menyimpan.');
         saveStatus.style.color = '#86efac';
-        saveStatus.textContent = '✓ Tersimpan & halaman diperbarui';
+        saveStatus.textContent = '✓ Tersimpan & terpublikasi';
       } catch (err) {
         saveStatus.style.color = '#fca5a5';
         saveStatus.textContent = '✕ ' + err.message;
       } finally {
         saveBtn.disabled = false;
-        saveBtn.textContent = 'Simpan Perubahan';
+        saveBtn.textContent = 'Simpan & Publikasikan';
       }
     });
 

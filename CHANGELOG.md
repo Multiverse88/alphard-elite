@@ -5,7 +5,7 @@
 
 - Move all landing copy, SEO/JSON-LD metadata, navigation, facility pillars, media gallery items/labels, numeric pricing, booking form/message labels, footer/legal notes, and 404 copy into `src/data/site.json`.
 - Route all WhatsApp links and Rupiah formatting through `src/data/contact.ts` using `siteData.contact.whatsappNumber`.
-- Add `/admin/` CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie) and automatic static site rebuild on save.
+- Add `/admin/` split-screen Dashboard CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie), section sidebar, real-time `postMessage` Live Preview (Desktop & Mobile 390px), and automatic static site rebuild on save.
 
 ## 2026-10-21 — Black & silver luxury redesign
 

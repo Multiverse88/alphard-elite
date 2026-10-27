@@ -141,6 +141,11 @@ export const server = Bun.serve({
       }
     }
 
+    if (req.method === 'GET' && !url.pathname.startsWith('/api/')) {
+      const rel = url.pathname === '/' ? 'index.html' : url.pathname.replace(/\/$/, '/index.html').replace(/^\//, '');
+      const f = Bun.file(join(ROOT, 'dist', rel));
+      if (await f.exists()) return new Response(f);
+    }
     return Response.json({ error: 'Not found' }, { status: 404 });
   },
 });

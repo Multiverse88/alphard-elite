@@ -15,11 +15,26 @@ import siteData from '../data/site.json';
   </head>
   <body>
     <main class="container-lux min-h-dvh flex flex-col justify-center py-24">
-      <a href="/" class="inline-block mb-16"><img src={siteData.brand.logo} width="1000" height="208" class="h-9 w-auto" alt={siteData.brand.homeLabel} /></a>
-      <p class="eyebrow">{siteData.errorPage.badge}</p>
-      <h1 class="display text-5xl sm:text-7xl my-8">{siteData.errorPage.title} <em>{siteData.errorPage.titleEm}</em></h1>
-      <p class="lead mb-10">{siteData.errorPage.lead}</p>
-      <a href="/" class="btn-metal self-start">{siteData.errorPage.buttonText} <span aria-hidden="true">→</span></a>
+      <a href="/" class="inline-block mb-16"><img data-cms-src="brand.logo" data-cms-alt="brand.homeLabel" src={siteData.brand.logo} width="1000" height="208" class="h-9 w-auto" alt={siteData.brand.homeLabel} /></a>
+      <p class="eyebrow" data-cms="errorPage.badge">{siteData.errorPage.badge}</p>
+      <h1 class="display text-5xl sm:text-7xl my-8"><span data-cms="errorPage.title">{siteData.errorPage.title}</span> <em data-cms="errorPage.titleEm">{siteData.errorPage.titleEm}</em></h1>
+      <p class="lead mb-10" data-cms="errorPage.lead">{siteData.errorPage.lead}</p>
+      <a href="/" class="btn-metal self-start"><span data-cms="errorPage.buttonText">{siteData.errorPage.buttonText}</span> <span aria-hidden="true">→</span></a>
     </main>
+    <script>
+      window.addEventListener('message', (event) => {
+        const msg = event.data;
+        if (!msg || typeof msg !== 'object' || msg.type !== 'cms:update' || !msg.siteData) return;
+        const get = (path: string) => path.split('.').reduce((o: unknown, k) => (o && typeof o === 'object' ? (o as Record<string, unknown>)[k] : undefined), msg.siteData);
+        document.querySelectorAll<HTMLElement>('[data-cms]').forEach((el) => {
+          const v = get(el.dataset.cms || '');
+          if (v !== undefined) el.textContent = String(v);
+        });
+        document.querySelectorAll<HTMLImageElement>('[data-cms-src]').forEach((el) => {
+          const v = get(el.dataset.cmsSrc || '');
+          if (typeof v === 'string') el.src = v;
+        });
+      });
+    </script>
   </body>
 </html>

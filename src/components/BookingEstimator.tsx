@@ -53,7 +53,25 @@ export function buildReservationMessage(input: { service: ServiceType; date: str
 }
 
 export default function BookingEstimator() {
-  const b = siteData.booking;
+  const [data, setData] = useState(siteData);
+  const b = data.booking;
+  const currentServices: Record<ServiceType, { name: string; price: number; note: string }> = {
+    'drop-off': {
+      name: data.pricing.dropOff.name,
+      price: data.pricing.dropOff.price,
+      note: data.pricing.dropOff.serviceNote,
+    },
+    'harian': {
+      name: data.pricing.harian.name,
+      price: data.pricing.harian.price,
+      note: data.pricing.harian.serviceNote,
+    },
+    'luar-kota': {
+      name: data.pricing.custom.name,
+      price: 0,
+      note: data.pricing.custom.serviceNote,
+    },
+  };
   const [service, setService] = useState<ServiceType>('harian');
   const [duration, setDuration] = useState<number>(b.durationOptions[0] ?? 1);
   const [date, setDate] = useState<string>('');
@@ -61,10 +79,19 @@ export default function BookingEstimator() {
   const [passengers, setPassengers] = useState<number>(b.passengerOptions[1] ?? b.passengerOptions[0] ?? 2);
   const [dateError, setDateError] = useState('');
   const [ready, setReady] = useState(false);
-  useEffect(() => { setReady(true); }, []);
+  useEffect(() => {
+    setReady(true);
+    const onMsg = (e: MessageEvent) => {
+      if (e.data && typeof e.data === 'object' && e.data.type === 'cms:update' && e.data.siteData) {
+        setData(e.data.siteData);
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
 
-  const selected = services[service];
-  const totalPrice = estimate(service, duration);
+  const selected = currentServices[service];
+  const totalPrice = service === 'drop-off' ? currentServices['drop-off'].price : service === 'harian' ? currentServices.harian.price * duration : null;
 
   const handleBookWhatsApp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,9 +104,8 @@ export default function BookingEstimator() {
     }
     setDateError('');
     const text = buildReservationMessage({ service, date, passengers, duration, pickup });
-    window.open(whatsappUrl(text), '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/${data.contact.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   };
-
   return (
     <form id="reservasi" className="booking" onSubmit={handleBookWhatsApp} aria-busy={!ready} noValidate>
       <div className="booking-summary">
@@ -96,7 +122,7 @@ export default function BookingEstimator() {
           </p>
           <p className="price-note">{b.estimateNote}</p>
           <button type="submit" disabled={!ready} className="btn-metal w-full mt-6">{b.buttonText} <span aria-hidden="true">↗</span></button>
-          <p className="price-note">{b.privacyNote} <a className="link-lux" href="#privasi">{siteData.legal.privacyTitle}</a></p>
+          <p className="price-note">{b.privacyNote} <a className="link-lux" href="#privasi">{data.legal.privacyTitle}</a></p>
         </div>
       </div>
 
@@ -105,7 +131,7 @@ export default function BookingEstimator() {
         <div>
           <span className="field-label" id="service-label">{b.serviceLabel}</span>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" role="group" aria-labelledby="service-label">
-            {(Object.keys(services) as ServiceType[]).map((key) => (
+            {(Object.keys(currentServices) as ServiceType[]).map((key) => (
               <button
                 type="button"
                 key={key}
@@ -113,8 +139,8 @@ export default function BookingEstimator() {
                 aria-pressed={service === key}
                 onClick={() => setService(key)}
               >
-                {services[key].name}
-                <small>{services[key].price > 0 ? rupiah(services[key].price) : b.contactPrice}</small>
+                {currentServices[key].name}
+                <small>{currentServices[key].price > 0 ? rupiah(currentServices[key].price) : b.contactPrice}</small>
               </button>
             ))}
           </div>

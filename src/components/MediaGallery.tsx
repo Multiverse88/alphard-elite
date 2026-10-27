@@ -16,12 +16,24 @@ interface Props {
   labels: typeof siteData.gallery.labels;
 }
 
-export default function MediaGallery({ items, labels }: Props) {
+export default function MediaGallery({ items: initialItems, labels: initialLabels }: Props) {
+  const [items, setItems] = useState<MediaItem[]>(initialItems);
+  const [labels, setLabels] = useState(initialLabels);
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [mediaError, setMediaError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
-  useEffect(() => { setReady(true); }, []);
+  useEffect(() => {
+    setReady(true);
+    const onMsg = (e: MessageEvent) => {
+      if (e.data && typeof e.data === 'object' && e.data.type === 'cms:update' && e.data.siteData?.gallery) {
+        setItems(e.data.siteData.gallery.items);
+        setLabels(e.data.siteData.gallery.labels);
+      }
+    };
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
   const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
