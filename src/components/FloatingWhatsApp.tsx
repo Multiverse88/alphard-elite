@@ -1,15 +1,15 @@
 import React from 'react';
+import siteData from '../data/site.json';
+import { whatsappUrl } from '../data/contact';
 
 export default function FloatingWhatsApp() {
-  const waUrl = "https://wa.me/62818804288?text=Halo%20Alphard%20Elite%2C%20saya%20dapat%20kontak%20dari%20website";
-
   return (
     <div className="fixed bottom-6 right-6 z-(--z-float) flex items-center gap-3">
       <a
-        href={waUrl}
+        href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat WhatsApp Alphard Elite"
+        aria-label={siteData.contact.whatsappLabel}
         className="relative flex items-center justify-center w-14 h-14 rounded-full border border-silver-300/40 bg-ink-850/80 backdrop-blur text-silver-50 shadow-[0_12px_30px_-10px_rgba(0,0,0,.9)] hover:border-silver-200 hover:bg-ink-800 active:scale-95 transition duration-200"
       >
         <svg className="w-7 h-7 fill-current" aria-hidden="true" viewBox="0 0 24 24">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import type siteData from '../data/site.json';
 
 export interface MediaItem {
   id: string;
@@ -12,9 +13,10 @@ export interface MediaItem {
 
 interface Props {
   items: MediaItem[];
+  labels: typeof siteData.gallery.labels;
 }
 
-export default function MediaGallery({ items }: Props) {
+export default function MediaGallery({ items, labels }: Props) {
   const [activeItem, setActiveItem] = useState<MediaItem | null>(null);
   const [mediaError, setMediaError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,7 +42,7 @@ export default function MediaGallery({ items }: Props) {
             disabled={!ready}
             className="gallery-card"
             data-shape={item.aspect === 'video' ? 'wide' : item.aspect === 'vertical' ? 'tall' : undefined}
-            aria-label={`${item.type === 'video' ? 'Putar video' : 'Perbesar foto'}: ${item.title}`}
+            aria-label={`${item.type === 'video' ? labels.playVideo : labels.enlargePhoto}: ${item.title}`}
             aria-haspopup="dialog"
             onClick={() => {
               setMediaError(false);
@@ -55,7 +57,7 @@ export default function MediaGallery({ items }: Props) {
               </span>
             )}
             <span className="caption">
-              <small>{item.type === 'video' ? 'Video' : 'Foto'}</small>
+              <small>{item.type === 'video' ? labels.video : labels.photo}</small>
               <span>{item.title}</span>
             </span>
           </button>
@@ -77,7 +79,7 @@ export default function MediaGallery({ items }: Props) {
           <>
             <header>
               <h3 id="media-title">{activeItem.title}</h3>
-              <button type="button" className="btn-ghost !min-h-10 !py-1.5" onClick={() => dialog.current?.close()} autoFocus aria-label="Tutup galeri">Tutup</button>
+              <button type="button" className="btn-ghost !min-h-10 !py-1.5" onClick={() => dialog.current?.close()} autoFocus aria-label={labels.closeLabel}>{labels.close}</button>
             </header>
             {activeItem.type === 'video' ? (
               <video
@@ -95,8 +97,8 @@ export default function MediaGallery({ items }: Props) {
             ) : (
               <img src={activeItem.src} alt={activeItem.title} onError={() => setMediaError(true)} />
             )}
-            {loading && <p role="status">Memuat video…</p>}
-            {mediaError && <p role="alert">Media belum dapat ditampilkan. <a href={activeItem.src} target="_blank" rel="noopener noreferrer">Buka file langsung</a> atau coba kembali.</p>}
+            {loading && <p role="status">{labels.loading}</p>}
+            {mediaError && <p role="alert">{labels.error} <a href={activeItem.src} target="_blank" rel="noopener noreferrer">{labels.openFile}</a> {labels.retry}</p>}
             {activeItem.subtitle && <p>{activeItem.subtitle}</p>}
           </>
         )}

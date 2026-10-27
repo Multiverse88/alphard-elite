@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import siteData from '../data/site.json';
+import { rupiah, whatsappUrl } from '../data/contact';
 
 export type ServiceType = 'drop-off' | 'harian' | 'luar-kota';
 
 const services: Record<ServiceType, { name: string; price: number; note: string }> = {
   'drop-off': {
-    name: 'Drop-off dalam kota',
-    price: 1000000,
-    note: '1 titik jemput dan 1 titik antar di Bandung, waktu tunggu maksimal 60 menit. All in driver, BBM, parkir & tol.',
+    name: siteData.pricing.dropOff.name,
+    price: siteData.pricing.dropOff.price,
+    note: siteData.pricing.dropOff.serviceNote,
   },
   'harian': {
-    name: 'Sewa harian dalam kota',
-    price: 2500000,
-    note: '24 jam (00.00–23.59) di Bandung, titik jemput & antar tidak dibatasi. All in driver, BBM, parkir & tol.',
+    name: siteData.pricing.harian.name,
+    price: siteData.pricing.harian.price,
+    note: siteData.pricing.harian.serviceNote,
   },
   'luar-kota': {
-    name: 'Luar kota / custom trip',
+    name: siteData.pricing.custom.name,
     price: 0,
-    note: 'Rute luar kota Bandung atau itinerary khusus. Tarif dikonfirmasi oleh Customer Service.',
+    note: siteData.pricing.custom.serviceNote,
   },
 };
-
-export const WHATSAPP_NUMBER = '62818804288';
-
-const rupiah = (value: number) => `Rp ${value.toLocaleString('id-ID')}`;
 
 export function estimate(service: ServiceType, duration: number): number | null {
   if (service === 'drop-off') return services[service].price;
@@ -30,36 +28,37 @@ export function estimate(service: ServiceType, duration: number): number | null 
   return null;
 }
 
-/** WhatsApp message mirroring the form: same labels, same order, WhatsApp bold/italic markup. */
 export function buildReservationMessage(input: { service: ServiceType; date: string; passengers: number; duration: number; pickup: string }): string {
   const { service, date, passengers, duration } = input;
   const pickup = input.pickup.trim();
   const total = estimate(service, duration);
   const travelDate = new Date(`${date}T00:00:00`).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const b = siteData.booking;
   return [
-    'Halo Alphard Elite, saya ingin melakukan reservasi.',
+    siteData.contact.defaultMessage,
     '',
-    '*RESERVASI CEPAT — ALPHARD ELITE*',
+    `*${b.messageTitle}*`,
     '',
-    `*Layanan:* ${services[service].name}`,
-    `*Tanggal perjalanan:* ${travelDate}`,
-    `*Jumlah penumpang:* ${passengers} orang`,
-    ...(service === 'harian' ? [`*Durasi sewa:* ${duration} hari`] : []),
-    `*Lokasi jemput / catatan:* ${pickup || '-'}`,
-    `*Estimasi:* ${total !== null ? rupiah(total) : 'Hubungi CS'}`,
+    `*${b.serviceLabel}:* ${services[service].name}`,
+    `*${b.dateLabel}:* ${travelDate}`,
+    `*${b.passengersLabel}:* ${passengers} ${b.passengerUnit}`,
+    ...(service === 'harian' ? [`*${b.durationLabel}:* ${duration} ${b.dayUnit}`] : []),
+    `*${b.pickupMessageLabel}:* ${pickup || '-'}`,
+    `*${b.estimateLabel}:* ${total !== null ? rupiah(total) : b.contactPrice}`,
     '',
-    '_Estimasi dari website, bukan harga final. Mohon konfirmasi ketersediaan jadwal dan harga akhir._',
+    `_${b.messageDisclaimer}_`,
     '',
-    'Terima kasih.',
+    b.messageThanks,
   ].join('\n');
 }
 
 export default function BookingEstimator() {
+  const b = siteData.booking;
   const [service, setService] = useState<ServiceType>('harian');
-  const [duration, setDuration] = useState<number>(1);
+  const [duration, setDuration] = useState<number>(b.durationOptions[0] ?? 1);
   const [date, setDate] = useState<string>('');
   const [pickup, setPickup] = useState<string>('');
-  const [passengers, setPassengers] = useState<number>(2);
+  const [passengers, setPassengers] = useState<number>(b.passengerOptions[1] ?? b.passengerOptions[0] ?? 2);
   const [dateError, setDateError] = useState('');
   const [ready, setReady] = useState(false);
   useEffect(() => { setReady(true); }, []);
@@ -72,39 +71,39 @@ export default function BookingEstimator() {
     const today = new Date();
     const minimumDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     if (!date || date < minimumDate) {
-      setDateError('Pilih tanggal hari ini atau setelahnya.');
+      setDateError(b.dateError);
       e.currentTarget.querySelector<HTMLInputElement>('#travel-date')?.focus();
       return;
     }
     setDateError('');
     const text = buildReservationMessage({ service, date, passengers, duration, pickup });
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    window.open(whatsappUrl(text), '_blank', 'noopener,noreferrer');
   };
 
   return (
     <form id="reservasi" className="booking" onSubmit={handleBookWhatsApp} aria-busy={!ready} noValidate>
       <div className="booking-summary">
         <div className="booking-intro">
-          <p className="eyebrow">Reservasi cepat</p>
-          <h3 className="display">Rencanakan <em>perjalanan Anda.</em></h3>
-          <p className="text-silver-400">Pilih layanan dan tanggal. Pesan tersusun otomatis untuk Anda kirim melalui WhatsApp.</p>
-          {!ready && <p role="status" className="text-sm text-silver-400">Menyiapkan formulir… atau <a className="link-lux" href="https://wa.me/62818804288">hubungi WhatsApp langsung</a>.</p>}
+          <p className="eyebrow">{b.badge}</p>
+          <h3 className="display">{b.title} <em>{b.titleEm}</em></h3>
+          <p className="text-silver-400">{b.lead}</p>
+          {!ready && <p role="status" className="text-sm text-silver-400">{b.loadingText} <a className="link-lux" href={whatsappUrl()}>{b.directLinkText}</a>.</p>}
         </div>
         <div className="booking-total">
-          <span className="field-label">Estimasi</span>
+          <span className="field-label">{b.estimateLabel}</span>
           <p className="price !m-0" aria-live="polite">
-            {totalPrice !== null ? rupiah(totalPrice) : 'Hubungi CS'}
+            {totalPrice !== null ? rupiah(totalPrice) : b.contactPrice}
           </p>
-          <p className="price-note">Bukan harga final atau konfirmasi booking.</p>
-          <button type="submit" disabled={!ready} className="btn-metal w-full mt-6">Kirim ke WhatsApp <span aria-hidden="true">↗</span></button>
-          <p className="price-note">Data hanya disusun menjadi pesan di perangkat Anda. <a className="link-lux" href="#privasi">Privasi</a></p>
+          <p className="price-note">{b.estimateNote}</p>
+          <button type="submit" disabled={!ready} className="btn-metal w-full mt-6">{b.buttonText} <span aria-hidden="true">↗</span></button>
+          <p className="price-note">{b.privacyNote} <a className="link-lux" href="#privasi">{siteData.legal.privacyTitle}</a></p>
         </div>
       </div>
 
       <fieldset className="booking-form" disabled={!ready}>
-        <legend className="sr-only">Detail reservasi</legend>
+        <legend className="sr-only">{b.legend}</legend>
         <div>
-          <span className="field-label" id="service-label">Layanan</span>
+          <span className="field-label" id="service-label">{b.serviceLabel}</span>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" role="group" aria-labelledby="service-label">
             {(Object.keys(services) as ServiceType[]).map((key) => (
               <button
@@ -115,7 +114,7 @@ export default function BookingEstimator() {
                 onClick={() => setService(key)}
               >
                 {services[key].name}
-                <small>{services[key].price > 0 ? rupiah(services[key].price) : 'Hubungi CS'}</small>
+                <small>{services[key].price > 0 ? rupiah(services[key].price) : b.contactPrice}</small>
               </button>
             ))}
           </div>
@@ -124,7 +123,7 @@ export default function BookingEstimator() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label htmlFor="travel-date" className="field-label">Tanggal perjalanan</label>
+            <label htmlFor="travel-date" className="field-label">{b.dateLabel}</label>
             <input
               id="travel-date"
               type="date"
@@ -138,17 +137,17 @@ export default function BookingEstimator() {
             {dateError && <p id="date-error" role="alert" className="field-error">{dateError}</p>}
           </div>
           <div>
-            <label htmlFor="passengers" className="field-label">Jumlah penumpang</label>
+            <label htmlFor="passengers" className="field-label">{b.passengersLabel}</label>
             <select id="passengers" className="field cursor-pointer" value={passengers} onChange={(e) => setPassengers(Number(e.target.value))}>
-              {[1, 2, 3, 4, 5, 6].map((p) => <option key={p} value={p}>{p} orang</option>)}
+              {b.passengerOptions.map((p) => <option key={p} value={p}>{p} {b.passengerUnit}</option>)}
             </select>
           </div>
           {service === 'harian' && (
             <div className="sm:col-span-2">
-              <label htmlFor="rental-duration" className="field-label">Durasi sewa</label>
+              <label htmlFor="rental-duration" className="field-label">{b.durationLabel}</label>
               <select id="rental-duration" className="field cursor-pointer" value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
-                {[1, 2, 3, 4, 5, 7, 10, 14, 30].map((d) => (
-                  <option key={d} value={d}>{d} hari — {rupiah(selected.price * d)}</option>
+                {b.durationOptions.map((d) => (
+                  <option key={d} value={d}>{d} {b.dayUnit} — {rupiah(selected.price * d)}</option>
                 ))}
               </select>
             </div>
@@ -156,13 +155,13 @@ export default function BookingEstimator() {
         </div>
 
         <div>
-          <label htmlFor="pickup" className="field-label">Lokasi jemput / catatan (opsional)</label>
+          <label htmlFor="pickup" className="field-label">{b.pickupLabel}</label>
           <input
             id="pickup"
             type="text"
             maxLength={500}
             className="field"
-            placeholder="Contoh: Hotel Pullman Bandung / Bandara Husein"
+            placeholder={b.pickupPlaceholder}
             value={pickup}
             onChange={(e) => setPickup(e.target.value)}
           />

@@ -1,0 +1,300 @@
+backend:
+  name: github
+  repo: Multiverse88/alphard-elite
+  branch: main
+
+media_folder: "public/assets/foto"
+public_folder: "/assets/foto"
+display_url: "https://sewaalphardbandung.id"
+logo_url: "https://sewaalphardbandung.id/assets/logo.webp"
+
+collections:
+  - name: "settings"
+    label: "Pengaturan Website"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "site_data"
+        label: "Semua Konten, Tarif & Kontak Website"
+        file: "src/data/site.json"
+        fields:
+          - label: "Informasi Kontak & WhatsApp"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Nomor WhatsApp (Contoh: 62818804288)", name: "whatsappNumber", widget: "string" }
+              - { label: "Tampilan Nomor WA (Contoh: 0818 804 288)", name: "whatsappDisplay", widget: "string" }
+              - { label: "Label Aksesibilitas WA", name: "whatsappLabel", widget: "string" }
+              - { label: "Pesan WA Default", name: "defaultMessage", widget: "string" }
+              - { label: "Nama Kantor / Perusahaan", name: "officeName", widget: "string" }
+              - { label: "Alamat Kantor", name: "officeAddress", widget: "text" }
+              - { label: "Teks Copyright Footer", name: "copyright", widget: "string" }
+
+          - label: "SEO & Meta Tag"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Judul Tab Browser (Title)", name: "title", widget: "string" }
+              - { label: "Deskripsi Meta (Google Search)", name: "description", widget: "text" }
+              - { label: "Canonical URL", name: "canonicalUrl", widget: "string" }
+              - { label: "Gambar OG / Share", name: "image", widget: "string" }
+              - { label: "Favicon ICO", name: "icon", widget: "string" }
+              - { label: "Favicon PNG", name: "pngIcon", widget: "string" }
+              - { label: "Apple Touch Icon", name: "appleTouchIcon", widget: "string" }
+              - { label: "Nama Brand (Schema)", name: "brandName", widget: "string" }
+              - { label: "Kode Bahasa (id)", name: "language", widget: "string" }
+              - { label: "Locale (id_ID)", name: "locale", widget: "string" }
+              - { label: "Rentang Harga (Schema)", name: "priceRange", widget: "string" }
+              - { label: "Area Layanan", name: "areaServed", widget: "string" }
+              - { label: "Kota", name: "addressLocality", widget: "string" }
+              - { label: "Provinsi", name: "addressRegion", widget: "string" }
+              - { label: "Kode Pos", name: "postalCode", widget: "string" }
+              - { label: "Kode Negara", name: "addressCountry", widget: "string" }
+
+          - label: "Brand & Logo"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Nama Brand", name: "name", widget: "string" }
+              - { label: "Path Logo", name: "logo", widget: "string" }
+              - { label: "Label Link Logo Beranda", name: "homeLabel", widget: "string" }
+              - { label: "Teks Latar Hero (Wordmark)", name: "wordmark", widget: "string" }
+
+          - label: "Label Antarmuka (UI)"
+            name: "ui"
+            widget: "object"
+            fields:
+              - { label: "Teks Skip ke Konten", name: "skipLink", widget: "string" }
+              - { label: "Label Navigasi Utama", name: "mainNavLabel", widget: "string" }
+              - { label: "Label Navigasi Mobile", name: "mobileNavLabel", widget: "string" }
+              - { label: "Teks Tombol Menu Mobile", name: "menuText", widget: "string" }
+              - { label: "Teks Tombol Reservasi Header", name: "bookingText", widget: "string" }
+
+          - label: "Menu Navigasi"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "Target Link (#id)", name: "href", widget: "string" }
+              - { label: "Teks Menu", name: "label", widget: "string" }
+
+          - label: "Bagian Hero (Atas)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Badge Kecil", name: "badge", widget: "string" }
+              - { label: "Judul Utama (Teks Biasa)", name: "title", widget: "string" }
+              - { label: "Judul Aksen (Teks Miring)", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi Hero", name: "lead", widget: "text" }
+              - { label: "Teks Tombol Booking", name: "buttonText", widget: "string" }
+              - { label: "Teks Link Lihat Tarif", name: "secondaryButtonText", widget: "string" }
+              - { label: "Path Gambar Mobil Hero", name: "carImage", widget: "string" }
+              - { label: "Alt Gambar Mobil Hero", name: "carAlt", widget: "string" }
+              - { label: "Tipe Mobil", name: "carModel", widget: "string" }
+              - { label: "Catatan Mobil", name: "carNote", widget: "string" }
+              - label: "Bar Spesifikasi Cepat"
+                name: "specBar"
+                widget: "object"
+                fields:
+                  - { label: "Label Harga Drop-Off", name: "dropOffLabel", widget: "string" }
+                  - { label: "Label Harga Harian", name: "harianLabel", widget: "string" }
+                  - label: "Info Tambahan Bar Spesifikasi"
+                    name: "items"
+                    widget: "list"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string" }
+                      - { label: "Nilai", name: "value", widget: "string" }
+
+          - label: "Pernyataan / Pertanyaan Pembuka"
+            name: "statement"
+            widget: "object"
+            fields:
+              - { label: "Pertanyaan", name: "title", widget: "string" }
+              - { label: "Teks Miring", name: "titleEm", widget: "string" }
+              - { label: "Penjelasan", name: "lead", widget: "text" }
+
+          - label: "Fasilitas (3 Pilar)"
+            name: "facilities"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - label: "Daftar Pilar Fasilitas"
+                name: "pillars"
+                widget: "list"
+                fields:
+                  - { label: "Angka Romawi (I, II, III)", name: "numeral", widget: "string" }
+                  - { label: "Sub-judul / Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Judul Pilar", name: "title", widget: "string" }
+                  - { label: "Deskripsi Pilar", name: "lead", widget: "text" }
+                  - { label: "Path Foto", name: "image", widget: "image" }
+                  - { label: "Alt Foto", name: "alt", widget: "string" }
+                  - label: "Daftar Fitur"
+                    name: "items"
+                    widget: "list"
+                    fields:
+                      - { label: "Nama Fitur", name: "name", widget: "string" }
+                      - { label: "Keterangan", name: "desc", widget: "string" }
+
+          - label: "Galeri Foto & Video"
+            name: "gallery"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - label: "Label Tombol & Status Galeri"
+                name: "labels"
+                widget: "object"
+                fields:
+                  - { label: "Label Putar Video", name: "playVideo", widget: "string" }
+                  - { label: "Label Perbesar Foto", name: "enlargePhoto", widget: "string" }
+                  - { label: "Badge Video", name: "video", widget: "string" }
+                  - { label: "Badge Foto", name: "photo", widget: "string" }
+                  - { label: "Tombol Tutup", name: "close", widget: "string" }
+                  - { label: "Aria Label Tutup", name: "closeLabel", widget: "string" }
+                  - { label: "Teks Memuat Video", name: "loading", widget: "string" }
+                  - { label: "Pesan Gagal Muat Media", name: "error", widget: "string" }
+                  - { label: "Teks Link Buka File", name: "openFile", widget: "string" }
+                  - { label: "Teks Coba Kembali", name: "retry", widget: "string" }
+              - label: "Daftar Item Galeri"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "ID Unik", name: "id", widget: "string" }
+                  - { label: "Tipe Media", name: "type", widget: "select", options: ["video", "image"] }
+                  - { label: "Judul", name: "title", widget: "string" }
+                  - { label: "Subjudul / Keterangan", name: "subtitle", widget: "text", required: false }
+                  - { label: "Path File Foto/Video", name: "src", widget: "string" }
+                  - { label: "Path Poster Video", name: "poster", widget: "string", required: false }
+                  - { label: "Rasio Tampilan", name: "aspect", widget: "select", options: ["video", "vertical"], required: false }
+
+          - label: "Tarif & Layanan"
+            name: "pricing"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - { label: "Label Harga Normal", name: "normalLabel", widget: "string" }
+              - label: "Paket Drop-Off"
+                name: "dropOff"
+                widget: "object"
+                fields:
+                  - { label: "Badge", name: "badge", widget: "string" }
+                  - { label: "Judul", name: "title", widget: "string" }
+                  - { label: "Judul Aksen (Opsional)", name: "titleEm", widget: "string", required: false }
+                  - { label: "Nama Paket di Form/WA", name: "name", widget: "string" }
+                  - { label: "Harga Promo (Angka Rupiah)", name: "price", widget: "number", value_type: "int" }
+                  - { label: "Harga Normal Coret (Angka Rupiah)", name: "normalPrice", widget: "number", value_type: "int" }
+                  - { label: "Daftar Inklusi", name: "features", widget: "list", field: { label: "Fitur", name: "feature", widget: "string" } }
+                  - { label: "Teks Tombol", name: "buttonText", widget: "string" }
+                  - { label: "Catatan untuk Form", name: "serviceNote", widget: "text" }
+              - label: "Paket Harian"
+                name: "harian"
+                widget: "object"
+                fields:
+                  - { label: "Badge", name: "badge", widget: "string" }
+                  - { label: "Judul", name: "title", widget: "string" }
+                  - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+                  - { label: "Nama Paket di Form/WA", name: "name", widget: "string" }
+                  - { label: "Harga Promo (Angka Rupiah)", name: "price", widget: "number", value_type: "int" }
+                  - { label: "Harga Normal Coret (Angka Rupiah)", name: "normalPrice", widget: "number", value_type: "int" }
+                  - { label: "Daftar Inklusi", name: "features", widget: "list", field: { label: "Fitur", name: "feature", widget: "string" } }
+                  - { label: "Teks Tombol", name: "buttonText", widget: "string" }
+                  - { label: "Catatan untuk Form", name: "serviceNote", widget: "text" }
+              - label: "Paket Custom / Luar Kota"
+                name: "custom"
+                widget: "object"
+                fields:
+                  - { label: "Nama Paket", name: "name", widget: "string" }
+                  - { label: "Catatan untuk Form", name: "serviceNote", widget: "text" }
+
+          - label: "Kebutuhan Perjalanan"
+            name: "segments"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - { label: "Daftar Segmen", name: "items", widget: "list", field: { label: "Segmen", name: "item", widget: "string" } }
+
+          - label: "Ajakan Bertindak (CTA Bawah)"
+            name: "closing"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - { label: "Teks Tombol", name: "buttonText", widget: "string" }
+              - { label: "Gambar Latar", name: "image", widget: "image" }
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Deskripsi Singkat", name: "description", widget: "text" }
+              - { label: "Judul Kolom Kantor", name: "officeLabel", widget: "string" }
+              - { label: "Judul Kolom Layanan", name: "serviceLabel", widget: "string" }
+              - { label: "Catatan Layanan WA", name: "serviceNote", widget: "text" }
+              - { label: "Teks Kembali ke Atas", name: "backToTopText", widget: "string" }
+
+          - label: "Formulir Reservasi & Format Pesan WA"
+            name: "booking"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Judul Aksen", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi", name: "lead", widget: "text" }
+              - { label: "Teks Memuat Form", name: "loadingText", widget: "string" }
+              - { label: "Teks Link WA Langsung", name: "directLinkText", widget: "string" }
+              - { label: "Label Total Estimasi", name: "estimateLabel", widget: "string" }
+              - { label: "Teks Harga Hubungi CS", name: "contactPrice", widget: "string" }
+              - { label: "Catatan Estimasi", name: "estimateNote", widget: "string" }
+              - { label: "Teks Tombol Submit WA", name: "buttonText", widget: "string" }
+              - { label: "Catatan Privasi Form", name: "privacyNote", widget: "string" }
+              - { label: "Legend Form", name: "legend", widget: "string" }
+              - { label: "Label Pilihan Layanan", name: "serviceLabel", widget: "string" }
+              - { label: "Label Tanggal Perjalanan", name: "dateLabel", widget: "string" }
+              - { label: "Label Jumlah Penumpang", name: "passengersLabel", widget: "string" }
+              - { label: "Satuan Penumpang", name: "passengerUnit", widget: "string" }
+              - { label: "Pilihan Jumlah Penumpang", name: "passengerOptions", widget: "list", field: { label: "Jumlah", name: "count", widget: "number", value_type: "int" } }
+              - { label: "Label Durasi Sewa", name: "durationLabel", widget: "string" }
+              - { label: "Satuan Hari", name: "dayUnit", widget: "string" }
+              - { label: "Pilihan Durasi Hari", name: "durationOptions", widget: "list", field: { label: "Hari", name: "days", widget: "number", value_type: "int" } }
+              - { label: "Label Input Lokasi Jemput", name: "pickupLabel", widget: "string" }
+              - { label: "Label Lokasi di Pesan WA", name: "pickupMessageLabel", widget: "string" }
+              - { label: "Placeholder Lokasi Jemput", name: "pickupPlaceholder", widget: "string" }
+              - { label: "Pesan Error Tanggal", name: "dateError", widget: "string" }
+              - { label: "Judul Pesan WA", name: "messageTitle", widget: "string" }
+              - { label: "Disclaimer Pesan WA", name: "messageDisclaimer", widget: "text" }
+              - { label: "Penutup Pesan WA", name: "messageThanks", widget: "string" }
+
+          - label: "Catatan Legal & Privasi"
+            name: "legal"
+            widget: "object"
+            fields:
+              - { label: "Judul Privasi", name: "privacyTitle", widget: "string" }
+              - { label: "Isi Privasi (Sebelum Link)", name: "privacyText", widget: "text" }
+              - { label: "Teks Link Kebijakan WA", name: "privacyLinkText", widget: "string" }
+              - { label: "URL Kebijakan WA", name: "privacyLinkUrl", widget: "string" }
+              - { label: "Judul Ketentuan", name: "termsTitle", widget: "string" }
+              - { label: "Isi Ketentuan", name: "termsText", widget: "text" }
+
+          - label: "Halaman 404"
+            name: "errorPage"
+            widget: "object"
+            fields:
+              - { label: "Judul Tab 404", name: "pageTitle", widget: "string" }
+              - { label: "Badge 404", name: "badge", widget: "string" }
+              - { label: "Judul 404", name: "title", widget: "string" }
+              - { label: "Judul Aksen 404", name: "titleEm", widget: "string" }
+              - { label: "Deskripsi 404", name: "lead", widget: "text" }
+              - { label: "Teks Tombol Beranda", name: "buttonText", widget: "string" }

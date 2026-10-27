@@ -1,24 +1,25 @@
 ---
 import '../styles/global.css';
+import siteData from '../data/site.json';
 ---
 <!doctype html>
-<html lang="id">
+<html lang={siteData.seo.language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Halaman tidak ditemukan | Alphard Elite</title>
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>{siteData.errorPage.pageTitle}</title>
+    <link rel="icon" href={siteData.seo.icon} sizes="any" />
+    <link rel="icon" type="image/png" href={siteData.seo.pngIcon} />
+    <link rel="apple-touch-icon" href={siteData.seo.appleTouchIcon} />
   </head>
   <body>
     <main class="container-lux min-h-dvh flex flex-col justify-center py-24">
-      <a href="/" class="inline-block mb-16"><img src="/assets/logo.webp" width="1000" height="208" class="h-9 w-auto" alt="Alphard Elite — beranda" /></a>
-      <p class="eyebrow">404 · Halaman tidak ditemukan</p>
-      <h1 class="display text-5xl sm:text-7xl my-8">Mari kembali <em>ke rute yang tepat.</em></h1>
-      <p class="lead mb-10">Alamat ini tidak tersedia. Lihat fasilitas, tarif, dan reservasi Alphard Elite di halaman utama.</p>
-      <a href="/" class="btn-metal self-start">Kembali ke beranda <span aria-hidden="true">→</span></a>
+      <a href="/" class="inline-block mb-16"><img src={siteData.brand.logo} width="1000" height="208" class="h-9 w-auto" alt={siteData.brand.homeLabel} /></a>
+      <p class="eyebrow">{siteData.errorPage.badge}</p>
+      <h1 class="display text-5xl sm:text-7xl my-8">{siteData.errorPage.title} <em>{siteData.errorPage.titleEm}</em></h1>
+      <p class="lead mb-10">{siteData.errorPage.lead}</p>
+      <a href="/" class="btn-metal self-start">{siteData.errorPage.buttonText} <span aria-hidden="true">→</span></a>
     </main>
   </body>
 </html>

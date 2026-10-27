@@ -3,208 +3,75 @@ import '../styles/global.css';
 import BookingEstimator from '../components/BookingEstimator';
 import MediaGallery, { type MediaItem } from '../components/MediaGallery';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
+import siteData from '../data/site.json';
+import { rupiah, whatsappUrl } from '../data/contact';
 
-const mediaItems: MediaItem[] = [
-  {
-    id: 'vid-profile',
-    type: 'video',
-    title: 'Video Profile Alphard Elite',
-    subtitle: 'Tur lengkap interior VIP, fasilitas bintang lima, dan layanan eksekutif.',
-    src: '/assets/videos/profile.mp4',
-    poster: '/assets/videos/poster-profile.webp',
-    aspect: 'video',
+const waLink = whatsappUrl();
+const mediaItems: MediaItem[] = siteData.gallery.items.map((item) => ({
+  ...item,
+  type: item.type === 'video' ? 'video' : 'image',
+  aspect: item.aspect === 'video' ? 'video' : item.aspect === 'vertical' ? 'vertical' : undefined,
+}));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRental',
+  name: siteData.seo.brandName,
+  description: siteData.seo.description,
+  image: new URL(siteData.seo.image, siteData.seo.canonicalUrl).toString(),
+  telephone: `+${siteData.contact.whatsappNumber.replace(/^\+/, '')}`,
+  areaServed: siteData.seo.areaServed,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: siteData.contact.officeAddress,
+    addressLocality: siteData.seo.addressLocality,
+    addressRegion: siteData.seo.addressRegion,
+    postalCode: siteData.seo.postalCode,
+    addressCountry: siteData.seo.addressCountry,
   },
-  {
-    id: 'vid-endorse-1',
-    type: 'video',
-    title: 'Review Pengalaman Penumpang',
-    subtitle: 'Sensasi perjalanan eksklusif dengan fasilitas hiburan kelas satu.',
-    src: '/assets/videos/endorse-1.mp4',
-    poster: '/assets/videos/poster-endorse-1.webp',
-    aspect: 'vertical',
-  },
-  {
-    id: 'vid-endorse-2',
-    type: 'video',
-    title: 'Kenyamanan Perjalanan VIP',
-    subtitle: 'Kenyamanan captain seat, aroma therapy diffuser, dan hiburan di kabin.',
-    src: '/assets/videos/endorse-2.mp4',
-    poster: '/assets/videos/poster-endorse-2.webp',
-    aspect: 'vertical',
-  },
-  {
-    id: 'foto-captain-seat',
-    type: 'image',
-    title: 'Captain Seat with Legrest',
-    subtitle: 'Kursi ergonomis dengan legrest yang dapat disesuaikan untuk kenyamanan duduk maksimal.',
-    src: '/assets/foto/captain-seat-with-legrest.webp',
-  },
-  {
-    id: 'foto-4-screen',
-    type: 'image',
-    title: '4-Screen In-Car Entertainment',
-    subtitle: 'Empat layar hiburan yang menghadirkan keseruan bagi semua penumpang.',
-    src: '/assets/foto/4-screen-in-car-entertainment.webp',
-  },
-  {
-    id: 'foto-nintendo',
-    type: 'image',
-    title: 'Nintendo Switch Game Console',
-    subtitle: 'Bermain game favorit bersama keluarga atau rekan selama perjalanan.',
-    src: '/assets/foto/nintendo-switch-game-console.webp',
-  },
-  {
-    id: 'foto-wireless-screen',
-    type: 'image',
-    title: 'Wireless Presentation Screen',
-    subtitle: 'Layar presentasi nirkabel untuk keperluan bisnis di perjalanan.',
-    src: '/assets/foto/wireless-presentation-screen.webp',
-  },
-  {
-    id: 'foto-printer',
-    type: 'image',
-    title: 'Epson Portable A4 Printer',
-    subtitle: 'Cetak dokumen langsung di perjalanan dengan printer portabel.',
-    src: '/assets/foto/epson-portable-a4-printer.webp',
-  },
-  {
-    id: 'foto-snacks',
-    type: 'image',
-    title: 'Healthy & Nutritious Snacks',
-    subtitle: 'Camilan sehat yang lezat dan bergizi untuk menemani perjalanan.',
-    src: '/assets/foto/healthy--nutritious-snacks.webp',
-  },
-  {
-    id: 'foto-equil',
-    type: 'image',
-    title: 'Equil Mineral Water',
-    subtitle: 'Air mineral premium berkualitas tinggi di setiap perjalanan.',
-    src: '/assets/foto/equil-mineral-water.webp',
-  },
-  {
-    id: 'foto-netflix',
-    type: 'image',
-    title: 'Netflix & YouTube Premium',
-    subtitle: 'Film, serial, dan konten favorit sepanjang perjalanan.',
-    src: '/assets/foto/netflix--youtube-premium.webp',
-  },
-];
-
-const pillars = [
-  {
-    numeral: 'I',
-    eyebrow: 'Five-Star Facilities',
-    title: 'Kenyamanan setara hotel bintang lima.',
-    lead: 'Fasilitas untuk kenyamanan luar biasa, sejak Anda duduk di kabin.',
-    image: '/assets/foto/captain-seat-with-legrest.webp',
-    alt: 'Captain seat Alphard dengan legrest dan bantal kepala',
-    items: [
-      ['EQUIL Mineral Water', 'Air mineral premium berkualitas tinggi yang menemani perjalanan Anda.'],
-      ['Healthy & Nutritious Snacks', 'Camilan sehat yang lezat dan bergizi.'],
-      ['Relaxing Aroma Therapy Diffuser', 'Aroma terapi yang menenangkan dan menyegarkan.'],
-      ['Captain Seat with Legrest', 'Kursi ergonomis dengan legrest yang dapat disesuaikan.'],
-      ['Multiple Fast Charging USB Ports', 'Tersedia di kursi baris pertama dan kedua.'],
-    ],
-  },
-  {
-    numeral: 'II',
-    eyebrow: 'First-Class Entertainment',
-    title: 'Hiburan eksklusif di setiap momen.',
-    lead: 'Perjalanan panjang terasa singkat bersama hiburan berkualitas tinggi.',
-    image: '/assets/foto/4-screen-in-car-entertainment.webp',
-    alt: 'Empat layar hiburan di kabin Alphard Elite',
-    items: [
-      ['NETFLIX & YOUTUBE Premium', 'Film, serial, dan konten menarik sepanjang perjalanan.'],
-      ['NINTENDO SWITCH Game Console', 'Keseruan bermain game favorit selama perjalanan.'],
-      ['VENOM Premium Car Audio', 'Audio berkualitas tinggi dengan suara jernih.'],
-      ['4-Screen In-Car Entertainment', 'Empat layar hiburan bagi semua penumpang.'],
-      ['Dual 12.1” 4K ANDROID Touchscreen', 'Monitor layar sentuh Android 4K beresolusi tinggi.'],
-      ['Free Earphones for 2nd-Row', 'Pengalaman hiburan yang lebih privat.'],
-    ],
-  },
-  {
-    numeral: 'III',
-    eyebrow: 'Business Services',
-    title: 'Ruang kerja yang ikut bergerak.',
-    lead: 'Tetap produktif dengan fasilitas yang mendukung mobilitas bisnis Anda.',
-    image: '/assets/foto/wireless-presentation-screen.webp',
-    alt: 'Layar presentasi nirkabel di dalam kabin Alphard',
-    items: [
-      ['Unlimited High-Speed Wi-Fi', 'Internet cepat tanpa batas selama perjalanan.'],
-      ['Wireless Presentation Screen', 'Presentasi nirkabel untuk keperluan bisnis.'],
-      ['EPSON Portable A4 Printer', 'Cetak dokumen langsung di perjalanan.'],
-    ],
-  },
-];
-
-const segments = [
-  'Penjemputan VIP/VVIP', 'Pejabat & Tokoh Publik', 'Kunjungan Diplomatik',
-  'Delegasi & Tamu VIP', 'Acara Perusahaan & Kenegaraan', 'Perjalanan Bisnis & Dinas',
-  'Eksekutif & Pebisnis', 'Perjalanan Keluarga & Wisata', 'Mobil Pengantin',
-  'Pasien Medis & Lansia', 'Artis & Influencer', 'Syuting Film & Sinetron',
-];
-
-const waLink = 'https://wa.me/62818804288?text=Halo%20Alphard%20Elite%2C%20saya%20dapat%20kontak%20dari%20website';
-const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tarif'], ['#kebutuhan', 'Layanan'], ['#kontak', 'Kontak']];
+  priceRange: siteData.seo.priceRange,
+};
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang={siteData.seo.language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070708" />
-    <title>Sewa Alphard Bandung VIP | Alphard Elite — Five-Star Facilities</title>
-    <meta name="description" content="Satu-satunya rental Alphard dengan Five-Star Facilities, First-Class Entertainment, dan Business Services di Indonesia. Drop-off Bandung mulai Rp 1.000.000, sewa harian Rp 2.500.000." />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="canonical" href="https://sewaalphardbandung.id" />
-    <meta property="og:title" content="Sewa Alphard Bandung VIP | Alphard Elite" />
-    <meta property="og:description" content="Luxury meets comfort and fun in every journey. Sewa Alphard Bandung dengan pengemudi profesional." />
-    <meta property="og:image" content="/assets/mobil-alphard.webp" />
+    <title>{siteData.seo.title}</title>
+    <meta name="description" content={siteData.seo.description} />
+    <link rel="icon" href={siteData.seo.icon} sizes="any" />
+    <link rel="icon" type="image/png" href={siteData.seo.pngIcon} />
+    <link rel="apple-touch-icon" href={siteData.seo.appleTouchIcon} />
+    <link rel="canonical" href={siteData.seo.canonicalUrl} />
+    <meta property="og:title" content={siteData.seo.title} />
+    <meta property="og:description" content={siteData.seo.description} />
+    <meta property="og:image" content={siteData.seo.image} />
+    <meta property="og:locale" content={siteData.seo.locale} />
     <meta property="og:type" content="website" />
-    <link rel="preload" as="image" href="/assets/mobil-alphard.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href={siteData.hero.carImage} fetchpriority="high" />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/cormorant-500.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/outfit-var.woff2" crossorigin />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "AutoRental",
-        "name": "Alphard Elite Bandung",
-        "description": "Sewa Alphard Bandung VIP dengan Five-Star Facilities, First-Class Entertainment dan Business Services.",
-        "image": "https://sewaalphardbandung.id/assets/mobil-alphard.webp",
-        "telephone": "+62818804288",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "EasyBuilding 1st Floor, Jalan Cihampelas No. 201A, Cipaganti, Coblong",
-          "addressLocality": "Bandung",
-          "addressRegion": "Jawa Barat",
-          "postalCode": "40131",
-          "addressCountry": "ID"
-        },
-        "priceRange": "Rp 1.000.000 - Rp 2.500.000"
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body id="top">
-    <a href="#main" class="skip-link">Langsung ke konten</a>
+    <a href="#main" class="skip-link">{siteData.ui.skipLink}</a>
 
     <header class="site-header">
       <div class="container-lux bar">
-        <a href="#top" aria-label="Alphard Elite — kembali ke atas">
-          <img src="/assets/logo.webp" alt="Alphard Elite" width="1000" height="208" class="h-8 sm:h-9 w-auto" />
+        <a href="#top" aria-label={siteData.brand.homeLabel}>
+          <img src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" class="h-8 sm:h-9 w-auto" />
         </a>
-        <nav aria-label="Navigasi utama" class="hidden lg:flex items-center gap-9">
-          {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+        <nav aria-label={siteData.ui.mainNavLabel} class="hidden lg:flex items-center gap-9">
+          {siteData.nav.map(({ href, label }) => <a href={href}>{label}</a>)}
         </nav>
         <div class="flex items-center gap-4">
-          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost hidden sm:inline-flex !min-h-11 !py-2">Reservasi</a>
+          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost hidden sm:inline-flex !min-h-11 !py-2">{siteData.ui.bookingText}</a>
           <details class="mobile-nav lg:hidden">
-            <summary>Menu</summary>
-            <nav aria-label="Navigasi mobile">
-              {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+            <summary>{siteData.ui.menuText}</summary>
+            <nav aria-label={siteData.ui.mobileNavLabel}>
+              {siteData.nav.map(({ href, label }) => <a href={href}>{label}</a>)}
             </nav>
           </details>
         </div>
@@ -215,32 +82,31 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
       <section class="hero" aria-labelledby="hero-title">
         <div class="container-lux hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Sewa Alphard Bandung VIP</p>
-            <h1 id="hero-title" class="display">Luxury meets comfort <em>&amp; fun in every journey.</em></h1>
-            <p class="lead">Satu-satunya rental Alphard di Indonesia dengan <strong>Five-Star Facilities</strong>, <strong>First-Class Entertainment</strong>, dan <strong>Business Services</strong>.</p>
+            <p class="eyebrow">{siteData.hero.badge}</p>
+            <h1 id="hero-title" class="display">{siteData.hero.title} <em>{siteData.hero.titleEm}</em></h1>
+            <p class="lead">{siteData.hero.lead}</p>
             <div class="hero-actions">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">Booking sekarang <span aria-hidden="true">↗</span></a>
-              <a href="#harga" class="link-lux">Lihat tarif</a>
+              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.hero.buttonText} <span aria-hidden="true">↗</span></a>
+              <a href="#harga" class="link-lux">{siteData.hero.secondaryButtonText}</a>
             </div>
           </div>
           <figure class="hero-visual">
-            <span class="hero-wordmark" aria-hidden="true">ALPHARD</span>
-            <img src="/assets/mobil-alphard.webp" alt="Toyota Alphard Transformer Facelift hitam milik Alphard Elite" width="1600" height="847" fetchpriority="high" decoding="async" />
-            <figcaption><span>Toyota Alphard Transformer Facelift</span><span>Bebas asap rokok</span></figcaption>
+            <span class="hero-wordmark" aria-hidden="true">{siteData.brand.wordmark}</span>
+            <img src={siteData.hero.carImage} alt={siteData.hero.carAlt} width="1600" height="847" fetchpriority="high" decoding="async" />
+            <figcaption><span>{siteData.hero.carModel}</span><span>{siteData.hero.carNote}</span></figcaption>
           </figure>
         </div>
         <div class="container-lux spec-bar">
-          <p><span>Drop-off dalam kota</span><strong>Rp 1.000.000</strong></p>
-          <p><span>Sewa harian · 24 jam</span><strong>Rp 2.500.000</strong></p>
-          <p><span>All in</span><strong>Driver, BBM, tol &amp; parkir</strong></p>
-          <p><span>Layanan</span><strong>Dengan pengemudi</strong></p>
+          <p><span>{siteData.hero.specBar.dropOffLabel}</span><strong>{rupiah(siteData.pricing.dropOff.price)}</strong></p>
+          <p><span>{siteData.hero.specBar.harianLabel}</span><strong>{rupiah(siteData.pricing.harian.price)}</strong></p>
+          {siteData.hero.specBar.items.map((item) => <p><span>{item.label}</span><strong>{item.value}</strong></p>)}
         </div>
       </section>
 
       <section class="section">
         <div class="container-lux statement reveal">
-          <h2 class="display">Apakah Anda mencari pengalaman sewa Alphard yang <em>berbeda dari biasanya?</em></h2>
-          <p class="lead">Di Alphard Elite, kami menghadirkan kombinasi Five-Star Facilities untuk kenyamanan luar biasa, First-Class Entertainment untuk hiburan eksklusif di setiap momen, dan Business Services untuk produktivitas sepanjang perjalanan.</p>
+          <h2 class="display">{siteData.statement.title} <em>{siteData.statement.titleEm}</em></h2>
+          <p class="lead">{siteData.statement.lead}</p>
         </div>
       </section>
 
@@ -248,13 +114,13 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Mengapa Alphard Elite</p>
-              <h2 id="fasilitas-title" class="display">Tiga alasan, <em>satu perjalanan.</em></h2>
+              <p class="eyebrow">{siteData.facilities.badge}</p>
+              <h2 id="fasilitas-title" class="display">{siteData.facilities.title} <em>{siteData.facilities.titleEm}</em></h2>
             </div>
-            <p class="lead">Setiap detail kabin disiapkan untuk beristirahat, menikmati hiburan, atau menyelesaikan pekerjaan.</p>
+            <p class="lead">{siteData.facilities.lead}</p>
           </div>
           <div class="pillars">
-            {pillars.map((pillar) => (
+            {siteData.facilities.pillars.map((pillar) => (
               <article class="pillar reveal">
                 <div class="pillar-media">
                   <img src={pillar.image} alt={pillar.alt} width="1200" height="900" loading="lazy" decoding="async" />
@@ -265,8 +131,8 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
                   <h3 class="display">{pillar.title}</h3>
                   <p class="lead">{pillar.lead}</p>
                   <ul>
-                    {pillar.items.map(([name, desc], i) => (
-                      <li><span>{String(i + 1).padStart(2, '0')}</span><div><strong>{name}</strong><p>{desc}</p></div></li>
+                    {pillar.items.map((item, i) => (
+                      <li><span>{String(i + 1).padStart(2, '0')}</span><div><strong>{item.name}</strong><p>{item.desc}</p></div></li>
                     ))}
                   </ul>
                 </div>
@@ -280,12 +146,12 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Galeri foto &amp; video</p>
-              <h2 id="galeri-title" class="display">Lihat lebih <em>dekat.</em></h2>
+              <p class="eyebrow">{siteData.gallery.badge}</p>
+              <h2 id="galeri-title" class="display">{siteData.gallery.title} <em>{siteData.gallery.titleEm}</em></h2>
             </div>
-            <p class="lead">Pilih foto atau video untuk melihat detail kabin Alphard Elite.</p>
+            <p class="lead">{siteData.gallery.lead}</p>
           </div>
-          <MediaGallery client:visible={{ rootMargin: '600px' }} items={mediaItems} />
+          <MediaGallery client:visible={{ rootMargin: '600px' }} items={mediaItems} labels={siteData.gallery.labels} />
         </div>
       </section>
 
@@ -293,39 +159,33 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Tarif dalam kota Bandung</p>
-              <h2 id="harga-title" class="display">Pilih cara Anda <em>bepergian.</em></h2>
+              <p class="eyebrow">{siteData.pricing.badge}</p>
+              <h2 id="harga-title" class="display">{siteData.pricing.title} <em>{siteData.pricing.titleEm}</em></h2>
             </div>
-            <p class="lead">Semua paket all in dengan pengemudi profesional. Tidak tersedia lepas kunci. Untuk tujuan luar kota Bandung, hubungi Customer Service kami.</p>
+            <p class="lead">{siteData.pricing.lead}</p>
           </div>
 
           <div class="pricing">
             <article class="price-card reveal">
-              <p class="eyebrow">Sewa drop-off</p>
-              <h3 class="display">Antar satu tujuan.</h3>
-              <p class="price">Rp 1.000.000</p>
-              <p class="price-was">Normal <s>Rp 2.000.000</s></p>
+              <p class="eyebrow">{siteData.pricing.dropOff.badge}</p>
+              <h3 class="display">{siteData.pricing.dropOff.title}{siteData.pricing.dropOff.titleEm && <> <em>{siteData.pricing.dropOff.titleEm}</em></>}</h3>
+              <p class="price">{rupiah(siteData.pricing.dropOff.price)}</p>
+              <p class="price-was">{siteData.pricing.normalLabel} <s>{rupiah(siteData.pricing.dropOff.normalPrice)}</s></p>
               <ul>
-                <li>Profesional driver &amp; makan driver</li>
-                <li>BBM, parkir &amp; tol</li>
-                <li>1 titik jemput dan 1 titik antar</li>
-                <li>Waktu tunggu maksimal 60 menit</li>
+                {siteData.pricing.dropOff.features.map((feature) => <li>{feature}</li>)}
               </ul>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost">Booking drop-off</a>
+              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost">{siteData.pricing.dropOff.buttonText}</a>
             </article>
 
             <article class="price-card featured reveal">
-              <p class="eyebrow">Sewa harian</p>
-              <h3 class="display">Seharian, <em>tanpa batas titik.</em></h3>
-              <p class="price">Rp 2.500.000</p>
-              <p class="price-was">Normal <s>Rp 3.500.000</s></p>
+              <p class="eyebrow">{siteData.pricing.harian.badge}</p>
+              <h3 class="display">{siteData.pricing.harian.title} <em>{siteData.pricing.harian.titleEm}</em></h3>
+              <p class="price">{rupiah(siteData.pricing.harian.price)}</p>
+              <p class="price-was">{siteData.pricing.normalLabel} <s>{rupiah(siteData.pricing.harian.normalPrice)}</s></p>
               <ul>
-                <li>Profesional driver &amp; makan driver</li>
-                <li>BBM, parkir &amp; tol</li>
-                <li>Titik jemput &amp; antar tidak dibatasi</li>
-                <li>Durasi sewa 24 jam (00.00–23.59)</li>
+                {siteData.pricing.harian.features.map((feature) => <li>{feature}</li>)}
               </ul>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">Booking harian</a>
+              <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.pricing.harian.buttonText}</a>
             </article>
           </div>
 
@@ -337,25 +197,25 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Kebutuhan perjalanan</p>
-              <h2 id="kebutuhan-title" class="display">Kami melayani <em>setiap agenda.</em></h2>
+              <p class="eyebrow">{siteData.segments.badge}</p>
+              <h2 id="kebutuhan-title" class="display">{siteData.segments.title} <em>{siteData.segments.titleEm}</em></h2>
             </div>
-            <p class="lead">Apa pun kebutuhan perjalanan Anda, Alphard Elite siap memberikan pengalaman terbaik di setiap perjalanan — dan masih banyak lagi.</p>
+            <p class="lead">{siteData.segments.lead}</p>
           </div>
           <ol class="segments">
-            {segments.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p>{name}</p></li>)}
+            {siteData.segments.items.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p>{name}</p></li>)}
           </ol>
         </div>
       </section>
 
       <section class="section closing" aria-labelledby="closing-title">
-        <img src="/assets/foto/captain-seat-with-legrest.webp" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+        <img src={siteData.closing.image} alt="" width="1200" height="900" loading="lazy" decoding="async" />
         <div class="container-lux reveal">
-          <p class="eyebrow">Reservasi</p>
-          <h2 id="closing-title" class="display mt-6">Siap merasakan <em>perjalanan mewah?</em></h2>
-          <p class="lead mx-auto mt-6">Jadikan setiap perjalanan bersama Alphard Elite sebagai momen istimewa. Nikmati kemewahan, kenyamanan, dan hiburan eksklusif — pesan sekarang dan rasakan perbedaannya.</p>
+          <p class="eyebrow">{siteData.closing.badge}</p>
+          <h2 id="closing-title" class="display mt-6">{siteData.closing.title} <em>{siteData.closing.titleEm}</em></h2>
+          <p class="lead mx-auto mt-6">{siteData.closing.lead}</p>
           <div class="mt-10 flex justify-center">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">Booking via WhatsApp <span aria-hidden="true">↗</span></a>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal">{siteData.closing.buttonText} <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
@@ -365,35 +225,34 @@ const nav = [['#fasilitas', 'Fasilitas'], ['#galeri', 'Galeri'], ['#harga', 'Tar
       <div class="container-lux">
         <div class="footer-grid">
           <div>
-            <img src="/assets/logo.webp" alt="Alphard Elite" width="1000" height="208" loading="lazy" class="h-9 w-auto mb-5" />
-            <p class="max-w-sm">Satu-satunya rental Alphard dengan Five-Star Facilities, First-Class Entertainment dan Business Services di Indonesia.</p>
+            <img src={siteData.brand.logo} alt={siteData.brand.name} width="1000" height="208" loading="lazy" class="h-9 w-auto mb-5" />
+            <p class="max-w-sm">{siteData.footer.description}</p>
           </div>
           <div>
-            <h4>Office</h4>
+            <h4>{siteData.footer.officeLabel}</h4>
             <address class="not-italic">
-              <strong>CV Elite Vision Internasional</strong><br />
-              EasyBuilding 1st Floor, Jalan Cihampelas No. 201A, Kel. Cipaganti, Kec. Coblong, Kota Bandung, Jawa Barat 40131
+              <strong>{siteData.contact.officeName}</strong><br />
+              {siteData.contact.officeAddress}
             </address>
           </div>
           <div>
-            <h4>Customer service</h4>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" class="link-lux text-xl">0818 804 288</a>
-            <p class="mt-3">Reservasi, jadwal, dan perjalanan luar kota melalui WhatsApp.</p>
+            <h4>{siteData.footer.serviceLabel}</h4>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" class="link-lux text-xl">{siteData.contact.whatsappDisplay}</a>
+            <p class="mt-3">{siteData.footer.serviceNote}</p>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row flex-wrap justify-between gap-4 pt-8 text-xs">
-          <p>© 2025 Alphard Elite · Member of HANADI CORP</p>
-          <div class="flex flex-wrap gap-6"><a href="#privasi" class="link-lux">Privasi</a><a href="#ketentuan" class="link-lux">Ketentuan reservasi</a><a href="#top" class="link-lux">Kembali ke atas ↑</a></div>
+          <p>{siteData.contact.copyright}</p>
+          <div class="flex flex-wrap gap-6"><a href="#privasi" class="link-lux">{siteData.legal.privacyTitle}</a><a href="#ketentuan" class="link-lux">{siteData.legal.termsTitle}</a><a href="#top" class="link-lux">{siteData.footer.backToTopText}</a></div>
         </div>
         <div class="legal-notes">
-          <section id="privasi"><h3>Privasi</h3><p>Formulir ini menyusun pesan di perangkat Anda. Data perjalanan tidak dikirim ke server website; pesan diteruskan ke WhatsApp saat Anda memilih untuk mengirimnya. Jangan sertakan data sensitif. Penggunaan WhatsApp mengikuti <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">kebijakan privasi WhatsApp</a>.</p></section>
-          <section id="ketentuan"><h3>Ketentuan reservasi</h3><p>Harga yang ditampilkan adalah harga untuk perjalanan dalam kota Bandung. Estimasi bukan konfirmasi pemesanan. Ketersediaan unit, rute, biaya tambahan, pembayaran, dan pembatalan dikonfirmasi oleh Customer Service sebelum pemesanan. Seluruh layanan dengan pengemudi, tidak tersedia lepas kunci.</p></section>
+          <section id="privasi"><h3>{siteData.legal.privacyTitle}</h3><p>{siteData.legal.privacyText} <a href={siteData.legal.privacyLinkUrl} target="_blank" rel="noopener noreferrer">{siteData.legal.privacyLinkText}</a>.</p></section>
+          <section id="ketentuan"><h3>{siteData.legal.termsTitle}</h3><p>{siteData.legal.termsText}</p></section>
         </div>
       </div>
     </footer>
 
     <FloatingWhatsApp />
-
     <script>
       const menu = document.querySelector<HTMLDetailsElement>('.mobile-nav');
       menu?.addEventListener('click', (event) => {

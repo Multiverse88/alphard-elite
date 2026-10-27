@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>CMS Pengelola Konten | Alphard Elite</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    body { background: #0e0e11; color: #f4f4f6; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
+    #token-gate { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; background: #070708; padding: 24px; }
+    #token-gate[hidden] { display: none; }
+    .gate-card { width: 100%; max-width: 420px; background: #121216; border: 1px solid rgba(212,216,224,0.22); border-radius: 12px; padding: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.85); }
+    .gate-card img { height: 34px; width: auto; display: block; margin-bottom: 20px; }
+    .gate-card h1 { font-size: 18px; margin: 0 0 8px; color: #fff; font-weight: 600; }
+    .gate-card p { font-size: 13px; line-height: 1.5; color: #a5aab4; margin: 0 0 18px; }
+    .gate-card label { display: block; font-size: 12px; color: #d5d8e0; margin-bottom: 6px; font-weight: 500; }
+    .gate-card input { width: 100%; box-sizing: border-box; padding: 11px 12px; border-radius: 6px; border: 1px solid rgba(212,216,224,0.28); background: #09090b; color: #fff; font-size: 14px; margin-bottom: 14px; }
+    .gate-card button { width: 100%; padding: 11px 16px; border-radius: 6px; border: 0; background: linear-gradient(135deg, #f5f6f8, #b8bec9); color: #070708; font-weight: 600; font-size: 14px; cursor: pointer; }
+    .gate-card button:disabled { opacity: 0.6; cursor: wait; }
+    .gate-error { color: #ff7b7b; font-size: 12px; margin-bottom: 12px; display: none; }
+    #cms-logout { position: fixed; bottom: 16px; right: 16px; z-index: 9999; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: #141418; color: #e4e6eb; font-size: 12px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="token-gate" hidden>
+    <form class="gate-card" id="token-form">
+      <img src="/assets/logo.webp" alt="Alphard Elite" />
+      <h1>CMS Pengelola Konten</h1>
+      <p>Masukkan GitHub Personal Access Token (scope <code>repo</code>) untuk mengedit konten <strong>sewaalphardbandung.id</strong>. Perubahan otomatis disimpan ke GitHub.</p>
+      <label for="gh-token">GitHub Access Token</label>
+      <input id="gh-token" type="password" required autocomplete="current-password" placeholder="ghp_... atau github_pat_..." />
+      <div class="gate-error" id="gate-error" role="alert"></div>
+      <button type="submit" id="gate-submit">Masuk ke CMS</button>
+    </form>
+  </div>
+  <button type="button" id="cms-logout" hidden>Keluar CMS</button>
+  <script>
+    (function () {
+      const KEYS = ['decap-cms-user', 'netlify-cms-user'];
+      const gate = document.getElementById('token-gate');
+      const form = document.getElementById('token-form');
+      const input = document.getElementById('gh-token');
+      const errEl = document.getElementById('gate-error');
+      const btn = document.getElementById('gate-submit');
+      const logoutBtn = document.getElementById('cms-logout');
+
+      function getStoredUser() {
+        for (const k of KEYS) {
+          try {
+            const v = JSON.parse(localStorage.getItem(k) || 'null');
+            if (v && v.token) return v;
+          } catch (_) {}
+        }
+        return null;
+      }
+
+      function syncGate() {
+        const user = getStoredUser();
+        if (user) {
+          gate.hidden = true;
+          logoutBtn.hidden = false;
+        } else {
+          gate.hidden = false;
+          logoutBtn.hidden = true;
+        }
+      }
+
+      logoutBtn.addEventListener('click', function () {
+        KEYS.forEach((k) => localStorage.removeItem(k));
+        window.location.reload();
+      });
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const token = input.value.trim();
+        if (!token) return;
+        errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = 'Memverifikasi token…';
+        try {
+          const res = await fetch('https://api.github.com/repos/Multiverse88/alphard-elite', {
+            headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' },
+          });
+          if (!res.ok) throw new Error('Token tidak valid atau tidak memiliki akses ke repo Multiverse88/alphard-elite.');
+          const userRes = await fetch('https://api.github.com/user', {
+            headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' },
+          });
+          const profile = userRes.ok ? await userRes.json() : { login: 'admin', name: 'Admin' };
+          const payload = JSON.stringify({
+            backendName: 'github',
+            token: token,
+            login: profile.login || 'admin',
+            name: profile.name || profile.login || 'Admin',
+            avatar_url: profile.avatar_url || '',
+          });
+          KEYS.forEach((k) => localStorage.setItem(k, payload));
+          window.location.reload();
+        } catch (err) {
+          errEl.textContent = err.message || 'Gagal memverifikasi token GitHub.';
+          errEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Masuk ke CMS';
+        }
+      });
+
+      syncGate();
+    })();
+  </script>
+  <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
+</body>
+</html>

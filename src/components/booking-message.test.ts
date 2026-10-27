@@ -1,23 +1,39 @@
 import { expect, test } from 'bun:test';
-import { buildReservationMessage } from './BookingEstimator';
+import siteData from '../data/site.json';
+import { rupiah, whatsappUrl } from '../data/contact';
+import { buildReservationMessage, estimate } from './BookingEstimator';
 
-test('harian: mirrors form fields in order with WhatsApp markup', () => {
-  const msg = buildReservationMessage({ service: 'harian', date: '2027-02-10', passengers: 4, duration: 3, pickup: '  Hotel & kantor / Bandung ' });
+test('estimates, reservation message, and WhatsApp URL derive from site.json', () => {
+  expect(estimate('drop-off', 5)).toBe(siteData.pricing.dropOff.price);
+  expect(estimate('harian', 3)).toBe(siteData.pricing.harian.price * 3);
+  expect(estimate('luar-kota', 2)).toBeNull();
+
+  const b = siteData.booking;
+  const msg = buildReservationMessage({
+    service: 'harian',
+    date: '2027-02-10',
+    passengers: 4,
+    duration: 3,
+    pickup: '  Hotel & kantor / Bandung ',
+  });
   const lines = msg.split('\n').filter((l) => l.startsWith('*') && l.includes(':*'));
   expect(lines).toEqual([
-    '*Layanan:* Sewa harian dalam kota',
-    '*Tanggal perjalanan:* Rabu, 10 Februari 2027',
-    '*Jumlah penumpang:* 4 orang',
-    '*Durasi sewa:* 3 hari',
-    '*Lokasi jemput / catatan:* Hotel & kantor / Bandung',
-    '*Estimasi:* Rp 7.500.000',
+    `*${b.serviceLabel}:* ${siteData.pricing.harian.name}`,
+    `*${b.dateLabel}:* Rabu, 10 Februari 2027`,
+    `*${b.passengersLabel}:* 4 ${b.passengerUnit}`,
+    `*${b.durationLabel}:* 3 ${b.dayUnit}`,
+    `*${b.pickupMessageLabel}:* Hotel & kantor / Bandung`,
+    `*${b.estimateLabel}:* ${rupiah(siteData.pricing.harian.price * 3)}`,
   ]);
-});
 
-test('drop-off omits duration; custom trip asks CS; empty note shows dash', () => {
+  const url = new URL(whatsappUrl(msg));
+  expect(url.pathname).toBe(`/${siteData.contact.whatsappNumber}`);
+  expect(url.searchParams.get('text')).toBe(msg);
+
   const dropOff = buildReservationMessage({ service: 'drop-off', date: '2027-02-10', passengers: 2, duration: 5, pickup: '' });
-  expect(dropOff).not.toContain('Durasi sewa');
-  expect(dropOff).toContain('*Estimasi:* Rp 1.000.000');
-  expect(dropOff).toContain('*Lokasi jemput / catatan:* -');
-  expect(buildReservationMessage({ service: 'luar-kota', date: '2027-02-10', passengers: 2, duration: 1, pickup: 'Jakarta' })).toContain('*Estimasi:* Hubungi CS');
+  expect(dropOff).not.toContain(`*${b.durationLabel}:*`);
+  expect(dropOff).toContain(`*${b.estimateLabel}:* ${rupiah(siteData.pricing.dropOff.price)}`);
+  expect(dropOff).toContain(`*${b.pickupMessageLabel}:* -`);
+  expect(buildReservationMessage({ service: 'luar-kota', date: '2027-02-10', passengers: 2, duration: 1, pickup: 'Jakarta' }))
+    .toContain(`*${b.estimateLabel}:* ${b.contactPrice}`);
 });

@@ -1,0 +1,352 @@
+{
+  "contact": {
+    "whatsappNumber": "62818804288",
+    "whatsappDisplay": "0818 804 288",
+    "whatsappLabel": "Chat WhatsApp Alphard Elite",
+    "defaultMessage": "Halo Alphard Elite, saya dapat kontak dari website",
+    "officeName": "CV Elite Vision Internasional",
+    "officeAddress": "EasyBuilding 1st Floor, Jalan Cihampelas No. 201A, Kel. Cipaganti, Kec. Coblong, Kota Bandung, Jawa Barat 40131",
+    "copyright": "© 2025 Alphard Elite · Member of HANADI CORP"
+  },
+  "seo": {
+    "title": "Sewa Alphard Bandung VIP | Alphard Elite — Five-Star Facilities",
+    "description": "Satu-satunya rental Alphard dengan Five-Star Facilities, First-Class Entertainment, dan Business Services di Indonesia. Drop-off Bandung mulai Rp 1.000.000, sewa harian Rp 2.500.000.",
+    "canonicalUrl": "https://sewaalphardbandung.id",
+    "image": "/assets/mobil-alphard.webp",
+    "icon": "/favicon.ico",
+    "pngIcon": "/favicon.png",
+    "appleTouchIcon": "/apple-touch-icon.png",
+    "brandName": "Alphard Elite Bandung",
+    "language": "id",
+    "locale": "id_ID",
+    "priceRange": "Rp 1.000.000 - Rp 2.500.000",
+    "areaServed": "Bandung",
+    "addressLocality": "Bandung",
+    "addressRegion": "Jawa Barat",
+    "postalCode": "40131",
+    "addressCountry": "ID"
+  },
+  "brand": {
+    "name": "Alphard Elite",
+    "logo": "/assets/logo.webp",
+    "homeLabel": "Alphard Elite — kembali ke atas",
+    "wordmark": "ALPHARD"
+  },
+  "ui": {
+    "skipLink": "Langsung ke konten",
+    "mainNavLabel": "Navigasi utama",
+    "mobileNavLabel": "Navigasi mobile",
+    "menuText": "Menu",
+    "bookingText": "Reservasi"
+  },
+  "nav": [
+    { "href": "#fasilitas", "label": "Fasilitas" },
+    { "href": "#galeri", "label": "Galeri" },
+    { "href": "#harga", "label": "Tarif" },
+    { "href": "#kebutuhan", "label": "Layanan" },
+    { "href": "#kontak", "label": "Kontak" }
+  ],
+  "hero": {
+    "badge": "Sewa Alphard Bandung VIP",
+    "title": "Luxury meets comfort",
+    "titleEm": "& fun in every journey.",
+    "lead": "Satu-satunya rental Alphard di Indonesia dengan Five-Star Facilities, First-Class Entertainment, dan Business Services.",
+    "buttonText": "Booking sekarang",
+    "secondaryButtonText": "Lihat tarif",
+    "carImage": "/assets/mobil-alphard.webp",
+    "carAlt": "Toyota Alphard Transformer Facelift hitam milik Alphard Elite",
+    "carModel": "Toyota Alphard Transformer Facelift",
+    "carNote": "Bebas asap rokok",
+    "specBar": {
+      "dropOffLabel": "Drop-off dalam kota",
+      "harianLabel": "Sewa harian · 24 jam",
+      "items": [
+        { "label": "All in", "value": "Driver, BBM, tol & parkir" },
+        { "label": "Layanan", "value": "Dengan pengemudi" }
+      ]
+    }
+  },
+  "statement": {
+    "title": "Apakah Anda mencari pengalaman sewa Alphard yang",
+    "titleEm": "berbeda dari biasanya?",
+    "lead": "Di Alphard Elite, kami menghadirkan kombinasi Five-Star Facilities untuk kenyamanan luar biasa, First-Class Entertainment untuk hiburan eksklusif di setiap momen, dan Business Services untuk produktivitas sepanjang perjalanan."
+  },
+  "facilities": {
+    "badge": "Mengapa Alphard Elite",
+    "title": "Tiga alasan,",
+    "titleEm": "satu perjalanan.",
+    "lead": "Setiap detail kabin disiapkan untuk beristirahat, menikmati hiburan, atau menyelesaikan pekerjaan.",
+    "pillars": [
+      {
+        "numeral": "I",
+        "eyebrow": "Five-Star Facilities",
+        "title": "Kenyamanan setara hotel bintang lima.",
+        "lead": "Fasilitas untuk kenyamanan luar biasa, sejak Anda duduk di kabin.",
+        "image": "/assets/foto/captain-seat-with-legrest.webp",
+        "alt": "Captain seat Alphard dengan legrest dan bantal kepala",
+        "items": [
+          { "name": "EQUIL Mineral Water", "desc": "Air mineral premium berkualitas tinggi yang menemani perjalanan Anda." },
+          { "name": "Healthy & Nutritious Snacks", "desc": "Camilan sehat yang lezat dan bergizi." },
+          { "name": "Relaxing Aroma Therapy Diffuser", "desc": "Aroma terapi yang menenangkan dan menyegarkan." },
+          { "name": "Captain Seat with Legrest", "desc": "Kursi ergonomis dengan legrest yang dapat disesuaikan." },
+          { "name": "Multiple Fast Charging USB Ports", "desc": "Tersedia di kursi baris pertama dan kedua." }
+        ]
+      },
+      {
+        "numeral": "II",
+        "eyebrow": "First-Class Entertainment",
+        "title": "Hiburan eksklusif di setiap momen.",
+        "lead": "Perjalanan panjang terasa singkat bersama hiburan berkualitas tinggi.",
+        "image": "/assets/foto/4-screen-in-car-entertainment.webp",
+        "alt": "Empat layar hiburan di kabin Alphard Elite",
+        "items": [
+          { "name": "NETFLIX & YOUTUBE Premium", "desc": "Film, serial, dan konten menarik sepanjang perjalanan." },
+          { "name": "NINTENDO SWITCH Game Console", "desc": "Keseruan bermain game favorit selama perjalanan." },
+          { "name": "VENOM Premium Car Audio", "desc": "Audio berkualitas tinggi dengan suara jernih." },
+          { "name": "4-Screen In-Car Entertainment", "desc": "Empat layar hiburan bagi semua penumpang." },
+          { "name": "Dual 12.1” 4K ANDROID Touchscreen", "desc": "Monitor layar sentuh Android 4K beresolusi tinggi." },
+          { "name": "Free Earphones for 2nd-Row", "desc": "Pengalaman hiburan yang lebih privat." }
+        ]
+      },
+      {
+        "numeral": "III",
+        "eyebrow": "Business Services",
+        "title": "Ruang kerja yang ikut bergerak.",
+        "lead": "Tetap produktif dengan fasilitas yang mendukung mobilitas bisnis Anda.",
+        "image": "/assets/foto/wireless-presentation-screen.webp",
+        "alt": "Layar presentasi nirkabel di dalam kabin Alphard",
+        "items": [
+          { "name": "Unlimited High-Speed Wi-Fi", "desc": "Internet cepat tanpa batas selama perjalanan." },
+          { "name": "Wireless Presentation Screen", "desc": "Presentasi nirkabel untuk keperluan bisnis." },
+          { "name": "EPSON Portable A4 Printer", "desc": "Cetak dokumen langsung di perjalanan." }
+        ]
+      }
+    ]
+  },
+  "gallery": {
+    "badge": "Galeri foto & video",
+    "title": "Lihat lebih",
+    "titleEm": "dekat.",
+    "lead": "Pilih foto atau video untuk melihat detail kabin Alphard Elite.",
+    "labels": {
+      "playVideo": "Putar video",
+      "enlargePhoto": "Perbesar foto",
+      "video": "Video",
+      "photo": "Foto",
+      "close": "Tutup",
+      "closeLabel": "Tutup galeri",
+      "loading": "Memuat video…",
+      "error": "Media belum dapat ditampilkan.",
+      "openFile": "Buka file langsung",
+      "retry": "atau coba kembali."
+    },
+    "items": [
+      {
+        "id": "vid-profile",
+        "type": "video",
+        "title": "Video Profile Alphard Elite",
+        "subtitle": "Tur lengkap interior VIP, fasilitas bintang lima, dan layanan eksekutif.",
+        "src": "/assets/videos/profile.mp4",
+        "poster": "/assets/videos/poster-profile.webp",
+        "aspect": "video"
+      },
+      {
+        "id": "vid-endorse-1",
+        "type": "video",
+        "title": "Review Pengalaman Penumpang",
+        "subtitle": "Sensasi perjalanan eksklusif dengan fasilitas hiburan kelas satu.",
+        "src": "/assets/videos/endorse-1.mp4",
+        "poster": "/assets/videos/poster-endorse-1.webp",
+        "aspect": "vertical"
+      },
+      {
+        "id": "vid-endorse-2",
+        "type": "video",
+        "title": "Kenyamanan Perjalanan VIP",
+        "subtitle": "Kenyamanan captain seat, aroma therapy diffuser, dan hiburan di kabin.",
+        "src": "/assets/videos/endorse-2.mp4",
+        "poster": "/assets/videos/poster-endorse-2.webp",
+        "aspect": "vertical"
+      },
+      {
+        "id": "foto-captain-seat",
+        "type": "image",
+        "title": "Captain Seat with Legrest",
+        "subtitle": "Kursi ergonomis dengan legrest yang dapat disesuaikan untuk kenyamanan duduk maksimal.",
+        "src": "/assets/foto/captain-seat-with-legrest.webp"
+      },
+      {
+        "id": "foto-4-screen",
+        "type": "image",
+        "title": "4-Screen In-Car Entertainment",
+        "subtitle": "Empat layar hiburan yang menghadirkan keseruan bagi semua penumpang.",
+        "src": "/assets/foto/4-screen-in-car-entertainment.webp"
+      },
+      {
+        "id": "foto-nintendo",
+        "type": "image",
+        "title": "Nintendo Switch Game Console",
+        "subtitle": "Bermain game favorit bersama keluarga atau rekan selama perjalanan.",
+        "src": "/assets/foto/nintendo-switch-game-console.webp"
+      },
+      {
+        "id": "foto-wireless-screen",
+        "type": "image",
+        "title": "Wireless Presentation Screen",
+        "subtitle": "Layar presentasi nirkabel untuk keperluan bisnis di perjalanan.",
+        "src": "/assets/foto/wireless-presentation-screen.webp"
+      },
+      {
+        "id": "foto-printer",
+        "type": "image",
+        "title": "Epson Portable A4 Printer",
+        "subtitle": "Cetak dokumen langsung di perjalanan dengan printer portabel.",
+        "src": "/assets/foto/epson-portable-a4-printer.webp"
+      },
+      {
+        "id": "foto-snacks",
+        "type": "image",
+        "title": "Healthy & Nutritious Snacks",
+        "subtitle": "Camilan sehat yang lezat dan bergizi untuk menemani perjalanan.",
+        "src": "/assets/foto/healthy--nutritious-snacks.webp"
+      },
+      {
+        "id": "foto-equil",
+        "type": "image",
+        "title": "Equil Mineral Water",
+        "subtitle": "Air mineral premium berkualitas tinggi di setiap perjalanan.",
+        "src": "/assets/foto/equil-mineral-water.webp"
+      },
+      {
+        "id": "foto-netflix",
+        "type": "image",
+        "title": "Netflix & YouTube Premium",
+        "subtitle": "Film, serial, dan konten favorit sepanjang perjalanan.",
+        "src": "/assets/foto/netflix--youtube-premium.webp"
+      }
+    ]
+  },
+  "pricing": {
+    "badge": "Tarif dalam kota Bandung",
+    "title": "Pilih cara Anda",
+    "titleEm": "bepergian.",
+    "lead": "Semua paket all in dengan pengemudi profesional. Tidak tersedia lepas kunci. Untuk tujuan luar kota Bandung, hubungi Customer Service kami.",
+    "normalLabel": "Normal",
+    "dropOff": {
+      "badge": "Sewa drop-off",
+      "title": "Antar satu tujuan.",
+      "titleEm": "",
+      "name": "Drop-off dalam kota",
+      "price": 1000000,
+      "normalPrice": 2000000,
+      "features": [
+        "Profesional driver & makan driver",
+        "BBM, parkir & tol",
+        "1 titik jemput dan 1 titik antar",
+        "Waktu tunggu maksimal 60 menit"
+      ],
+      "buttonText": "Booking drop-off",
+      "serviceNote": "1 titik jemput dan 1 titik antar di Bandung, waktu tunggu maksimal 60 menit. All in driver, BBM, parkir & tol."
+    },
+    "harian": {
+      "badge": "Sewa harian",
+      "title": "Seharian,",
+      "titleEm": "tanpa batas titik.",
+      "name": "Sewa harian dalam kota",
+      "price": 2500000,
+      "normalPrice": 3500000,
+      "features": [
+        "Profesional driver & makan driver",
+        "BBM, parkir & tol",
+        "Titik jemput & antar tidak dibatasi",
+        "Durasi sewa 24 jam (00.00–23.59)"
+      ],
+      "buttonText": "Booking harian",
+      "serviceNote": "24 jam (00.00–23.59) di Bandung, titik jemput & antar tidak dibatasi. All in driver, BBM, parkir & tol."
+    },
+    "custom": {
+      "name": "Luar kota / custom trip",
+      "serviceNote": "Rute luar kota Bandung atau itinerary khusus. Tarif dikonfirmasi oleh Customer Service."
+    }
+  },
+  "segments": {
+    "badge": "Kebutuhan perjalanan",
+    "title": "Kami melayani",
+    "titleEm": "setiap agenda.",
+    "lead": "Apa pun kebutuhan perjalanan Anda, Alphard Elite siap memberikan pengalaman terbaik di setiap perjalanan — dan masih banyak lagi.",
+    "items": [
+      "Penjemputan VIP/VVIP",
+      "Pejabat & Tokoh Publik",
+      "Kunjungan Diplomatik",
+      "Delegasi & Tamu VIP",
+      "Acara Perusahaan & Kenegaraan",
+      "Perjalanan Bisnis & Dinas",
+      "Eksekutif & Pebisnis",
+      "Perjalanan Keluarga & Wisata",
+      "Mobil Pengantin",
+      "Pasien Medis & Lansia",
+      "Artis & Influencer",
+      "Syuting Film & Sinetron"
+    ]
+  },
+  "closing": {
+    "badge": "Reservasi",
+    "title": "Siap merasakan",
+    "titleEm": "perjalanan mewah?",
+    "lead": "Jadikan setiap perjalanan bersama Alphard Elite sebagai momen istimewa. Nikmati kemewahan, kenyamanan, dan hiburan eksklusif — pesan sekarang dan rasakan perbedaannya.",
+    "buttonText": "Booking via WhatsApp",
+    "image": "/assets/foto/captain-seat-with-legrest.webp"
+  },
+  "footer": {
+    "description": "Satu-satunya rental Alphard dengan Five-Star Facilities, First-Class Entertainment dan Business Services di Indonesia.",
+    "officeLabel": "Office",
+    "serviceLabel": "Customer service",
+    "serviceNote": "Reservasi, jadwal, dan perjalanan luar kota melalui WhatsApp.",
+    "backToTopText": "Kembali ke atas ↑"
+  },
+  "booking": {
+    "badge": "Reservasi cepat",
+    "title": "Rencanakan",
+    "titleEm": "perjalanan Anda.",
+    "lead": "Pilih layanan dan tanggal. Pesan tersusun otomatis untuk Anda kirim melalui WhatsApp.",
+    "loadingText": "Menyiapkan formulir…",
+    "directLinkText": "hubungi WhatsApp langsung",
+    "estimateLabel": "Estimasi",
+    "contactPrice": "Hubungi CS",
+    "estimateNote": "Bukan harga final atau konfirmasi booking.",
+    "buttonText": "Kirim ke WhatsApp",
+    "privacyNote": "Data hanya disusun menjadi pesan di perangkat Anda.",
+    "legend": "Detail reservasi",
+    "serviceLabel": "Layanan",
+    "dateLabel": "Tanggal perjalanan",
+    "passengersLabel": "Jumlah penumpang",
+    "passengerUnit": "orang",
+    "passengerOptions": [1, 2, 3, 4, 5, 6],
+    "durationLabel": "Durasi sewa",
+    "dayUnit": "hari",
+    "durationOptions": [1, 2, 3, 4, 5, 7, 10, 14, 30],
+    "pickupLabel": "Lokasi jemput / catatan (opsional)",
+    "pickupMessageLabel": "Lokasi jemput / catatan",
+    "pickupPlaceholder": "Contoh: Hotel Pullman Bandung / Bandara Husein",
+    "dateError": "Pilih tanggal hari ini atau setelahnya.",
+    "messageTitle": "RESERVASI CEPAT — ALPHARD ELITE",
+    "messageDisclaimer": "Estimasi dari website, bukan harga final. Mohon konfirmasi ketersediaan jadwal dan harga akhir.",
+    "messageThanks": "Terima kasih."
+  },
+  "legal": {
+    "privacyTitle": "Privasi",
+    "privacyText": "Formulir ini menyusun pesan di perangkat Anda. Data perjalanan tidak dikirim ke server website; pesan diteruskan ke WhatsApp saat Anda memilih untuk mengirimnya. Jangan sertakan data sensitif. Penggunaan WhatsApp mengikuti",
+    "privacyLinkText": "kebijakan privasi WhatsApp",
+    "privacyLinkUrl": "https://www.whatsapp.com/legal/privacy-policy",
+    "termsTitle": "Ketentuan reservasi",
+    "termsText": "Harga yang ditampilkan adalah harga untuk perjalanan dalam kota Bandung. Estimasi bukan konfirmasi pemesanan. Ketersediaan unit, rute, biaya tambahan, pembayaran, dan pembatalan dikonfirmasi oleh Customer Service sebelum pemesanan. Seluruh layanan dengan pengemudi, tidak tersedia lepas kunci."
+  },
+  "errorPage": {
+    "pageTitle": "Halaman tidak ditemukan | Alphard Elite",
+    "badge": "404 · Halaman tidak ditemukan",
+    "title": "Mari kembali",
+    "titleEm": "ke rute yang tepat.",
+    "lead": "Alamat ini tidak tersedia. Lihat fasilitas, tarif, dan reservasi Alphard Elite di halaman utama.",
+    "buttonText": "Kembali ke beranda"
+  }
+}
