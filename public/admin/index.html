@@ -239,22 +239,25 @@
 
   <script>
     const SECTIONS = [
-      { key: 'contact', label: 'Kontak & WhatsApp', page: '/' },
-      { key: 'pricing', label: 'Tarif & Paket Layanan', page: '/' },
-      { key: 'hero', label: 'Hero (Bagian Atas)', page: '/' },
-      { key: 'statement', label: 'Pernyataan Pembuka', page: '/' },
-      { key: 'facilities', label: 'Tiga Pilar Fasilitas', page: '/' },
-      { key: 'gallery', label: 'Galeri Foto & Video', page: '/' },
-      { key: 'booking', label: 'Form & Pesan WA', page: '/' },
-      { key: 'segments', label: 'Segmen Perjalanan', page: '/' },
-      { key: 'closing', label: 'CTA Penutup', page: '/' },
-      { key: 'footer', label: 'Footer', page: '/' },
-      { key: 'legal', label: 'Privasi & Ketentuan', page: '/' },
-      { key: 'seo', label: 'SEO & Metadata', page: '/' },
-      { key: 'brand', label: 'Brand & Logo', page: '/' },
-      { key: 'ui', label: 'Label Tombol & Navigasi', page: '/' },
-      { key: 'nav', label: 'Menu Navigasi', page: '/' },
-      { key: 'errorPage', label: 'Halaman 404', page: '/404.html' },
+      { key: 'contact', path: ['contact'], label: 'Kontak & WhatsApp', page: '/' },
+      { key: 'pricing', path: ['pricing'], label: 'Tarif & Paket Layanan', page: '/' },
+      { key: 'hero', path: ['hero'], label: 'Hero (Bagian Atas)', page: '/' },
+      { key: 'statement', path: ['statement'], label: 'Pernyataan Pembuka', page: '/' },
+      { key: 'facilities', path: ['facilities'], label: 'Tiga Pilar Fasilitas', page: '/' },
+      { key: 'gallery', path: ['gallery'], label: 'Galeri Foto & Video', page: '/' },
+      { key: 'booking', path: ['booking'], label: 'Form & Pesan WA', page: '/' },
+      { key: 'segments', path: ['segments'], label: 'Segmen Perjalanan', page: '/' },
+      { key: 'faq', path: ['faq'], label: 'FAQ Beranda', page: '/' },
+      { key: 'closing', path: ['closing'], label: 'CTA Penutup', page: '/' },
+      { key: 'footer', path: ['footer'], label: 'Footer', page: '/' },
+      { key: 'legal', path: ['legal'], label: 'Privasi & Ketentuan', page: '/' },
+      { key: 'seo', path: ['seo'], label: 'SEO & Metadata Beranda', page: '/' },
+      { key: 'brand', path: ['brand'], label: 'Brand & Logo', page: '/' },
+      { key: 'ui', path: ['ui'], label: 'Label Tombol & Navigasi', page: '/' },
+      { key: 'nav', path: ['nav'], label: 'Menu Navigasi', page: '/' },
+      { key: 'page:wedding-car-bandung', path: ['pages', 'wedding-car-bandung'], label: '📄 Wedding Car Bandung', page: '/wedding-car-bandung/' },
+      { key: 'page:mobil-pengantin-bandung', path: ['pages', 'mobil-pengantin-bandung'], label: '📄 Mobil Pengantin Bandung', page: '/mobil-pengantin-bandung/' },
+      { key: 'errorPage', path: ['errorPage'], label: 'Halaman 404', page: '/404.html' },
     ];
 
     let siteData = null;
@@ -293,6 +296,10 @@
       return String(key)
         .replace(/([A-Z])/g, ' $1')
         .replace(/^./, (c) => c.toUpperCase());
+    }
+
+    function getByPath(obj, path) {
+      return path.reduce((acc, k) => (acc == null ? undefined : acc[k]), obj);
     }
 
     function setByPath(obj, path, val) {
@@ -429,9 +436,9 @@
     }
 
     function renderSidebar() {
-      sidebarNav.innerHTML = '<div class="sidebar-heading">Bagian Konten</div>';
+      sidebarNav.innerHTML = '<div class="sidebar-heading">Bagian & Halaman</div>';
       for (const sec of SECTIONS) {
-        if (!(sec.key in siteData)) continue;
+        if (getByPath(siteData, sec.path) === undefined) continue;
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'nav-item' + (sec.key === activeKey ? ' active' : '');
@@ -443,7 +450,7 @@
           renderActiveSection();
           if (currentPreviewPage !== sec.page) {
             currentPreviewPage = sec.page;
-            previewUrlLabel.textContent = sec.page === '/404.html' ? 'Pratinjau Langsung: Halaman 404' : 'Pratinjau Langsung: Beranda';
+            previewUrlLabel.textContent = `Pratinjau Langsung: ${sec.page}`;
             previewIframe.src = sec.page;
           } else {
             scrollPreviewToSection(sec.key);
@@ -454,10 +461,10 @@
     }
 
     function renderActiveSection() {
-      const meta = SECTIONS.find((s) => s.key === activeKey) || { label: humanize(activeKey) };
+      const meta = SECTIONS.find((s) => s.key === activeKey) || SECTIONS[0];
       activeSectionTitle.textContent = meta.label;
       activeSectionForm.innerHTML = '';
-      activeSectionForm.appendChild(renderNode(siteData[activeKey], [activeKey], ''));
+      activeSectionForm.appendChild(renderNode(getByPath(siteData, meta.path), meta.path, ''));
     }
 
     async function loadSite() {

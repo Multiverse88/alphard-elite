@@ -1,11 +1,12 @@
 # Changelog
 
 
-## 2026-10-27 — Self-hosted CMS & centralized site data
+## 2026-10-27 — Self-hosted CMS, FAQ, & Wedding Car / Mobil Pengantin pages
 
 - Move all landing copy, SEO/JSON-LD metadata, navigation, facility pillars, media gallery items/labels, numeric pricing, booking form/message labels, footer/legal notes, and 404 copy into `src/data/site.json`.
+- Add `/wedding-car-bandung/` and `/mobil-pengantin-bandung/` SEO landing pages (`src/pages/[slug].astro`) plus Homepage & page-specific FAQ accordions with `FAQPage` JSON-LD schema.
 - Route all WhatsApp links and Rupiah formatting through `src/data/contact.ts` using `siteData.contact.whatsappNumber`.
-- Add `/admin/` split-screen Dashboard CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie), section sidebar, real-time `postMessage` Live Preview (Desktop & Mobile 390px), and automatic static site rebuild on save.
+- Add `/admin/` split-screen Dashboard CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie), section/page sidebar, real-time `postMessage` Live Preview (Desktop & Mobile 390px), and automatic static site rebuild on save.
 
 ## 2026-10-21 — Black & silver luxury redesign
 

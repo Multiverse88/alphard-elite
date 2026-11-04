@@ -9,8 +9,8 @@
     "copyright": "© 2025 Alphard Elite · Member of HANADI CORP"
   },
   "seo": {
-    "title": "Sewa Alphard Bandung VIP | Alphard Elite — Five-Star Facilities",
-    "description": "Satu-satunya rental Alphard dengan Five-Star Facilities, First-Class Entertainment, dan Business Services di Indonesia. Drop-off Bandung mulai Rp 1.000.000, sewa harian Rp 2.500.000.",
+    "title": "Sewa Alphard Bandung - Alphard Elite",
+    "description": "Jasa sewa alphard bandung terbaik untuk bisnis, wedding car, & liburan. Armada mewah, bersih, driver profesional. Pesan sekarang & dapatkan promo menarik!",
     "canonicalUrl": "https://sewaalphardbandung.id",
     "image": "/assets/mobil-alphard.webp",
     "icon": "/favicon.ico",
@@ -40,11 +40,26 @@
     "bookingText": "Reservasi"
   },
   "nav": [
-    { "href": "#fasilitas", "label": "Fasilitas" },
-    { "href": "#galeri", "label": "Galeri" },
-    { "href": "#harga", "label": "Tarif" },
-    { "href": "#kebutuhan", "label": "Layanan" },
-    { "href": "#kontak", "label": "Kontak" }
+    {
+      "href": "#fasilitas",
+      "label": "Fasilitas"
+    },
+    {
+      "href": "#galeri",
+      "label": "Galeri"
+    },
+    {
+      "href": "#harga",
+      "label": "Tarif"
+    },
+    {
+      "href": "#kebutuhan",
+      "label": "Layanan"
+    },
+    {
+      "href": "#kontak",
+      "label": "Kontak"
+    }
   ],
   "hero": {
     "badge": "Sewa Alphard Bandung VIP",
@@ -61,8 +76,14 @@
       "dropOffLabel": "Drop-off dalam kota",
       "harianLabel": "Sewa harian · 24 jam",
       "items": [
-        { "label": "All in", "value": "Driver, BBM, tol & parkir" },
-        { "label": "Layanan", "value": "Dengan pengemudi" }
+        {
+          "label": "All in",
+          "value": "Driver, BBM, tol & parkir"
+        },
+        {
+          "label": "Layanan",
+          "value": "Dengan pengemudi"
+        }
       ]
     }
   },
@@ -85,11 +106,26 @@
         "image": "/assets/foto/captain-seat-with-legrest.webp",
         "alt": "Captain seat Alphard dengan legrest dan bantal kepala",
         "items": [
-          { "name": "EQUIL Mineral Water", "desc": "Air mineral premium berkualitas tinggi yang menemani perjalanan Anda." },
-          { "name": "Healthy & Nutritious Snacks", "desc": "Camilan sehat yang lezat dan bergizi." },
-          { "name": "Relaxing Aroma Therapy Diffuser", "desc": "Aroma terapi yang menenangkan dan menyegarkan." },
-          { "name": "Captain Seat with Legrest", "desc": "Kursi ergonomis dengan legrest yang dapat disesuaikan." },
-          { "name": "Multiple Fast Charging USB Ports", "desc": "Tersedia di kursi baris pertama dan kedua." }
+          {
+            "name": "EQUIL Mineral Water",
+            "desc": "Air mineral premium berkualitas tinggi yang menemani perjalanan Anda."
+          },
+          {
+            "name": "Healthy & Nutritious Snacks",
+            "desc": "Camilan sehat yang lezat dan bergizi."
+          },
+          {
+            "name": "Relaxing Aroma Therapy Diffuser",
+            "desc": "Aroma terapi yang menenangkan dan menyegarkan."
+          },
+          {
+            "name": "Captain Seat with Legrest",
+            "desc": "Kursi ergonomis dengan legrest yang dapat disesuaikan."
+          },
+          {
+            "name": "Multiple Fast Charging USB Ports",
+            "desc": "Tersedia di kursi baris pertama dan kedua."
+          }
         ]
       },
       {
@@ -100,12 +136,30 @@
         "image": "/assets/foto/4-screen-in-car-entertainment.webp",
         "alt": "Empat layar hiburan di kabin Alphard Elite",
         "items": [
-          { "name": "NETFLIX & YOUTUBE Premium", "desc": "Film, serial, dan konten menarik sepanjang perjalanan." },
-          { "name": "NINTENDO SWITCH Game Console", "desc": "Keseruan bermain game favorit selama perjalanan." },
-          { "name": "VENOM Premium Car Audio", "desc": "Audio berkualitas tinggi dengan suara jernih." },
-          { "name": "4-Screen In-Car Entertainment", "desc": "Empat layar hiburan bagi semua penumpang." },
-          { "name": "Dual 12.1” 4K ANDROID Touchscreen", "desc": "Monitor layar sentuh Android 4K beresolusi tinggi." },
-          { "name": "Free Earphones for 2nd-Row", "desc": "Pengalaman hiburan yang lebih privat." }
+          {
+            "name": "NETFLIX & YOUTUBE Premium",
+            "desc": "Film, serial, dan konten menarik sepanjang perjalanan."
+          },
+          {
+            "name": "NINTENDO SWITCH Game Console",
+            "desc": "Keseruan bermain game favorit selama perjalanan."
+          },
+          {
+            "name": "VENOM Premium Car Audio",
+            "desc": "Audio berkualitas tinggi dengan suara jernih."
+          },
+          {
+            "name": "4-Screen In-Car Entertainment",
+            "desc": "Empat layar hiburan bagi semua penumpang."
+          },
+          {
+            "name": "Dual 12.1” 4K ANDROID Touchscreen",
+            "desc": "Monitor layar sentuh Android 4K beresolusi tinggi."
+          },
+          {
+            "name": "Free Earphones for 2nd-Row",
+            "desc": "Pengalaman hiburan yang lebih privat."
+          }
         ]
       },
       {
@@ -116,9 +170,18 @@
         "image": "/assets/foto/wireless-presentation-screen.webp",
         "alt": "Layar presentasi nirkabel di dalam kabin Alphard",
         "items": [
-          { "name": "Unlimited High-Speed Wi-Fi", "desc": "Internet cepat tanpa batas selama perjalanan." },
-          { "name": "Wireless Presentation Screen", "desc": "Presentasi nirkabel untuk keperluan bisnis." },
-          { "name": "EPSON Portable A4 Printer", "desc": "Cetak dokumen langsung di perjalanan." }
+          {
+            "name": "Unlimited High-Speed Wi-Fi",
+            "desc": "Internet cepat tanpa batas selama perjalanan."
+          },
+          {
+            "name": "Wireless Presentation Screen",
+            "desc": "Presentasi nirkabel untuk keperluan bisnis."
+          },
+          {
+            "name": "EPSON Portable A4 Printer",
+            "desc": "Cetak dokumen langsung di perjalanan."
+          }
         ]
       }
     ]
@@ -321,10 +384,27 @@
     "dateLabel": "Tanggal perjalanan",
     "passengersLabel": "Jumlah penumpang",
     "passengerUnit": "orang",
-    "passengerOptions": [1, 2, 3, 4, 5, 6],
+    "passengerOptions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
     "durationLabel": "Durasi sewa",
     "dayUnit": "hari",
-    "durationOptions": [1, 2, 3, 4, 5, 7, 10, 14, 30],
+    "durationOptions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      10,
+      14,
+      30
+    ],
     "pickupLabel": "Lokasi jemput / catatan (opsional)",
     "pickupMessageLabel": "Lokasi jemput / catatan",
     "pickupPlaceholder": "Contoh: Hotel Pullman Bandung / Bandara Husein",
@@ -348,5 +428,195 @@
     "titleEm": "ke rute yang tepat.",
     "lead": "Alamat ini tidak tersedia. Lihat fasilitas, tarif, dan reservasi Alphard Elite di halaman utama.",
     "buttonText": "Kembali ke beranda"
+  },
+  "faq": {
+    "badge": "Pertanyaan Umum (FAQ)",
+    "title": "Semua yang perlu",
+    "titleEm": "Anda ketahui.",
+    "lead": "Jawaban lengkap seputar layanan sewa Alphard Bandung, tarif, fasilitas, dan reservasi.",
+    "items": [
+      {
+        "q": "Mengapa harus menggunakan layanan sewa alphard bandung?",
+        "a": "Kami menyediakan armada Toyota Alphard keluaran terbaru dengan kondisi prima, bersih, dan wangi. Didukung oleh pengemudi profesional yang ramah dan berpengalaman menguasai rute area Bandung maupun luar kota, layanan sewa alphard bandung kami siap memberikan pengalaman perjalanan kelas VIP untuk keperluan bisnis, pernikahan, hingga liburan keluarga."
+      },
+      {
+        "q": "Bagaimana cara melakukan pemesanan sewa alphard bandung?",
+        "a": "Pemesanan sewa alphard bandung sangat mudah! Anda cukup menghubungi customer service kami via WhatsApp atau mengisi formulir reservasi di website. Pilih tanggal sewa, sertakan detail titik penjemputan, lalu lakukan pembayaran down payment (DP) untuk mengunci jadwal armada Anda."
+      },
+      {
+        "q": "Berapa harga sewa alphard bandung per hari?",
+        "a": "Tarif sewa alphard bandung bervariasi tergantung pada durasi pemakaian (misalnya drop-off dalam kota mulai Rp 1.000.000 atau sewa harian 24 jam Rp 2.500.000) serta tujuan penggunaan (dalam kota atau luar kota). Seluruh paket kami sudah termasuk armada mewah dan driver profesional. Hubungi kami untuk mendapatkan info promo dan daftar harga terbaru!"
+      },
+      {
+        "q": "Apakah harga sewa alphard bandung sudah termasuk BBM, tol, dan parkir?",
+        "a": "Kami menyediakan paket fleksibel sesuai kebutuhan Anda. Tersedia paket all-in (termasuk unit, driver, BBM, tol, dan parkir) maupun paket khusus luar kota. Anda bisa memilih opsi sewa alphard bandung yang paling efisien untuk anggaran perjalanan Anda."
+      },
+      {
+        "q": "Apakah melayani sewa alphard bandung tanpa driver (lepas kunci)?",
+        "a": "Untuk menjaga kenyamanan, keamanan, dan standar pelayanan VIP yang optimal, saat ini seluruh layanan sewa alphard bandung kami hanya tersedia secara with driver (termasuk pengemudi profesional)."
+      },
+      {
+        "q": "Apakah sewa alphard bandung bisa digunakan untuk perjalanan luar kota?",
+        "a": "Sangat bisa! Selain melayani area Kota Bandung, Lembang, dan sekitarnya, layanan sewa alphard bandung kami juga siap melayani perjalanan antar-kota seperti Jakarta, Bogor, Cirebon, hingga perjalanan dinas/liburan ke luar provinsi Jawa Barat."
+      },
+      {
+        "q": "Apa kelebihan sewa alphard bandung di tempat kami dibandingkan penyedia jasa lainnya?",
+        "a": "Kami mengutamakan standar pelayanan kelas VIP dengan Five-Star Facilities, First-Class Entertainment, dan Business Services. Armada selalu dalam kondisi bersih, wangi, dan terawat berkala, didukung pengemudi profesional yang ramah dan menguasai rute Bandung, serta harga jujur tanpa biaya tersembunyi (no hidden fees)."
+      },
+      {
+        "q": "Mengapa Alphard menjadi pilihan terbaik untuk sewa mobil di Bandung?",
+        "a": "Toyota Alphard adalah simbol kenyamanan dan kemewahan. Sangat cocok bagi Anda yang membutuhkan kenyamanan ekstra untuk perjalanan dinas bisnis, menjemput tamu penting/VVIP, hingga menghadiri acara spesial seperti pernikahan dan liburan keluarga dengan kapasitas kabin yang lapang serta fitur keamanan canggih."
+      },
+      {
+        "q": "Apakah ada potongan harga atau promo khusus jika menyewa lebih dari 1 hari?",
+        "a": "Tentu saja! Kami menyediakan penawaran harga khusus dan diskon menarik untuk paket sewa alphard bandung durasi panjang (lebih dari 1 hari atau mingguan). Semakin lama durasi sewa Anda, semakin hemat biaya harian yang Anda dapatkan."
+      },
+      {
+        "q": "Apakah tersedia diskon untuk pemesanan sewa alphard bandung jauh-jauh hari (early bird)?",
+        "a": "Ya, kami sering memberikan promo khusus untuk pelanggan yang melakukan pemesanan early bird atau pemesanan untuk keperluan korporat/instansi. Pastikan untuk menanyakan info promo sewa alphard bandung yang sedang berlangsung saat Anda melakukan reservasi."
+      },
+      {
+        "q": "Di mana saja area jangkauan penjemputan sewa alphard bandung?",
+        "a": "Layanan sewa alphard bandung kami melayani penjemputan di seluruh area Kota Bandung dan sekitarnya, termasuk Stasiun Kereta Cepat Padalarang/Tegalluar, Bandara, hotel, rumah tinggal, maupun area perkantoran tanpa biaya tambahan untuk area dalam kota."
+      },
+      {
+        "q": "Bagaimana jika jadwal perjalanan saya berubah atau ingin melakukan pembatalan sewa?",
+        "a": "Kami memahami bahwa jadwal bisnis maupun liburan bisa berubah. Layanan sewa alphard bandung kami menyediakan kebijakan perubahan jadwal (reschedule) yang fleksibel. Untuk pembatalan, Anda dapat menghubungi kami minimal H-2 sebelum tanggal penjemputan sesuai dengan syarat & ketentuan yang berlaku."
+      }
+    ]
+  },
+  "pages": {
+    "wedding-car-bandung": {
+      "slug": "wedding-car-bandung",
+      "seoTitle": "Wedding Car Bandung - Alphard Elite",
+      "seoDescription": "Sewa wedding car Bandung terbaik dengan pilihan armada mewah & klasik. Sudah termasuk dekorasi bunga elegan & driver profesional. Hubungi kami sekarang!",
+      "badge": "Wedding Car Bandung VIP",
+      "title": "Momen sakral dengan",
+      "titleEm": "kemewahan tak terlupakan.",
+      "lead": "Paket eksklusif wedding car Bandung menggunakan unit Toyota Alphard kelas VIP. Lengkap dengan dekorasi bunga elegan sesuai tema pernikahan, pengemudi berbusana formal, BBM, dan fasilitas kabin bintang lima.",
+      "buttonText": "Booking Wedding Car",
+      "secondaryButtonText": "Lihat paket & FAQ",
+      "statementTitle": "Mengapa memilih Alphard Elite untuk",
+      "statementTitleEm": "hari bahagia Anda?",
+      "statementLead": "Setiap detail perjalanan pengantin disiapkan secara paripurna: kabin super lapang yang menjaga gaun pengantin tetap rapi, aroma terapi menenangkan, hingga dekorasi bunga mobil pengantin yang serasi dengan palet warna pernikahan Anda.",
+      "highlights": [
+        {
+          "title": "Dekorasi Bunga Sesuai Tema",
+          "desc": "Hiasan bunga mobil pengantin elegan yang dapat disesuaikan dengan warna & konsep pernikahan, atau fleksibel didekorasi oleh WO Anda sendiri."
+        },
+        {
+          "title": "Driver Berbusana Formal & Rapi",
+          "desc": "Pengemudi profesional berpengalaman melayani prosesi akad, pemberkatan, hingga resepsi dengan tepat waktu."
+        },
+        {
+          "title": "Kabin VIP Bersih, Wangi & Lapang",
+          "desc": "Captain seat ergonomis dengan ruang kabin lega sehingga gaun pengantin tetap anggun dan nyaman sepanjang perjalanan."
+        },
+        {
+          "title": "Durasi Fleksibel & All-In BBM",
+          "desc": "Tersedia pilihan half-day (6–8 jam) maupun full-day (12–24 jam) menjangkau Kota Bandung, Lembang, Cimahi, Soreang, hingga Padalarang."
+        }
+      ],
+      "faqBadge": "FAQ Wedding Car Bandung",
+      "faqTitle": "Pertanyaan seputar",
+      "faqTitleEm": "wedding car Bandung.",
+      "faqLead": "Informasi lengkap mengenai layanan sewa Toyota Alphard untuk hari pernikahan Anda di Bandung.",
+      "faqs": [
+        {
+          "q": "Apakah tersedia paket wedding car bandung menggunakan unit Toyota Alphard?",
+          "a": "Ya, kami menyediakan paket eksklusif wedding car bandung dengan armada Toyota Alphard kelas VIP. Pilihan ini sangat cocok untuk memberikan kesan elegan, mewah, dan memberikan kenyamanan maksimal bagi pasangan pengantin di hari pernikahan."
+        },
+        {
+          "q": "Fasilitas apa saja yang sudah termasuk dalam paket wedding car bandung?",
+          "a": "Paket wedding car bandung kami sudah mencakup unit Toyota Alphard yang bersih dan wangi, dekorasi bunga mobil pengantin yang cantik, pengemudi profesional berpenampilan rapi/formal, serta pengisian BBM. Kami memastikan perjalanan di hari bahagia Anda berjalan lancar dan berkesan."
+        },
+        {
+          "q": "Apakah dekorasi bunga pada wedding car bandung bisa disesuaikan dengan tema pernikahan?",
+          "a": "Tentu saja! Kami memahami bahwa setiap pernikahan memiliki tema yang unik. Untuk layanan wedding car bandung, Anda dapat berdiskusi dengan tim kami mengenai pilihan warna atau gaya dekorasi bunga mobil agar senada dengan konsep acara pernikahan Anda."
+        },
+        {
+          "q": "Bisakah saya menggunakan jasa wedding car bandung tanpa dekorasi bunga jika ingin mendekorasi sendiri?",
+          "a": "Sangat bisa. Kami memberikan fleksibilitas penuh untuk kebutuhan wedding car bandung Anda. Jika vendor wedding organizer (WO) atau dekorator Anda ingin memasang dekorasi bunga sendiri, kami akan menyiapkan armada Alphard dalam kondisi bersih dan siap dipasang hiasan."
+        },
+        {
+          "q": "Apakah layanan wedding car bandung melayani penjemputan hingga ke luar area Kota Bandung?",
+          "a": "Ya, selain melayani wilayah Kota Bandung, layanan wedding car bandung kami juga siap menjangkau area sekitarnya seperti Lembang, Cimahi, Soreang, hingga Padalarang. Hubungi kami untuk koordinasi lokasi penjemputan dan rute gedung pernikahan Anda."
+        },
+        {
+          "q": "Berapa lama durasi sewa yang termasuk dalam paket wedding car bandung?",
+          "a": "Kami menyediakan durasi sewa fleksibel untuk paket wedding car bandung, mulai dari paket setengah hari (half day 6–8 jam) hingga full day (12 jam). Durasi ini dirancang agar cukup untuk kebutuhan penjemputan pengantin, prosesi akad/pemberkatan, hingga acara resepsi selesai."
+        },
+        {
+          "q": "Berapa jauh hari saya harus memesan wedding car bandung untuk hari pernikahan?",
+          "a": "Karena tanggal pernikahan sering kali bertepatan di weekend atau good date, kami menyarankan Anda memesan wedding car bandung setidaknya 1–2 bulan sebelum hari-H untuk memastikan ketersediaan armada Toyota Alphard dan tanggal pilihan Anda."
+        }
+      ]
+    },
+    "mobil-pengantin-bandung": {
+      "slug": "mobil-pengantin-bandung",
+      "seoTitle": "Sewa Mobil Pengantin Bandung - Alphard Elite",
+      "seoDescription": "Penyediaan sewa mobil pengantin di Bandung dengan armada mewah, bersih, & dekorasi bunga gratis. Driver profesional, siap wujudkan pernikahan impian Anda.",
+      "badge": "Sewa Mobil Pengantin Bandung",
+      "title": "Tampil anggun di",
+      "titleEm": "hari pernikahan impian.",
+      "lead": "Layanan sewa mobil pengantin Bandung dengan Toyota Alphard Transformer Facelift. Kabin mewah dan fotogenik, dekorasi bunga eksklusif sesuai palet warna acara, serta driver terlatih khusus prosedur pernikahan.",
+      "buttonText": "Pesan Mobil Pengantin",
+      "secondaryButtonText": "Lihat fasilitas & FAQ",
+      "statementTitle": "Kenyamanan paripurna untuk",
+      "statementTitleEm": "pengantin & dokumentasi.",
+      "statementLead": "Desain eksterior Toyota Alphard yang gagah dan elegan memberikan tampilan fotogenik di dokumentasi pernikahan, sementara kabin VIP bintang lima memastikan mempelai beristirahat dengan tenang di sela rangkaian acara.",
+      "highlights": [
+        {
+          "title": "Kabin Lapang Aman untuk Gaun",
+          "desc": "Ruang kaki dan captain seat dengan legrest memastikan gaun pengantin besar atau panjang tidak terlipat selama perjalanan."
+        },
+        {
+          "title": "Dekorasi Pita & Bunga Custom",
+          "desc": "Pilihan warna pita dan rangkaian bunga mobil pengantin yang selaras dengan estetika dekorasi pernikahan Anda."
+        },
+        {
+          "title": "Driver Terlatih Etika Wedding",
+          "desc": "Terbiasa dengan alur penjemputan salon/hotel, tempat akad atau pemberkatan, hingga gedung resepsi dengan pelayanan buka-pintu VIP."
+        },
+        {
+          "title": "Jangkauan Bandung Raya & Sekitarnya",
+          "desc": "Melayani Kota Bandung, Lembang, Cimahi, Soreang, Padalarang, hingga Sumedang dengan pilihan paket 6 jam, 12 jam, hingga full day."
+        }
+      ],
+      "faqBadge": "FAQ Mobil Pengantin Bandung",
+      "faqTitle": "Pertanyaan seputar",
+      "faqTitleEm": "mobil pengantin Bandung.",
+      "faqLead": "Panduan lengkap pemesanan sewa mobil pengantin Toyota Alphard di Bandung dan sekitarnya.",
+      "faqs": [
+        {
+          "q": "Mengapa Toyota Alphard menjadi pilihan favorit untuk mobil pengantin?",
+          "a": "Toyota Alphard adalah opsi terbaik untuk mobil pengantin karena menawarkan kabin yang sangat lapang, mewah, dan nyaman. Gaun pengantin yang besar atau panjang tidak akan terlipat atau rusak selama perjalanan. Selain itu, desain eksterior Alphard yang elegan memberikan tampilan yang sangat anggun dan fotogenik di dokumentasi pernikahan Anda."
+        },
+        {
+          "q": "Fasilitas apa saja yang didapatkan dalam paket sewa mobil pengantin?",
+          "a": "Paket mobil pengantin Bandung kami sudah mencakup unit Alphard prima yang bersih dan wangi, dekorasi bunga mobil eksklusif, driver profesional yang ramah dan berbusana rapi/formal, serta biaya BBM. Semua kami persiapkan agar pengantin tinggal duduk manis dan menikmati momen bahagianya."
+        },
+        {
+          "q": "Apakah dekorasi pada mobil pengantin bisa request sesuai warna tema pernikahan?",
+          "a": "Tentu saja! Kami memahami pentingnya keselarasan estetika di hari pernikahan. Untuk pemesanan sewa mobil pengantin, Anda dapat berdiskusi dengan tim kami terkait pilihan warna pita dan hiasan bunga agar sesuai dengan palet warna atau konsep dekorasi pernikahan Anda."
+        },
+        {
+          "q": "Apakah driver mobil pengantin sudah berpengalaman dengan prosedur acara pernikahan?",
+          "a": "Ya, driver kami khusus dilatih untuk melayani acara wedding. Driver mobil pengantin kami mengerti etika melayani pengantin, siap membantu membukakan pintu, selalu tepat waktu (punctual), serta paham rute efisien menuju tempat akad, gereja, maupun gedung resepsi di area Bandung."
+        },
+        {
+          "q": "Berapa lama durasi pemakaian untuk sewa mobil pengantin?",
+          "a": "Kami menyediakan pilihan paket durasi fleksibel untuk mobil pengantin, mulai dari paket 6 jam, 12 jam, hingga full day. Durasi ini dirancang agar mencakup seluruh alur acara Anda, mulai dari penjemputan dari salon/hotel, prosesi akad atau pemberkatan, hingga resepsi selesai."
+        },
+        {
+          "q": "Apakah layanan mobil pengantin Bandung juga melayani area luar kota atau kabupaten?",
+          "a": "Sangat bisa. Selain melayani area Kota Bandung, layanan mobil pengantin Bandung kami juga siap menjangkau wilayah sekitarnya seperti Lembang, Cimahi, Soreang, Padalarang, hingga Sumedang."
+        },
+        {
+          "q": "Kapan waktu terbaik untuk melakukan pemesanan mobil pengantin Bandung?",
+          "a": "Kami sangat menyarankan untuk melakukan reservasi mobil pengantin Bandung setidaknya 1–2 bulan sebelum hari-H, terutama jika acara pernikahan Anda jatuh pada weekend (Sabtu/Minggu) atau tanggal cantik, untuk menjamin ketersediaan unit armada kami."
+        }
+      ]
+    }
   }
 }

@@ -30,6 +30,15 @@ const jsonLd = {
   },
   priceRange: siteData.seo.priceRange,
 };
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: siteData.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
 <!doctype html>
@@ -53,6 +62,7 @@ const jsonLd = {
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/cormorant-500.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/outfit-var.woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </head>
 
   <body id="top">
@@ -205,9 +215,32 @@ const jsonLd = {
           <ol id="segments-list" class="segments">
             {siteData.segments.items.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p data-cms={`segments.items.${i}`}>{name}</p></li>)}
           </ol>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="/wedding-car-bandung/" class="btn-ghost">Paket Wedding Car Bandung →</a>
+            <a href="/mobil-pengantin-bandung/" class="btn-ghost">Sewa Mobil Pengantin Bandung →</a>
+          </div>
         </div>
       </section>
 
+      <section id="faq" data-cms-section="faq" class="section section-alt" aria-labelledby="faq-title">
+        <div class="container-lux">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow" data-cms="faq.badge">{siteData.faq.badge}</p>
+              <h2 id="faq-title" class="display"><span data-cms="faq.title">{siteData.faq.title}</span> <em data-cms="faq.titleEm">{siteData.faq.titleEm}</em></h2>
+            </div>
+            <p class="lead" data-cms="faq.lead">{siteData.faq.lead}</p>
+          </div>
+          <div id="faq-list" class="faq-list">
+            {siteData.faq.items.map((item, i) => (
+              <details class="faq-item reveal" open={i === 0}>
+                <summary data-cms={`faq.items.${i}.q`}>{item.q}</summary>
+                <p data-cms={`faq.items.${i}.a`}>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="closing-section" data-cms-section="closing" class="section closing" aria-labelledby="closing-title">
         <img data-cms-src="closing.image" src={siteData.closing.image} alt="" width="1200" height="900" loading="lazy" decoding="async" />
         <div class="container-lux reveal">
@@ -288,8 +321,8 @@ const jsonLd = {
         gallery: '#galeri',
         segments: '#kebutuhan',
         booking: '#reservasi',
+        faq: '#faq',
         closing: '#closing-section',
-        footer: '#kontak',
         legal: '#privasi',
         seo: '#top',
         brand: '#top',
@@ -377,6 +410,23 @@ const jsonLd = {
               p.textContent = name;
               li.append(span, p);
               ol.appendChild(li);
+            });
+          }
+        }
+        if (Array.isArray(d.faq?.items)) {
+          const faqWrap = document.querySelector('#faq-list');
+          if (faqWrap) {
+            faqWrap.innerHTML = '';
+            d.faq.items.forEach((item: { q: string; a: string }, i: number) => {
+              const det = document.createElement('details');
+              det.className = 'faq-item';
+              if (i === 0) det.open = true;
+              const sum = document.createElement('summary');
+              sum.textContent = item.q;
+              const p = document.createElement('p');
+              p.textContent = item.a;
+              det.append(sum, p);
+              faqWrap.appendChild(det);
             });
           }
         }
