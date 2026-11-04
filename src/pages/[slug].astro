@@ -16,7 +16,7 @@ const { slug } = Astro.params;
 const pageKey = slug as keyof typeof siteData.pages;
 const page = siteData.pages[pageKey];
 const canonical = `${siteData.seo.canonicalUrl.replace(/\/$/, '')}/${page.slug}/`;
-const waLink = whatsappUrl(`Halo Alphard Elite, saya tertarik dengan layanan ${page.badge}`);
+const waLink = whatsappUrl(`Halo Alphard Elite, saya ingin reservasi ${page.badge}`);
 
 const mediaItems: MediaItem[] = siteData.gallery.items.map((item) => ({
   ...item,
@@ -95,9 +95,9 @@ const pPrefix = `pages.${page.slug}`;
         </a>
         <nav aria-label={siteData.ui.mainNavLabel} class="hidden lg:flex items-center gap-9">
           <a href="/">Beranda</a>
-          <a href="/wedding-car-bandung/" aria-current={page.slug === 'wedding-car-bandung' ? 'page' : undefined}>Wedding Car</a>
-          <a href="/mobil-pengantin-bandung/" aria-current={page.slug === 'mobil-pengantin-bandung' ? 'page' : undefined}>Mobil Pengantin</a>
-          <a href="#harga">Tarif</a>
+          <a href="#fasilitas">Fasilitas</a>
+          <a href="#galeri">Galeri</a>
+          <a href="#harga">Paket Wedding</a>
           <a href="#faq">FAQ</a>
         </nav>
         <div class="flex items-center gap-4">
@@ -106,9 +106,9 @@ const pPrefix = `pages.${page.slug}`;
             <summary data-cms="ui.menuText">{siteData.ui.menuText}</summary>
             <nav aria-label={siteData.ui.mobileNavLabel}>
               <a href="/">Beranda</a>
-              <a href="/wedding-car-bandung/">Wedding Car</a>
-              <a href="/mobil-pengantin-bandung/">Mobil Pengantin</a>
-              <a href="#harga">Tarif</a>
+              <a href="#fasilitas">Fasilitas</a>
+              <a href="#galeri">Galeri</a>
+              <a href="#harga">Paket Wedding</a>
               <a href="#faq">FAQ</a>
             </nav>
           </details>
@@ -125,7 +125,7 @@ const pPrefix = `pages.${page.slug}`;
             <p class="lead" data-cms={`${pPrefix}.lead`}>{page.lead}</p>
             <div class="hero-actions">
               <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal"><span data-cms={`${pPrefix}.buttonText`}>{page.buttonText}</span> <span aria-hidden="true">↗</span></a>
-              <a href="#faq" class="link-lux" data-cms={`${pPrefix}.secondaryButtonText`}>{page.secondaryButtonText}</a>
+              <a href="#harga" class="link-lux" data-cms={`${pPrefix}.secondaryButtonText`}>{page.secondaryButtonText}</a>
             </div>
           </div>
           <figure class="hero-visual">
@@ -134,10 +134,13 @@ const pPrefix = `pages.${page.slug}`;
             <figcaption><span data-cms="hero.carModel">{siteData.hero.carModel}</span><span data-cms="hero.carNote">{siteData.hero.carNote}</span></figcaption>
           </figure>
         </div>
-        <div class="container-lux spec-bar">
-          <p><span data-cms="hero.specBar.dropOffLabel">{siteData.hero.specBar.dropOffLabel}</span><strong data-cms-rupiah="pricing.dropOff.price">{rupiah(siteData.pricing.dropOff.price)}</strong></p>
-          <p><span data-cms="hero.specBar.harianLabel">{siteData.hero.specBar.harianLabel}</span><strong data-cms-rupiah="pricing.harian.price">{rupiah(siteData.pricing.harian.price)}</strong></p>
-          {siteData.hero.specBar.items.map((item, i) => <p><span data-cms={`hero.specBar.items.${i}.label`}>{item.label}</span><strong data-cms={`hero.specBar.items.${i}.value`}>{item.value}</strong></p>)}
+        <div class="container-lux spec-bar" style={`grid-template-columns: repeat(${page.specBar.length}, 1fr)`}>
+          {page.specBar.map((item, i) => (
+            <p>
+              <span data-cms={`${pPrefix}.specBar.${i}.label`}>{item.label}</span>
+              <strong data-cms={`${pPrefix}.specBar.${i}.value`}>{item.value}</strong>
+            </p>
+          ))}
         </div>
       </section>
 
@@ -148,14 +151,32 @@ const pPrefix = `pages.${page.slug}`;
         </div>
       </section>
 
-      <section class="section section-alt" aria-labelledby="keunggulan-title">
+      <section id="fasilitas" class="section section-alt" aria-labelledby="fasilitas-title">
         <div class="container-lux">
-          <div class="pricing" id="page-highlights">
-            {page.highlights.map((hl, i) => (
-              <article class="price-card reveal">
-                <p class="eyebrow">0{i + 1}</p>
-                <h3 class="display !text-2xl sm:!text-3xl" data-cms={`${pPrefix}.highlights.${i}.title`}>{hl.title}</h3>
-                <p class="lead mt-4" data-cms={`${pPrefix}.highlights.${i}.desc`}>{hl.desc}</p>
+          <div class="section-head">
+            <div>
+              <p class="eyebrow" data-cms="facilities.badge">{siteData.facilities.badge}</p>
+              <h2 id="fasilitas-title" class="display"><span data-cms="facilities.title">{siteData.facilities.title}</span> <em data-cms="facilities.titleEm">{siteData.facilities.titleEm}</em></h2>
+            </div>
+            <p class="lead" data-cms="facilities.lead">{siteData.facilities.lead}</p>
+          </div>
+          <div class="pillars">
+            {page.pillars.map((pillar, pIdx) => (
+              <article class="pillar reveal">
+                <div class="pillar-media">
+                  <img data-cms-src={`${pPrefix}.pillars.${pIdx}.image`} data-cms-alt={`${pPrefix}.pillars.${pIdx}.alt`} src={pillar.image} alt={pillar.alt} width="1200" height="900" loading="lazy" decoding="async" />
+                </div>
+                <div>
+                  <span class="pillar-numeral" aria-hidden="true" data-cms={`${pPrefix}.pillars.${pIdx}.numeral`}>{pillar.numeral}</span>
+                  <p class="eyebrow mt-6" data-cms={`${pPrefix}.pillars.${pIdx}.eyebrow`}>{pillar.eyebrow}</p>
+                  <h3 class="display" data-cms={`${pPrefix}.pillars.${pIdx}.title`}>{pillar.title}</h3>
+                  <p class="lead" data-cms={`${pPrefix}.pillars.${pIdx}.lead`}>{pillar.lead}</p>
+                  <ul>
+                    {pillar.items.map((item, i) => (
+                      <li><span>{String(i + 1).padStart(2, '0')}</span><div><strong data-cms={`${pPrefix}.pillars.${pIdx}.items.${i}.name`}>{item.name}</strong><p data-cms={`${pPrefix}.pillars.${pIdx}.items.${i}.desc`}>{item.desc}</p></div></li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>
@@ -179,33 +200,33 @@ const pPrefix = `pages.${page.slug}`;
         <div class="container-lux">
           <div class="section-head">
             <div>
-              <p class="eyebrow" data-cms="pricing.badge">{siteData.pricing.badge}</p>
-              <h2 id="harga-title" class="display"><span data-cms="pricing.title">{siteData.pricing.title}</span> <em data-cms="pricing.titleEm">{siteData.pricing.titleEm}</em></h2>
+              <p class="eyebrow" data-cms={`${pPrefix}.pricing.badge`}>{page.pricing.badge}</p>
+              <h2 id="harga-title" class="display"><span data-cms={`${pPrefix}.pricing.title`}>{page.pricing.title}</span> <em data-cms={`${pPrefix}.pricing.titleEm`}>{page.pricing.titleEm}</em></h2>
             </div>
-            <p class="lead" data-cms="pricing.lead">{siteData.pricing.lead}</p>
+            <p class="lead" data-cms={`${pPrefix}.pricing.lead`}>{page.pricing.lead}</p>
           </div>
 
           <div class="pricing">
             <article class="price-card reveal">
-              <p class="eyebrow" data-cms="pricing.dropOff.badge">{siteData.pricing.dropOff.badge}</p>
-              <h3 class="display"><span data-cms="pricing.dropOff.title">{siteData.pricing.dropOff.title}</span> <em data-cms="pricing.dropOff.titleEm">{siteData.pricing.dropOff.titleEm}</em></h3>
-              <p class="price" data-cms-rupiah="pricing.dropOff.price">{rupiah(siteData.pricing.dropOff.price)}</p>
-              <p class="price-was"><span data-cms="pricing.normalLabel">{siteData.pricing.normalLabel}</span> <s data-cms-rupiah="pricing.dropOff.normalPrice">{rupiah(siteData.pricing.dropOff.normalPrice)}</s></p>
-              <ul>
-                {siteData.pricing.dropOff.features.map((feature, i) => <li data-cms={`pricing.dropOff.features.${i}`}>{feature}</li>)}
+              <p class="eyebrow" data-cms={`${pPrefix}.pricing.pkg12.badge`}>{page.pricing.pkg12.badge}</p>
+              <h3 class="display"><span data-cms={`${pPrefix}.pricing.pkg12.title`}>{page.pricing.pkg12.title}</span> <em data-cms={`${pPrefix}.pricing.pkg12.titleEm`}>{page.pricing.pkg12.titleEm}</em></h3>
+              <p class="price" data-cms-rupiah={`${pPrefix}.pricing.pkg12.price`}>{rupiah(page.pricing.pkg12.price)}</p>
+              <p class="price-was"><span data-cms={`${pPrefix}.pricing.normalLabel`}>{page.pricing.normalLabel}</span> <s data-cms-rupiah={`${pPrefix}.pricing.pkg12.normalPrice`}>{rupiah(page.pricing.pkg12.normalPrice)}</s></p>
+              <ul id="pkg12-features">
+                {page.pricing.pkg12.features.map((feature, i) => <li data-cms={`${pPrefix}.pricing.pkg12.features.${i}`}>{feature}</li>)}
               </ul>
-              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost" data-cms="pricing.dropOff.buttonText">{siteData.pricing.dropOff.buttonText}</a>
+              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-ghost" data-cms={`${pPrefix}.pricing.pkg12.buttonText`}>{page.pricing.pkg12.buttonText}</a>
             </article>
 
             <article class="price-card featured reveal">
-              <p class="eyebrow" data-cms="pricing.harian.badge">{siteData.pricing.harian.badge}</p>
-              <h3 class="display"><span data-cms="pricing.harian.title">{siteData.pricing.harian.title}</span> <em data-cms="pricing.harian.titleEm">{siteData.pricing.harian.titleEm}</em></h3>
-              <p class="price" data-cms-rupiah="pricing.harian.price">{rupiah(siteData.pricing.harian.price)}</p>
-              <p class="price-was"><span data-cms="pricing.normalLabel">{siteData.pricing.normalLabel}</span> <s data-cms-rupiah="pricing.harian.normalPrice">{rupiah(siteData.pricing.harian.normalPrice)}</s></p>
-              <ul>
-                {siteData.pricing.harian.features.map((feature, i) => <li data-cms={`pricing.harian.features.${i}`}>{feature}</li>)}
+              <p class="eyebrow" data-cms={`${pPrefix}.pricing.pkgAllDay.badge`}>{page.pricing.pkgAllDay.badge}</p>
+              <h3 class="display"><span data-cms={`${pPrefix}.pricing.pkgAllDay.title`}>{page.pricing.pkgAllDay.title}</span> <em data-cms={`${pPrefix}.pricing.pkgAllDay.titleEm`}>{page.pricing.pkgAllDay.titleEm}</em></h3>
+              <p class="price" data-cms-rupiah={`${pPrefix}.pricing.pkgAllDay.price`}>{rupiah(page.pricing.pkgAllDay.price)}</p>
+              <p class="price-was"><span data-cms={`${pPrefix}.pricing.normalLabel`}>{page.pricing.normalLabel}</span> <s data-cms-rupiah={`${pPrefix}.pricing.pkgAllDay.normalPrice`}>{rupiah(page.pricing.pkgAllDay.normalPrice)}</s></p>
+              <ul id="pkgAllDay-features">
+                {page.pricing.pkgAllDay.features.map((feature, i) => <li data-cms={`${pPrefix}.pricing.pkgAllDay.features.${i}`}>{feature}</li>)}
               </ul>
-              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal" data-cms="pricing.harian.buttonText">{siteData.pricing.harian.buttonText}</a>
+              <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal" data-cms={`${pPrefix}.pricing.pkgAllDay.buttonText`}>{page.pricing.pkgAllDay.buttonText}</a>
             </article>
           </div>
 
@@ -213,7 +234,22 @@ const pPrefix = `pages.${page.slug}`;
         </div>
       </section>
 
-      <section id="faq" class="section" aria-labelledby="faq-title">
+      <section id="kebutuhan" class="section" aria-labelledby="kebutuhan-title">
+        <div class="container-lux">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow" data-cms="segments.badge">{siteData.segments.badge}</p>
+              <h2 id="kebutuhan-title" class="display"><span data-cms="segments.title">{siteData.segments.title}</span> <em data-cms="segments.titleEm">{siteData.segments.titleEm}</em></h2>
+            </div>
+            <p class="lead" data-cms="segments.lead">{siteData.segments.lead}</p>
+          </div>
+          <ol class="segments">
+            {siteData.segments.items.map((name, i) => <li><span>{String(i + 1).padStart(2, '0')}</span><p data-cms={`segments.items.${i}`}>{name}</p></li>)}
+          </ol>
+        </div>
+      </section>
+
+      <section id="faq" class="section section-alt" aria-labelledby="faq-title">
         <div class="container-lux">
           <div class="section-head">
             <div>
@@ -238,7 +274,7 @@ const pPrefix = `pages.${page.slug}`;
         <div class="container-lux reveal">
           <p class="eyebrow" data-cms="closing.badge">{siteData.closing.badge}</p>
           <h2 id="closing-title" class="display mt-6"><span data-cms="closing.title">{siteData.closing.title}</span> <em data-cms="closing.titleEm">{siteData.closing.titleEm}</em></h2>
-          <p class="lead mx-auto mt-6" data-cms="closing.lead">{siteData.closing.lead}</p>
+          <p class="lead mx-auto mt-6" data-cms={`${pPrefix}.closingLead`}>{page.closingLead}</p>
           <div class="mt-10 flex justify-center">
             <a data-wa-link href={waLink} target="_blank" rel="noopener noreferrer" class="btn-metal"><span data-cms="closing.buttonText">{siteData.closing.buttonText}</span> <span aria-hidden="true">↗</span></a>
           </div>
@@ -300,6 +336,19 @@ const pPrefix = `pages.${page.slug}`;
           const val = getPath(d, el.dataset.cmsSrc || '');
           if (typeof val === 'string' && el.getAttribute('src') !== val) el.src = val;
         });
+
+        const renderFeatureList = (sel: string, items: string[]) => {
+          const ul = document.querySelector(sel);
+          if (!ul || !Array.isArray(items)) return;
+          ul.innerHTML = '';
+          items.forEach((txt) => {
+            const li = document.createElement('li');
+            li.textContent = txt;
+            ul.appendChild(li);
+          });
+        };
+        renderFeatureList('#pkg12-features', p?.pricing?.pkg12?.features);
+        renderFeatureList('#pkgAllDay-features', p?.pricing?.pkgAllDay?.features);
 
         if (Array.isArray(p?.faqs)) {
           const faqWrap = document.querySelector('#page-faq-list');

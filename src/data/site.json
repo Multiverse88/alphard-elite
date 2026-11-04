@@ -490,33 +490,15 @@
       "slug": "wedding-car-bandung",
       "seoTitle": "Wedding Car Bandung - Alphard Elite",
       "seoDescription": "Sewa wedding car Bandung terbaik dengan pilihan armada mewah & klasik. Sudah termasuk dekorasi bunga elegan & driver profesional. Hubungi kami sekarang!",
-      "badge": "Wedding Car Bandung VIP",
-      "title": "Momen sakral dengan",
-      "titleEm": "kemewahan tak terlupakan.",
-      "lead": "Paket eksklusif wedding car Bandung menggunakan unit Toyota Alphard kelas VIP. Lengkap dengan dekorasi bunga elegan sesuai tema pernikahan, pengemudi berbusana formal, BBM, dan fasilitas kabin bintang lima.",
-      "buttonText": "Booking Wedding Car",
-      "secondaryButtonText": "Lihat paket & FAQ",
-      "statementTitle": "Mengapa memilih Alphard Elite untuk",
-      "statementTitleEm": "hari bahagia Anda?",
-      "statementLead": "Setiap detail perjalanan pengantin disiapkan secara paripurna: kabin super lapang yang menjaga gaun pengantin tetap rapi, aroma terapi menenangkan, hingga dekorasi bunga mobil pengantin yang serasi dengan palet warna pernikahan Anda.",
-      "highlights": [
-        {
-          "title": "Dekorasi Bunga Sesuai Tema",
-          "desc": "Hiasan bunga mobil pengantin elegan yang dapat disesuaikan dengan warna & konsep pernikahan, atau fleksibel didekorasi oleh WO Anda sendiri."
-        },
-        {
-          "title": "Driver Berbusana Formal & Rapi",
-          "desc": "Pengemudi profesional berpengalaman melayani prosesi akad, pemberkatan, hingga resepsi dengan tepat waktu."
-        },
-        {
-          "title": "Kabin VIP Bersih, Wangi & Lapang",
-          "desc": "Captain seat ergonomis dengan ruang kabin lega sehingga gaun pengantin tetap anggun dan nyaman sepanjang perjalanan."
-        },
-        {
-          "title": "Durasi Fleksibel & All-In BBM",
-          "desc": "Tersedia pilihan half-day (6–8 jam) maupun full-day (12–24 jam) menjangkau Kota Bandung, Lembang, Cimahi, Soreang, hingga Padalarang."
-        }
-      ],
+      "badge": "Wedding Car Bandung",
+      "title": "A journey written in elegance, lived in comfort,",
+      "titleEm": "and celebrated with joy.",
+      "lead": "Satu-satunya Rental wedding car Bandung dengan Five-Star Facilities, First-Class Entertainment, dan Business Services.",
+      "buttonText": "Reservasi Tanggal Pernikahan",
+      "secondaryButtonText": "Lihat Paket Wedding",
+      "statementTitle": "Ingin momen pernikahan Anda di Bandung tampak",
+      "statementTitleEm": "semakin berkelas dan berkesan?",
+      "statementLead": "Di Alphard Elite, kami menghadirkan Wedding Car experience terbaik. Kabin bersih steril bebas asap rokok, jok captain seat yang nyaman untuk gaun pengantin lebar, hiburan premium untuk meredakan ketegangan pra-nikah, hingga penampilan pengemudi yang rapi dan profesional.",
       "faqBadge": "FAQ Wedding Car Bandung",
       "faqTitle": "Pertanyaan seputar",
       "faqTitleEm": "wedding car Bandung.",
@@ -550,39 +532,135 @@
           "q": "Berapa jauh hari saya harus memesan wedding car bandung untuk hari pernikahan?",
           "a": "Karena tanggal pernikahan sering kali bertepatan di weekend atau good date, kami menyarankan Anda memesan wedding car bandung setidaknya 1–2 bulan sebelum hari-H untuk memastikan ketersediaan armada Toyota Alphard dan tanggal pilihan Anda."
         }
-      ]
+      ],
+      "specBar": [
+        {
+          "label": "Paket Wedding 12 Jam",
+          "value": "Rp 2.500.000"
+        },
+        {
+          "label": "All-in",
+          "value": "Driver Berjas, BBM, Tol & Parkir"
+        },
+        {
+          "label": "Layanan",
+          "value": "Bebas Request Waktu & Rute"
+        }
+      ],
+      "pillars": [
+        {
+          "numeral": "I",
+          "eyebrow": "Five-Star Facilities",
+          "title": "Kenyamanan setara hotel bintang lima.",
+          "lead": "Fasilitas untuk kenyamanan luar biasa, sejak Anda duduk di kabin.",
+          "image": "/assets/foto/captain-seat-with-legrest.webp",
+          "alt": "Captain seat Alphard dengan legrest dan bantal kepala",
+          "items": [
+            {
+              "name": "Captain Seat with Extra Legrest",
+              "desc": "Lega dan sangat nyaman untuk pengantin wanita dengan gaun pengantin yang bervolume besar."
+            },
+            {
+              "name": "Relaxing Aroma Therapy",
+              "desc": "Menjaga kabin tetap wangi segar, menenangkan pikiran pengantin di tengah hari yang sibuk."
+            },
+            {
+              "name": "EQUIL & Healthy Snacks",
+              "desc": "Menjaga stamina pengantin tetap prima di sela-sela sesi resepsi yang panjang."
+            }
+          ]
+        },
+        {
+          "numeral": "II",
+          "eyebrow": "Aesthetic & Clean Unit",
+          "title": "Hiburan eksklusif di setiap momen.",
+          "lead": "Perjalanan panjang terasa singkat bersama hiburan berkualitas tinggi dan unit yang selalu tampil memukau.",
+          "image": "/assets/foto/4-screen-in-car-entertainment.webp",
+          "alt": "Empat layar hiburan di kabin Alphard Elite",
+          "items": [
+            {
+              "name": "Eksterior Mulus & Kilau Maksimal",
+              "desc": "Mobil selalu dalam kondisi prima dan bersih sempurna untuk hasil jepretan fotografer pernikahan (wedding photography)."
+            },
+            {
+              "name": "Bebas Asap Rokok",
+              "desc": "Menjamin kenyamanan gaun dan jas pengantin agar tetap harum sepanjang hari."
+            },
+            {
+              "name": "NETFLIX, YOUTUBE Premium & VENOM Audio",
+              "desc": "Hiburan eksklusif dan alunan musik jernih untuk meredakan ketegangan sebelum prosesi akad atau resepsi."
+            }
+          ]
+        },
+        {
+          "numeral": "III",
+          "eyebrow": "Professional Groomed Driver",
+          "title": "Pelayanan pengemudi berstandar VIP.",
+          "lead": "Ketepatan waktu dan etika pelayanan terbaik untuk mendampingi momen sakral Anda.",
+          "image": "/assets/foto/wireless-presentation-screen.webp",
+          "alt": "Pelayanan eksekutif kabin Alphard Elite",
+          "items": [
+            {
+              "name": "Pengemudi Berpakaian Formal / Berjas",
+              "desc": "Sopan, menguasai rute gedung/hotel di Bandung, dan siap siaga membantu prosesi naik-turun mobil pengantin."
+            },
+            {
+              "name": "Unlimited High-Speed Wi-Fi & Fast Charging",
+              "desc": "Koneksi internet cepat dan pengisian daya di kabin untuk koordinasi lancar dengan tim WO & keluarga."
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "badge": "Tarif Wedding Car",
+        "title": "Pilih durasi terbaik",
+        "titleEm": "untuk hari bahagia Anda.",
+        "lead": "Semua paket all in dengan pengemudi profesional berpakaian formal/berjas. Tidak tersedia lepas kunci.",
+        "normalLabel": "Normal",
+        "pkg12": {
+          "badge": "Paket Wedding 12 Jam (Dalam Kota)",
+          "title": "Rangkaian akad & resepsi.",
+          "titleEm": "",
+          "price": 2500000,
+          "normalPrice": 3500000,
+          "features": [
+            "Driver profesional berpakaian formal & makan driver",
+            "BBM, parkir, dan tol area Bandung",
+            "Durasi fleksibel untuk akad, resepsi, hingga sesi foto outdoor",
+            "Penjemputan tepat waktu sesuai jadwal WO"
+          ],
+          "buttonText": "Booking Paket 12 Jam"
+        },
+        "pkgAllDay": {
+          "badge": "Paket Wedding All-Day (Full Day / 24 Jam)",
+          "title": "Seharian penuh,",
+          "titleEm": "tanpa batas titik.",
+          "price": 3000000,
+          "normalPrice": 4000000,
+          "features": [
+            "Mencakup antar-jemput dari salon/makeup, venue akad, gedung resepsi, hingga hotel kepulangan",
+            "Bebas batas titik di dalam kota Bandung",
+            "Driver profesional berpakaian formal & makan driver",
+            "BBM, parkir, dan tol area Bandung"
+          ],
+          "buttonText": "Booking Paket All-Day"
+        }
+      },
+      "closingLead": "Jangan biarkan urusan transportasi mengganggu hari bahagia Anda. Hubungi kami sekarang via WhatsApp untuk mengecek ketersediaan armada di tanggal pernikahan Anda."
     },
     "mobil-pengantin-bandung": {
       "slug": "mobil-pengantin-bandung",
       "seoTitle": "Sewa Mobil Pengantin Bandung - Alphard Elite",
       "seoDescription": "Penyediaan sewa mobil pengantin di Bandung dengan armada mewah, bersih, & dekorasi bunga gratis. Driver profesional, siap wujudkan pernikahan impian Anda.",
-      "badge": "Sewa Mobil Pengantin Bandung",
-      "title": "Tampil anggun di",
-      "titleEm": "hari pernikahan impian.",
-      "lead": "Layanan sewa mobil pengantin Bandung dengan Toyota Alphard Transformer Facelift. Kabin mewah dan fotogenik, dekorasi bunga eksklusif sesuai palet warna acara, serta driver terlatih khusus prosedur pernikahan.",
-      "buttonText": "Pesan Mobil Pengantin",
-      "secondaryButtonText": "Lihat fasilitas & FAQ",
-      "statementTitle": "Kenyamanan paripurna untuk",
-      "statementTitleEm": "pengantin & dokumentasi.",
-      "statementLead": "Desain eksterior Toyota Alphard yang gagah dan elegan memberikan tampilan fotogenik di dokumentasi pernikahan, sementara kabin VIP bintang lima memastikan mempelai beristirahat dengan tenang di sela rangkaian acara.",
-      "highlights": [
-        {
-          "title": "Kabin Lapang Aman untuk Gaun",
-          "desc": "Ruang kaki dan captain seat dengan legrest memastikan gaun pengantin besar atau panjang tidak terlipat selama perjalanan."
-        },
-        {
-          "title": "Dekorasi Pita & Bunga Custom",
-          "desc": "Pilihan warna pita dan rangkaian bunga mobil pengantin yang selaras dengan estetika dekorasi pernikahan Anda."
-        },
-        {
-          "title": "Driver Terlatih Etika Wedding",
-          "desc": "Terbiasa dengan alur penjemputan salon/hotel, tempat akad atau pemberkatan, hingga gedung resepsi dengan pelayanan buka-pintu VIP."
-        },
-        {
-          "title": "Jangkauan Bandung Raya & Sekitarnya",
-          "desc": "Melayani Kota Bandung, Lembang, Cimahi, Soreang, Padalarang, hingga Sumedang dengan pilihan paket 6 jam, 12 jam, hingga full day."
-        }
-      ],
+      "badge": "Mobil Pengantin Bandung",
+      "title": "Where luxury meets love, comfort,",
+      "titleEm": "and a lifetime of happiness.",
+      "lead": "Satu-satunya Rental Mobil Pengantin dengan Five-Star Facilities, First-Class Entertainment, dan Business Services.",
+      "buttonText": "Reservasi Tanggal Pernikahan",
+      "secondaryButtonText": "Lihat Paket Wedding",
+      "statementTitle": "Mencari mobil pengantin di Bandung yang mewah, bersih, dan",
+      "statementTitleEm": "tampil sempurna untuk momen sekali seumur hidup?",
+      "statementLead": "Di Alphard Elite, kami mengerti betapa krusialnya kesempurnaan di hari pernikahan Anda. Mulai dari kabin beraroma relaksasi yang menjaga gaun pengantin tetap harum, hiburan untuk meredakan ketegangan pra-akad, hingga ketepatan waktu mutlak ke venue acara.",
       "faqBadge": "FAQ Mobil Pengantin Bandung",
       "faqTitle": "Pertanyaan seputar",
       "faqTitleEm": "mobil pengantin Bandung.",
@@ -616,7 +694,121 @@
           "q": "Kapan waktu terbaik untuk melakukan pemesanan mobil pengantin Bandung?",
           "a": "Kami sangat menyarankan untuk melakukan reservasi mobil pengantin Bandung setidaknya 1–2 bulan sebelum hari-H, terutama jika acara pernikahan Anda jatuh pada weekend (Sabtu/Minggu) atau tanggal cantik, untuk menjamin ketersediaan unit armada kami."
         }
-      ]
+      ],
+      "specBar": [
+        {
+          "label": "Paket Wedding 12 Jam",
+          "value": "Rp 2.500.000"
+        },
+        {
+          "label": "All-in",
+          "value": "Driver Berjas, BBM, Tol & Parkir"
+        },
+        {
+          "label": "Layanan",
+          "value": "Bebas Request Waktu & Rute"
+        }
+      ],
+      "pillars": [
+        {
+          "numeral": "I",
+          "eyebrow": "Five-Star Facilities",
+          "title": "Kenyamanan setara hotel bintang lima.",
+          "lead": "Fasilitas untuk kenyamanan luar biasa, sejak Anda duduk di kabin.",
+          "image": "/assets/foto/captain-seat-with-legrest.webp",
+          "alt": "Captain seat Alphard dengan legrest dan bantal kepala",
+          "items": [
+            {
+              "name": "Captain Seat with Extra Legrest",
+              "desc": "Lega dan sangat nyaman untuk pengantin wanita dengan gaun pengantin yang bervolume besar."
+            },
+            {
+              "name": "Relaxing Aroma Therapy",
+              "desc": "Menjaga kabin tetap wangi segar, menenangkan pikiran pengantin di tengah hari yang sibuk."
+            },
+            {
+              "name": "EQUIL & Healthy Snacks",
+              "desc": "Menjaga stamina pengantin tetap prima di sela-sela sesi resepsi yang panjang."
+            }
+          ]
+        },
+        {
+          "numeral": "II",
+          "eyebrow": "Aesthetic & Clean Unit",
+          "title": "Hiburan eksklusif di setiap momen.",
+          "lead": "Perjalanan panjang terasa singkat bersama hiburan berkualitas tinggi dan unit yang selalu tampil memukau.",
+          "image": "/assets/foto/4-screen-in-car-entertainment.webp",
+          "alt": "Empat layar hiburan di kabin Alphard Elite",
+          "items": [
+            {
+              "name": "Eksterior Mulus & Kilau Maksimal",
+              "desc": "Mobil selalu dalam kondisi prima dan bersih sempurna untuk hasil jepretan fotografer pernikahan (wedding photography)."
+            },
+            {
+              "name": "Bebas Asap Rokok",
+              "desc": "Menjamin kenyamanan gaun dan jas pengantin agar tetap harum sepanjang hari."
+            },
+            {
+              "name": "NETFLIX, YOUTUBE Premium & VENOM Audio",
+              "desc": "Hiburan eksklusif dan alunan musik jernih untuk meredakan ketegangan sebelum prosesi akad atau resepsi."
+            }
+          ]
+        },
+        {
+          "numeral": "III",
+          "eyebrow": "Professional Groomed Driver",
+          "title": "Pelayanan pengemudi berstandar VIP.",
+          "lead": "Ketepatan waktu dan etika pelayanan terbaik untuk mendampingi momen sakral Anda.",
+          "image": "/assets/foto/wireless-presentation-screen.webp",
+          "alt": "Pelayanan eksekutif kabin Alphard Elite",
+          "items": [
+            {
+              "name": "Pengemudi Berpakaian Formal / Berjas",
+              "desc": "Sopan, menguasai rute gedung/hotel di Bandung, dan siap siaga membantu prosesi naik-turun mobil pengantin."
+            },
+            {
+              "name": "Unlimited High-Speed Wi-Fi & Fast Charging",
+              "desc": "Koneksi internet cepat dan pengisian daya di kabin untuk koordinasi lancar dengan tim WO & keluarga."
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "badge": "Tarif Mobil Pengantin",
+        "title": "Pilih durasi terbaik",
+        "titleEm": "untuk hari bahagia Anda.",
+        "lead": "Semua paket all in dengan pengemudi profesional berpakaian formal/berjas. Tidak tersedia lepas kunci.",
+        "normalLabel": "Normal",
+        "pkg12": {
+          "badge": "Paket Wedding 12 Jam (Dalam Kota)",
+          "title": "Rangkaian akad & resepsi.",
+          "titleEm": "",
+          "price": 2500000,
+          "normalPrice": 3500000,
+          "features": [
+            "Driver profesional berpakaian formal & makan driver",
+            "BBM, parkir, dan tol area Bandung",
+            "Durasi fleksibel untuk akad, resepsi, hingga sesi foto outdoor",
+            "Penjemputan tepat waktu sesuai jadwal WO"
+          ],
+          "buttonText": "Booking Paket 12 Jam"
+        },
+        "pkgAllDay": {
+          "badge": "Paket Wedding All-Day (Full Day / 24 Jam)",
+          "title": "Seharian penuh,",
+          "titleEm": "tanpa batas titik.",
+          "price": 3000000,
+          "normalPrice": 4000000,
+          "features": [
+            "Mencakup antar-jemput dari salon/makeup, venue akad, gedung resepsi, hingga hotel kepulangan",
+            "Bebas batas titik di dalam kota Bandung",
+            "Driver profesional berpakaian formal & makan driver",
+            "BBM, parkir, dan tol area Bandung"
+          ],
+          "buttonText": "Booking Paket All-Day"
+        }
+      },
+      "closingLead": "Jangan biarkan urusan transportasi mengganggu hari bahagia Anda. Hubungi kami sekarang via WhatsApp untuk mengecek ketersediaan armada di tanggal pernikahan Anda."
     }
   }
 }
