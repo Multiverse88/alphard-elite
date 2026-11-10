@@ -71,6 +71,18 @@ const pPrefix = `pages.${page.slug}`;
       gtag('js', new Date());
       gtag('config', 'AW-16852131238');
     </script>
+    <!-- TrafficGuard Start -->
+    <script is:inline>
+      window.dataTrafficGuard = window.dataTrafficGuard || [];
+      window.dataTrafficGuard.push(['property', 'tg-018644-001']);
+      window.dataTrafficGuard.push(['event','pageview']);
+      (function() {
+      var tg = document.createElement('script'); tg.type = 'text/javascript'; tg.async = true;tg.src = 'https://tgtag.io/tg.js?pid=tg-018644-001';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(tg, s);
+      })();
+    </script>
+    <noscript><img src="https://p.tgtag.io/event?property_id=tg-018644-001&event_name=pageview&no_script=1" width="1" height="1" border="0"/></noscript>
+    <!-- TrafficGuard End-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070708" />
