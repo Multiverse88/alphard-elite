@@ -7,6 +7,7 @@
 - Add `/wedding-car-bandung/` and `/mobil-pengantin-bandung/` SEO landing pages (`src/pages/[slug].astro`) plus Homepage & page-specific FAQ accordions with `FAQPage` JSON-LD schema.
 - Route all WhatsApp links and Rupiah formatting through `src/data/contact.ts` using `siteData.contact.whatsappNumber`.
 - Add `/admin/` split-screen Dashboard CMS (`public/admin/index.html`, `cms-server.ts`) with standard username/password login (`HttpOnly` signed session cookie), section/page sidebar, real-time `postMessage` Live Preview (Desktop & Mobile 390px), and automatic static site rebuild on save.
+- Install Google Tag Manager (`GTM-TP34JKNW`) and Google Ads tag (`AW-16852131238`) in `<head>` across all pages.
 
 ## 2026-10-21 — Black & silver luxury redesign
 
